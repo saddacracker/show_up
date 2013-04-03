@@ -1,0 +1,20 @@
+// This is a manifest file that will be compiled to include all the files listed below.
+// http://guides.rubyonrails.org/asset_pipeline.html#manifest-files-and-directives
+// 
+// IT'S NOT ADVISABLE TO ADD CODE DIRECTLY TO THIS FILE.
+// 
+// When you add a file to this directory, manually add it to this manifest file.
+// Doing this rather than requiring the entire tree allows us to keep a tight control
+// on our css stack, eliminating errors/frustrations/headaches that arise from trying
+// to override styles and debug where a property was inherited from.
+// 
+// Remember that files to be pulled into this manifest can reside in three places:
+// 
+// - app/assets/stylesheets
+// - vendor/assets/stylesheets
+// - lib/assets/stylesheets
+// 
+// For a breakdown of what belongs where, see
+// http://guides.rubyonrails.org/asset_pipeline.html#asset-organization
+ 
+@import "bootstrap";
