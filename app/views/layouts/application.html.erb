@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ShowUp</title>
+  <title>Suit Up &amp; Show Up</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>.
-    <%= link_to "Log out", log_out_path %>
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %>
-  <% end %>
+
+<div class="navbar navbar-static-top navbar-inverse">
+  <div class="navbar-inner">
+    <%= link_to "Suit Up & Show Up", root_path, class: "brand" %>
+    <ul class="nav pull-right">
+      <% if current_user %>
+        <li><p class="navbar-text">Logged in as <%= current_user.email %>.</p></li>
+        <li><%= link_to "Log out", log_out_path %></li>
+      <% else %>
+        <%#= link_to "Sign up", sign_up_path %>
+        <li><%= link_to "log in", log_in_path %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-  
+
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <div class="container"><div class="row"><div class="span12">
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= content_tag :p, msg, :id => "flash_#{name}" %>
+    </div> 
+  </div></div></div> 
 <% end %>
+
 
 <%= yield %>
 

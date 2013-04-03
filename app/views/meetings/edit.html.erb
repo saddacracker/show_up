@@ -1,6 +1,19 @@
-<h1>Editing meeting</h1>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h1>Edit Meeting</h1>
+      <ul class="breadcrumb">
+        <li><%= link_to 'Show', @meeting %> <span class="divider">/</span></li>
+        <li><%= link_to 'Back', meetings_path %></li>
+      </ul>
+    </div>
+  </div>
+  
+    <div class="row">
+      <div class="span12">
+        <%= render 'form' %>
+      </div>
+    </div>
+</div>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @meeting %> |
-<%= link_to 'Back', meetings_path %>

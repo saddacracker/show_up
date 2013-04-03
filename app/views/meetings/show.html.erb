@@ -1,70 +1,85 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Address:</b>
-  <%= @meeting.address %>
-</p>
-
-<p>
-  <b>Latitude:</b>
-  <%= @meeting.latitude %>
-</p>
-
-<p>
-  <b>Longitude:</b>
-  <%= @meeting.longitude %>
-</p>
-
-<p>
-  <b>Time:</b>
-  <%= @meeting.time %>
-</p>
-
-<p>
-  <b>Duration:</b>
-  <%= @meeting.duration %>
-</p>
-
-<p>
-  <b>Days of week:</b>
-  <%= @meeting.days_of_week %>
-</p>
-
-<p>
-  <b>Closed meeting:</b>
-  <%= @meeting.closed_meeting %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @meeting.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @meeting.description %>
-</p>
-
-<p>
-  <b>Tags:</b>
-  <%= @meeting.tags %>
-</p>
-
-<div class="span6">
-  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
-</div>
-
-<div class="span12">
-  <h3>Nearby meetings (within 5 miles)</h3>
-  <ul>
-  <% for meeting in @meeting.nearbys(5) %>
-    <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
-  <% end %>
-  </ul>
-</div>
+<div class="container">
+  
+  <div class="row">
+    <div class="span12">
+      <h1>
+        <%= @meeting.title %>
+      </h1>
+    </div>
+  </div>
 
 
-<div class="span12">
-  <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-  <%= link_to 'Meetings', meetings_path %>
+  <div class="row">
+    <div class="span4">
+      <p>
+        <b>Address:</b>
+        <%= @meeting.address %>
+      </p>
+
+      <p>
+        <b>Latitude:</b>
+        <%= @meeting.latitude %>
+      </p>
+
+      <p>
+        <b>Longitude:</b>
+        <%= @meeting.longitude %>
+      </p>
+
+      <p>
+        <b>Time:</b>
+        <%= @meeting.time %>
+      </p>
+
+      <p>
+        <b>Duration:</b>
+        <%= @meeting.duration %>
+      </p>
+
+      <p>
+        <b>Days of week:</b>
+        <%= @meeting.days_of_week %>
+      </p>
+
+      <p>
+        <b>Closed meeting:</b>
+        <%= @meeting.closed_meeting %>
+      </p>
+
+      <p>
+        <b>Description:</b>
+        <%= @meeting.description %>
+      </p>
+
+      <p>
+        <b>Tags:</b>
+        <%= @meeting.tags %>
+      </p>
+    </div>
+    <div class="span7 offset1">
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="span12">
+      <h3>Nearby meetings (within 5 miles)</h3>
+      <ul>
+      <% for meeting in @meeting.nearbys(5) %>
+        <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="span12">
+    <% if current_user %>
+      <%= link_to 'Edit', edit_meeting_path(@meeting), class: "btn" %>
+    <% end %>
+    <%= link_to 'Meetings', meetings_path, class: "btn" %>
+    </div>
+  </div>
 </div>

@@ -1,47 +1,60 @@
-<%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
-    <%= text_field_tag :search, params[:search], placeholder: "City", class: "input-small" %>
-    <%= submit_tag "Search Near", :name => nil, class: "btn" %>
-    <small>Returns results within a 10 mile radius</small>
-<% end %>
+<div class="container">
+  <%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
+      <%= text_field_tag :search, params[:search], placeholder: "City", class: "input-small" %>
+      <%= submit_tag "Search Near", :name => nil, class: "btn" %>
+      <small>Returns results within a 10 mile radius</small>
+  <% end %>
+  
+  <hr />
 
-<h1>All Meetings</h1>
+  <h1>All Meetings</h1>
+  
+  <table class="table">
+    <tr>
+      <th>Meeting Name</th>
+      <th>Address</th>
+      <!--<th>Latitude</th>
+      <th>Longitude</th>-->
+      <th>Time</th>
+      <th>Duration</th>
+      <th>Days of week</th>
+      <th>Closed meeting</th>
+      <th>Description</th>
+      <th>Tags</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<table class="table">
-  <tr>
-    <th>Address</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Time</th>
-    <th>Duration</th>
-    <th>Days of week</th>
-    <th>Closed meeting</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Tags</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <% @meetings.each do |meeting| %>
+    <tr>
+      <td>
+        <strong>
+          <%= link_to meeting.title, meeting %>
+        </strong>
+      </td>
+      <td><%= meeting.address %></td>
+      <!--
+      <td><%#= meeting.latitude %></td>
+      <td><%#= meeting.longitude %></td>-->
+      <td><%= meeting.time %></td>
+      <td><%= meeting.duration %></td>
+      <td><%= meeting.days_of_week %></td>
+      <td><%= meeting.closed_meeting %></td>
+      <td><%= meeting.description %></td>
+      <td><%= meeting.tags %></td>
+      <td><%= link_to 'Show', meeting, class: "btn btn-mini"%></td>
+      <% if current_user %>
+        <td><%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %></td>
+        <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini btn-danger" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
 
-<% @meetings.each do |meeting| %>
-  <tr>
-    <td><%= meeting.address %></td>
-    <td><%= meeting.latitude %></td>
-    <td><%= meeting.longitude %></td>
-    <td><%= meeting.time %></td>
-    <td><%= meeting.duration %></td>
-    <td><%= meeting.days_of_week %></td>
-    <td><%= meeting.closed_meeting %></td>
-    <td><%= meeting.title %></td>
-    <td><%= meeting.description %></td>
-    <td><%= meeting.tags %></td>
-    <td><%= link_to 'Show', meeting, class: "btn btn-mini"%></td>
-    <td><%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %></td>
-    <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini btn-danger" %></td>
-  </tr>
-<% end %>
-</table>
+  <br />
 
-<br />
-
-<%= link_to 'New Meeting', new_meeting_path, class: "btn btn-primary" %>
+  <% if current_user %>
+    <%= link_to 'New Meeting', new_meeting_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
