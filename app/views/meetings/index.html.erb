@@ -1,6 +1,9 @@
 <div class="container">
+  
+  <hr />
+  
   <%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
-      <%= text_field_tag :search, params[:search], placeholder: "City", class: "input-small" %>
+      <%= text_field_tag :search, params[:search], placeholder: "City", class: "input" %>
       <%= submit_tag "Search Near", :name => nil, class: "btn" %>
       <small>Returns results within a 10 mile radius</small>
   <% end %>
@@ -10,7 +13,7 @@
   <h1>All Meetings</h1>
   <p>Underneath every skirt is a slip.</p>
   
-  <table class="table">
+  <table class="table table-striped table-hover">
     <tr>
       <th>Meeting Name</th>
       <th>Address</th>
