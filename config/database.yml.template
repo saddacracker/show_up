@@ -1,0 +1,22 @@
+setup: &setup
+  adapter: postgresql
+  username: postgres
+  host: localhost
+  encoding: UTF8
+  min_messages: warning
+
+development:
+  <<: *setup
+  database: showup_dev
+
+test:
+  <<: *setup
+  database: showup_test
+
+staging:
+  <<: *setup
+  database: showup_staging
+
+production:
+  <<: *setup
+  database: showup_prod
