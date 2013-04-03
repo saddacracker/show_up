@@ -1,5 +1,7 @@
 ShowUp::Application.routes.draw do
   
+  get "welcome/index"
+
   resources :meetings
 
   get "sessions/new"
@@ -10,7 +12,7 @@ ShowUp::Application.routes.draw do
   
   get "meetings" => "meetings#index", :as => "meetings"
   
-  root :to => "users#new"
+  root :to => "welcome#index"
   
   resources :users
   resources :sessions
