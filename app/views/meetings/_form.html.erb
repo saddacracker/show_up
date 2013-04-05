@@ -30,22 +30,39 @@
     <%= f.number_field :duration %>
   </div>
   <div class="field">
-    <%= f.label :closed_meeting %><br />
-    <%= f.check_box :closed_meeting %>
+    <label class="checkbox">
+      <%= f.check_box :closed_meeting %>
+      Closed meeting?
+    </label>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, size: "100x5", placeholder: "Enter meeting description here" %>
   </div>
-  <div class="field">
-    <%= f.label :days_of_week %><br />
-    <%= f.text_area :days_of_week %>
+  
+  <div class="field span12">
+    <h3>Days of Week</h3>
+      <%= f.fields_for :days_of_week do |w| %>
+        <% @meeting.days_of_week.each do |t,v| %>
+        <label class="checkbox inline">
+          <%= w.check_box t, checked: (v == "1" ? "checked" : "") %> <%= t %>
+        </label>
+        <% end %>
+      <% end %>
   </div>
-  <div class="field">
-    <%= f.label :tags %><br />
-    <%= f.text_area :tags %>
+  
+  <div class="field span12">
+    <h3>Meeting Tags</h3>
+      <%= f.fields_for :tags do |w| %>
+        <% @meeting.tags.each do |t,v| %>
+        <label class="checkbox inline">
+          <%= w.check_box t, checked: (v == "1" ? "checked" : "") %> <%= t %>
+        </label>
+        <% end %>
+      <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div class="actions span12">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

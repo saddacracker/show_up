@@ -17,8 +17,6 @@
     <tr>
       <th>Meeting Name</th>
       <th>Address</th>
-      <!--<th>Latitude</th>
-      <th>Longitude</th>-->
       <th>Time</th>
       <th>Duration</th>
       <th>Days of week</th>
@@ -38,15 +36,12 @@
         </strong>
       </td>
       <td><%= meeting.address %></td>
-      <!--
-      <td><%#= meeting.latitude %></td>
-      <td><%#= meeting.longitude %></td>-->
       <td><%= meeting.time %></td>
       <td><%= meeting.duration %></td>
-      <td><%= meeting.days_of_week %></td>
+      <td><%= render 'days_of_week_tags', :meeting => meeting  %></td>
       <td><%= meeting.closed_meeting %></td>
       <td><%= meeting.description %></td>
-      <td><%= meeting.tags %></td>
+      <td><%= render 'tags', :meeting => meeting %></td>
       <td><%= link_to 'Show', meeting, class: "btn btn-mini"%></td>
       <% if current_user %>
         <td><%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %></td>

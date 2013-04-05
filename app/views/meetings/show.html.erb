@@ -15,17 +15,7 @@
         <b>Address:</b>
         <%= @meeting.address %>
       </p>
-
-      <p>
-        <b>Latitude:</b>
-        <%= @meeting.latitude %>
-      </p>
-
-      <p>
-        <b>Longitude:</b>
-        <%= @meeting.longitude %>
-      </p>
-
+      
       <p>
         <b>Time:</b>
         <%= @meeting.time %>
@@ -37,8 +27,8 @@
       </p>
 
       <p>
-        <b>Days of week:</b>
-        <%= @meeting.days_of_week %>
+        <b>Days of week:</b><br />
+        <%= render 'days_of_week_tags', :meeting => @meeting  %>
       </p>
 
       <p>
@@ -46,14 +36,16 @@
         <%= @meeting.closed_meeting %>
       </p>
 
+      <% if @meeting.description? %>
       <p>
         <b>Description:</b>
         <%= @meeting.description %>
       </p>
+      <% end %>
 
       <p>
-        <b>Tags:</b>
-        <%= @meeting.tags %>
+        <b>Tags:</b><br />
+        <%= render 'tags', :meeting => @meeting  %>
       </p>
     </div>
     <div class="span7 offset1">

@@ -29,6 +29,12 @@ class MeetingsController < ApplicationController
   # GET /meetings/new.json
   def new
     @meeting = Meeting.new
+    
+    # prepopulate days of week 
+    @meeting.days_of_week = {"mon"=>"1", "tue"=>"0", "wed"=>"0", "thu"=>"0", "fri"=>"0", "sat"=>"0", "sun"=>"0"}
+    
+    # prepopulate tags
+    @meeting.tags = {"speaker"=>"1", "gay"=>"0", "childcare"=>"0", "mens"=>"0", "womens"=>"0", "book_study"=>"0", "step_study"=>"0"}
 
     respond_to do |format|
       format.html # new.html.erb
