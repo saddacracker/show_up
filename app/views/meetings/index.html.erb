@@ -3,7 +3,7 @@
   <hr />
   
   <%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
-      <%= text_field_tag :search, params[:search], placeholder: "City", class: "input" %>
+      <%= text_field_tag :search, params[:search], placeholder: "City or Address", class: "input" %>
       <%= submit_tag "Search Near", :name => nil, class: "btn" %>
       <small>Returns results within a 10 mile radius</small>
   <% end %>
