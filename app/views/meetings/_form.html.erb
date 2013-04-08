@@ -51,7 +51,11 @@
   
   <div class="field span12">
     <h3>Meeting Tags</h3>
-      
+    <% [:speaker, :childcare, :book_study, :mens, :womans, :gay].each do |tag| %>
+      <label class="checkbox inline">
+        <%= f.check_box tag %> <%= tag %>
+      </label>
+    <% end %> 
   </div>
   
   <div class="actions span12">

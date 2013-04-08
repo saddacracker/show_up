@@ -58,7 +58,8 @@ CREATE TABLE meetings (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    week_days hstore
+    week_days hstore,
+    tags hstore
 );
 
 
@@ -175,3 +176,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130407235837');
 INSERT INTO schema_migrations (version) VALUES ('20130408224725');
 
 INSERT INTO schema_migrations (version) VALUES ('20130408225547');
+
+INSERT INTO schema_migrations (version) VALUES ('20130408230507');
