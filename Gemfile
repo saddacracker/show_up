@@ -7,6 +7,8 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 
+gem 'activerecord-postgres-hstore'
+
 gem "bcrypt-ruby", :require => "bcrypt"
 
 gem 'geocoder'
