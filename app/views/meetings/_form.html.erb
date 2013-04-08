@@ -41,26 +41,12 @@
   </div>
   
   <div class="field">
-    <h3>TEST Days of Week</h3>
-    <%#= %w[monday tuesday wednesday thursday friday saturday sunday].each do |key| %>
-    
-    <%= f.label :monday %><br />
-    <%= f.text_field :monday %>
-    <%= f.label :tuesday %><br />
-    <%= f.text_field :tuesday %>
-    <%= f.label :wednesday %><br />
-    <%= f.text_field :wednesday %>
-  </div>
-  
-  <div class="field span12">
     <h3>Days of Week</h3>
-      <%= f.fields_for :days_of_week do |w| %>
-        <% @meeting.days_of_week.each do |t,v| %>
-        <label class="checkbox inline">
-          <%= w.check_box t, checked: (v == "1" ? "checked" : "") %> <%= t %>
-        </label>
-        <% end %>
-      <% end %>
+    <% [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday].each do |day| %>
+      <label class="checkbox inline">
+        <%= f.check_box day %> <%= day %>
+      </label>
+    <% end %>
   </div>
   
   <div class="field span12">

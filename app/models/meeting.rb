@@ -1,7 +1,7 @@
 class Meeting < ActiveRecord::Base
   attr_accessible :address, :closed_meeting, :days_of_week, :description, :duration, :latitude, :longitude, :tags, :time, :title
   
-  # loop thru and create the accessor methods 
+  # loop thru and create the accessor methods for week_days hstore!
   # (http://railscasts.com/episodes/345-hstore?view=asciicast)
   %w[monday tuesday wednesday thursday friday saturday sunday].each do |key|
     attr_accessible key
