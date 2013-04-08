@@ -53,11 +53,9 @@ CREATE TABLE meetings (
     longitude double precision,
     "time" integer,
     duration integer,
-    days_of_week text,
     closed_meeting boolean,
     title character varying(255),
     description text,
-    tags text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     week_days hstore
@@ -173,3 +171,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130403030014');
 INSERT INTO schema_migrations (version) VALUES ('20130407235328');
 
 INSERT INTO schema_migrations (version) VALUES ('20130407235837');
+
+INSERT INTO schema_migrations (version) VALUES ('20130408224725');
+
+INSERT INTO schema_migrations (version) VALUES ('20130408225547');

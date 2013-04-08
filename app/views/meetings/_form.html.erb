@@ -51,13 +51,7 @@
   
   <div class="field span12">
     <h3>Meeting Tags</h3>
-      <%= f.fields_for :tags do |w| %>
-        <% @meeting.tags.each do |t,v| %>
-        <label class="checkbox inline">
-          <%= w.check_box t, checked: (v == "1" ? "checked" : "") %> <%= t %>
-        </label>
-        <% end %>
-      <% end %>
+      
   </div>
   
   <div class="actions span12">

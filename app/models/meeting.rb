@@ -1,5 +1,5 @@
 class Meeting < ActiveRecord::Base
-  attr_accessible :address, :closed_meeting, :days_of_week, :description, :duration, :latitude, :longitude, :tags, :time, :title
+  attr_accessible :address, :closed_meeting, :description, :duration, :latitude, :longitude, :time, :title
   
   # loop thru and create the accessor methods for week_days hstore!
   # (http://railscasts.com/episodes/345-hstore?view=asciicast)
@@ -18,11 +18,9 @@ class Meeting < ActiveRecord::Base
     end
   end
   
-  validates_presence_of :address, :duration, :days_of_week, :tags, :time, :title
+  validates_presence_of :address, :duration, :time, :title
   validates_numericality_of :time, :duration
   
-  serialize :days_of_week , Hash
-  serialize :tags         , Hash
   serialize :week_days    , ActiveRecord::Coders::Hstore
 
   geocoded_by :address
