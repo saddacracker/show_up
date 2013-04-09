@@ -22,15 +22,11 @@
   <%#= f.text_field :latitude %>
   <%#= f.text_field :longitude %>  
   <div class="field">
-    <%= f.label :time %><br />
-    <%= f.select :time, [ 
-         ["6am", 600], ["7am", 700], ["8am", 800], ["9am", 900], ["10am", 1000], ["11am", 1100], ["12pm", 1200], ["1pm", 1300], ["2pm", 1400], ["3pm", 1500], ["4pm", 1600], ["5pm", 1700], ["6pm", 1800], ["7pm", 1900], ["8pm", 2000], ["9pm", 2100], ["10pm", 2200], ["11pm", 2300], ["12am", 2400], ["1am", 100], ["2am", 200], ["3am", 300], ["4am",400], ["5am", 500]
-    ], class:'meeting-time'%>
-    
+    <%= am_pm_hour_select f, :time %>
   </div>
   <div class="field">
     <%= f.label :duration %><br />
-    <%= f.select :duration, [ ["1 hour", 100], ["1.5 hours", 150], ["2 hours", 200] ], class:'meeting-duration'%>
+    <%= f.select :duration, [ ["1 hour", 100], ["1.5 hours", 130], ["2 hours", 200] ], class:'meeting-duration'%>
   </div>
   <div class="field">
     <label class="checkbox">
