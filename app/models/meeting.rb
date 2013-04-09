@@ -21,7 +21,7 @@ class Meeting < ActiveRecord::Base
   end
   
   # ALL THE tags
-  %w[speaker childcare book_study mens womans gay].each do |key|
+  %w[speaker childcare book_study mens womans gay homegroup].each do |key|
     attr_accessible key
     
     # add scope for Meeting.has_speaker("1")
