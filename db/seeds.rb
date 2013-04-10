@@ -12,7 +12,7 @@ User.create({ :email => 'admin@example.com', :password => 'password', :password_
 
 #create some meetings
 meetings = Meeting.create([
-{:address => '99 Ferry St. Easthampton, MA', :week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 1, :wednesday => 1}, :duration => 100, :time => 1200, :title => 'Sample Meeting', :tags => {:speaker => 1, :childcare => 0, :book_study => 0}},
+{:address => '99 Ferry St. Easthampton, MA', :week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 1, :wednesday => 1}, :duration => 100, :time => 1200, :closed_meeting => false, :description => "Another sweet lifesaving meeting", :title => 'Sample Meeting', :tags => {:speaker => 1, :childcare => 0, :book_study => 0}},
 
-{:address => '45 Mereline Ave. Eastlongmeadow, MA', :week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 1, :wednesday => 1}, :duration => 100, :time => 1200, :title => 'Sample Meeting 2', :tags => {:speaker => 1, :childcare => 0, :book_study => 0}}
+{:address => '45 Mereline Ave. Eastlongmeadow, MA', :week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 1, :wednesday => 1}, :duration => 100, :time => 1200, :closed_meeting => false, :description => "Another sweet lifesaving meeting", :title => 'Sample Meeting 2', :tags => {:speaker => 1, :childcare => 0, :book_study => 0}}
 ])
