@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Suit Up &amp; Show Up</title>
+  <title><%= title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  
+  <meta name="keywords" content="<%= meta_keywords %>" /> 
+  <meta name="description" content="<%= meta_description %>" />
 </head>
 <body>
 
