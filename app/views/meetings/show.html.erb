@@ -6,8 +6,17 @@
         <%= @meeting.title %>
       </h1>
     </div>
+    <br />
+    <div class="span12">
+    <% if current_user %>
+      <%= link_to 'Edit', edit_meeting_path(@meeting), class: "btn" %>
+    <% end %>
+    <%= link_to 'Back To Meetings', meetings_path, class: "btn" %>
+    </div>
+    
+    <hr />
   </div>
-
+  <br />
 
   <div class="row">
     <div class="span4">
@@ -47,31 +56,29 @@
         <b>Tags:</b><br />
         <%= render 'tags', :meeting => @meeting  %>
       </p>
-    </div>
-    <div class="span7 offset1">
-      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="span12">
+      
       <h3>Nearby meetings (within 5 miles)</h3>
       <ul>
       <% for meeting in @meeting.nearbys(5) %>
         <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
       <% end %>
       </ul>
+      
+    </div>
+    
+    <div class="span7 offset1">
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
+      
+      <%= image_tag "http://maps.googleapis.com/maps/api/streetview?size=640x300&location=#{@meeting.latitude},%20#{@meeting.longitude}&fov=120&heading=235&pitch=10&sensor=false" %>
+      
+      
+      
     </div>
   </div>
 
 
-  <div class="row">
-    <div class="span12">
-    <% if current_user %>
-      <%= link_to 'Edit', edit_meeting_path(@meeting), class: "btn" %>
-    <% end %>
-    <%= link_to 'Meetings', meetings_path, class: "btn" %>
-    </div>
-  </div>
+    
+
+
+  
 </div>

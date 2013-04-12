@@ -1,6 +1,9 @@
+<div class="container">
+
 <%= form_for(@meeting) do |f| %>
   <% if @meeting.errors.any? %>
-    <div id="error_explanation">
+  <div class="row">
+    <div id="error_explanation span12">
       <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
 
       <ul>
@@ -9,56 +12,67 @@
       <% end %>
       </ul>
     </div>
+  </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title, "Meeting Name" %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <%#= f.text_field :latitude %>
-  <%#= f.text_field :longitude %>  
-  <div class="field">
-    <h3>Meeting Start Time</h3>
-    <%= am_pm_hour_select f, :time %>
-  </div>
-  <div class="field">
-    <%= f.label :duration %><br />
-    <%= f.select :duration, [ ["1 hour", 100], ["1.5 hours", 130], ["2 hours", 200] ], class:'meeting-duration'%>
-  </div>
-  <div class="field">
-    <label class="checkbox">
-      <%= f.check_box :closed_meeting %>
-      Closed meeting?
-    </label>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, size: "100x5", placeholder: "Enter meeting description here" %>
+  
+  <div class="row">
+    <div class="span6">
+      <div class="field">
+        <%= f.label :title, "Meeting Name" %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </div>
+      <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description, size: "100x5", placeholder: "Enter meeting description here" %>
+      </div>
+      <%#= f.text_field :latitude %>
+      <%#= f.text_field :longitude %>  
+      <div class="field">
+        <%= f.label :time %>
+        <%= am_pm_hour_select f, :time %>
+      </div>
+      <div class="field">
+        <%= f.label :duration %>
+        <%= f.select :duration, [ ["1 hour", 100], ["1.5 hours", 130], ["2 hours", 200] ], class:'meeting-duration'%>
+      </div>
+      <div class="field">
+        <label class="checkbox">
+          <%= f.check_box :closed_meeting %>
+          Closed meeting?
+        </label>
+      </div>
+    </div>
+  
+    <div class="span6">
+      <div class="field well">
+        <h6>Days of Week</h6>
+        <% [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday].each do |day| %>
+          <label class="checkbox inline">
+            <%= f.check_box day %> <%= day %>
+          </label>
+        <% end %>
+      </div>
+  
+      <div class="field well">
+        <h6>Meeting Tags</h6>
+        <% [:speaker, :childcare, :book_study, :mens, :womans, :gay, :homegroup].each do |tag| %>
+          <label class="checkbox inline">
+            <%= f.check_box tag %> <%= tag %>
+          </label>
+        <% end %> 
+      </div>
+    </div>
   </div>
   
-  <div class="field">
-    <h3>Days of Week</h3>
-    <% [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday].each do |day| %>
-      <label class="checkbox inline">
-        <%= f.check_box day %> <%= day %>
-      </label>
-    <% end %>
-  </div>
-  
-  <div class="field span12">
-    <h3>Meeting Tags</h3>
-    <% [:speaker, :childcare, :book_study, :mens, :womans, :gay, :homegroup].each do |tag| %>
-      <label class="checkbox inline">
-        <%= f.check_box tag %> <%= tag %>
-      </label>
-    <% end %> 
-  </div>
-  
-  <div class="actions span12">
-    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <div class="row">
+    <div class="actions span12">
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
+
+</div>
