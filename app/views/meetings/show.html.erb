@@ -26,13 +26,8 @@
       </p>
       
       <p>
-        <b>Time:</b>
-        <%= @meeting.time %>
-      </p>
-
-      <p>
-        <b>Duration:</b>
-        <%= @meeting.duration %>
+        <b>Meeting Time</b>
+        <span><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></span>
       </p>
 
       <p>

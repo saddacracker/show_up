@@ -22,4 +22,14 @@ module ApplicationHelper
        content_for?(:meta_description) ? content_for(:meta_description) : APP_CONFIG['meta_description']
      end
    end
+   
+   def fomat_time(t)
+      t = '%04i' % t
+      p DateTime.strptime(t, '%H%M').strftime('%l:%M %p')
+   end
+   
+   def get_meeting_end_time(start_time, duration)
+      e = start_time + duration
+      fomat_time(e)
+   end
 end
