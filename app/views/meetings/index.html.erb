@@ -37,8 +37,8 @@
         </strong>
       </td>
       <td><%= meeting.address %></td>
-      <td><%= meeting.time %></td>
-      <td><%= meeting.duration %></td>
+      <td><%= fomat_time meeting.time %></td>
+      <td><%= sexy_duration(meeting.duration) %></td>
       <td><%= render 'days_of_week_tags', :meeting => meeting  %></td>
       <td><%= meeting.closed_meeting %></td>
       <td><%= meeting.description %></td>

@@ -4,9 +4,9 @@ module MeetingsHelper
     select_options = create_hours(:start_time => 5.hours, :end_time => 23.hours)
 
     unless options[:start].nil?
-       shift_if_needed = Proc.new{|hour, start| hour<start ? hour+24 : hour}
-       select_options.sort!{|x, y| shift_if_needed.call(x.last,options[:start]) <=> shift_if_needed.call(y.last, options[:start]) }
-     end
+      shift_if_needed = Proc.new{|hour, start| hour<start ? hour+24 : hour}
+      select_options.sort!{|x, y| shift_if_needed.call(x.last,options[:start]) <=> shift_if_needed.call(y.last, options[:start]) }
+    end
 
     object.select(method, select_options, options = {}, html_options = {})
   end

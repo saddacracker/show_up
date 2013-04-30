@@ -52,9 +52,9 @@
         <%= render 'tags', :meeting => @meeting  %>
       </p>
       
-      <h3>Nearby meetings (within 5 miles)</h3>
+      <h3>Nearby meetings (within 10 miles)</h3>
       <ul>
-      <% for meeting in @meeting.nearbys(5) %>
+      <% for meeting in @meeting.nearbys(10) %>
         <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
       <% end %>
       </ul>

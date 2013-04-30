@@ -29,7 +29,11 @@ module ApplicationHelper
    end
    
    def get_meeting_end_time(start_time, duration)
-      e = start_time + duration
-      fomat_time(e)
+      start_time = '%04i' % start_time
+      p (DateTime.strptime(start_time, '%H%M') + duration.minutes).strftime('%l:%M %p')
+   end
+   
+   def sexy_duration(d)
+     p (Time.mktime(0)+d*60).strftime("%H:%M")
    end
 end
