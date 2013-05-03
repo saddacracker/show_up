@@ -1,4 +1,19 @@
 module ApplicationHelper
+  # Public: generate a space-separated list of CSS classes to be used in HTML.
+  #
+  # An idea borrowed from wordpress, a helpful way to do page-specific CSS is by
+  # adding classes on the body.
+  #
+  # Returns a string.
+  def body_classes
+    classes = []
+    classes << controller.class.to_s.underscore.gsub("/", "_")
+    classes << "#{action_name}_action"
+    classes << "is_admin_controller" if controller.class.to_s.match(/^Admin::/)
+
+    classes.join(" ")
+  end
+  
   def title(title = nil)
     if title.present?
       content_for :title, title
