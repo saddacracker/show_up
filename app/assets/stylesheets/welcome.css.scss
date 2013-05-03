@@ -1,4 +1,15 @@
 .welcome_controller {
+  .navbar,
+  .content-wrap,
+  footer {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .container {
+    
+  }
+  
   .fill-whole-page-bg {
     position: fixed; 
     top: -50%; 
