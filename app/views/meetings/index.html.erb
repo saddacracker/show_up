@@ -46,7 +46,7 @@
       <td><%= link_to 'Show', meeting, class: "btn btn-mini"%></td>
       <% if current_user %>
         <td><%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %></td>
-        <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini btn-danger" %></td>
+        <td><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' }, remote: true, class: "meeting-list-delete btn btn-mini btn-danger" %></td>
       <% end %>
     </tr>
   <% end %>

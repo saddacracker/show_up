@@ -1,9 +1,19 @@
 .welcome_controller {
+  
+  // Common
   .navbar,
   .content-wrap,
   footer {
     position: relative;
     z-index: 2;
+  }
+  
+  .welcome-cliche {
+    color: $white;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 72px;
   }
   
   .container {
@@ -27,6 +37,10 @@
       min-width: 50%;
       min-height: 50%;
     }
+  }
+  
+  footer {
+    color: $white;
   }
 }
 
