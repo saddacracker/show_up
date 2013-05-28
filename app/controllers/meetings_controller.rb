@@ -2,8 +2,10 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
+    @user_location = request.location
+    
     if params[:search].present?
-      @meetings = Meeting.near(params[:search], 10, :order => :distance)
+      @meetings = Meeting.near(params[:search], params[:distance], :order => :distance)
     else
       @meetings = Meeting.all
     end
