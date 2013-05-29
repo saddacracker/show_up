@@ -24,7 +24,7 @@
       <table class="meetings-listing table">
         <tr>
           <td>
-            <h4><%= link_to meeting.title, meeting %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
+            <h4><%= link_to meeting.title, meeting, remote: true %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
             <small><%= meeting.address %></small><br />
             <%= render 'days_of_week_tags', :meeting => meeting  %>
           </td>
@@ -45,7 +45,13 @@
       
     </div>
     <div class="meetings-right-column span4">
-      <div id="meeting-preview" class="span4" data-spy="affix" data-offset-top="125">Meeting Preview</div>
+      <div id="meeting-preview" class="span4" data-spy="affix" data-offset-top="125">
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#meeting-preview').html('<%= Helper.escape_js( render "meeting") %>');
+          });
+        </script>
+      </div>
     </div>
   </div>
 

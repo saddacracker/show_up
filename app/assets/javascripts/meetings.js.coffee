@@ -11,3 +11,15 @@ jQuery ($) ->
   #   
   # ($ '.link-delete').bind 'ajax:success', ->
   #   ($ '#mySpinner').hide();
+  
+  # load first listing
+
+
+  # $.ajax '/meetings/12',
+  #     type: 'GET'
+  #     dataType: 'html'
+  #     error: (jqXHR, textStatus, errorThrown) ->
+  #         ($ '#meeting-preview').append "AJAX Error: #{textStatus}"
+  #     success: (data, textStatus, jqXHR) ->
+  #         ($ '#meeting-preview').html "Successful AJAX call: #{data}"
+  

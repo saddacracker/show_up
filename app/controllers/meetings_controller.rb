@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+    
   # GET /meetings
   # GET /meetings.json
   def index
@@ -9,6 +10,9 @@ class MeetingsController < ApplicationController
     else
       @meetings = Meeting.all
     end
+    
+    # set meeting for initial partial load
+    @meeting = @meetings.first()
 
     respond_to do |format|
       format.html # index.html.erb
