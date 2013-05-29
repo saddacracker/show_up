@@ -18,7 +18,8 @@
 // http://guides.rubyonrails.org/asset_pipeline.html#asset-organization
  
 @import "bootstrap";
-@import "bootstrap-responsive.scss";
+@import "bootstrap-responsive";
 
 // Views
-@import "welcome.css.scss";
+@import "welcome";
+@import "meetings";

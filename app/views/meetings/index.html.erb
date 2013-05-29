@@ -1,58 +1,54 @@
 <% title "All The District 19 AA Meetings" %>
 
 <div class="container">  
-  <hr />
-  
-  <%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
-      <%= text_field_tag :search, params[:search], placeholder: "City or Address", class: "input" %>
-      <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25]], 5) %>
-      <%= submit_tag "Search", :name => nil, class: "btn" %>
-  <% end %>
-  
-  <%= @user_location.ip %>
-  
-  <hr />
 
   <h1>All Meetings</h1>
   <p>Underneath every skirt is a slip.</p>
   
-  <table class="table table-striped table-hover">
-    <tr>
-      <th>Meeting Name</th>
-      <th>Address</th>
-      <th>Time</th>
-      <th>Duration</th>
-      <th>Days of week</th>
-      <th>Closed meeting</th>
-      <th>Description</th>
-      <th>Tags</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  
+  <div class="row">
+    <div class="span8">
+      
+      <div class="meetings-search-container" data-spy="affix" data-offset-top="125">
+        <%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
+          <%= text_field_tag :search, params[:search], placeholder: "City or Address", class: "input" %>
+          <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25]], 5) %>
+          <%= submit_tag "Search", :name => nil, class: "btn" %>
+        <% end %>
+      </div>
 
-  <% @meetings.each do |meeting| %>
-    <tr>
-      <td>
-        <strong>
-          <%= link_to meeting.title, meeting %>
-        </strong>
-      </td>
-      <td><%= meeting.address %></td>
-      <td><%= fomat_time meeting.time %></td>
-      <td><%= sexy_duration(meeting.duration) %></td>
-      <td><%= render 'days_of_week_tags', :meeting => meeting  %></td>
-      <td><%= meeting.closed_meeting %></td>
-      <td><%= meeting.description %></td>
-      <td><%= render 'tags', :meeting => meeting %></td>
-      <td><%= link_to 'Show', meeting, class: "btn btn-mini"%></td>
-      <% if current_user %>
-        <td><%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %></td>
-        <td><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' }, remote: true, class: "meeting-list-delete btn btn-mini btn-danger" %></td>
+      <%= @user_location.ip %>
+      
+      <table class="table">
+      <% @meetings.each do |meeting| %>
+        <tr>
+          <td>
+            <h4><%= link_to meeting.title, meeting %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
+            <small><%= meeting.address %></small><br />
+            <%= render 'tags', :meeting => meeting %>
+          </td>
+          <td><%= "closed" if meeting.closed_meeting %></td>
+        <tr>
+          <td colspan="2">
+            <%= render 'days_of_week_tags', :meeting => meeting  %><br />
+            <%= meeting.description %>
+          </td>
+        </tr>
+        <tr class="meetings-controls">
+          <td>
+            <%= link_to 'Show', meeting, class: "btn btn-mini"%>
+          </td>
+          <% if current_user %>
+          <td>
+            <%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %>
+            <%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' }, remote: true, class: "meeting-list-delete btn btn-mini btn-danger" %>
+          </td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-  </table>
+      </table>
+    </div>
+  </div>
 
   <br />
 
