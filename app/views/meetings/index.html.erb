@@ -36,7 +36,7 @@
         </tr>
         <tr class="meetings-controls">
           <td>
-            <%= link_to 'Show', meeting, class: "btn btn-mini"%>
+            <%= link_to 'Show', meeting, remote: true, class: "meeting-list-show btn btn-mini"%>
           </td>
           <% if current_user %>
           <td>
@@ -48,6 +48,8 @@
       <% end %>
       </table>
     </div>
+    <div id="mySpinner">LOADING...</div>
+    <div id="meeting-preview" class="span4">Meeting Preview</div>
   </div>
 
   <br />

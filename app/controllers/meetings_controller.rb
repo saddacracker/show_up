@@ -24,6 +24,9 @@ class MeetingsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @meeting }
+      format.js do
+       render :js => "$('#meeting-preview').html('#{render_to_string(:partial => 'meeting')}');"
+      end
     end
   end
 

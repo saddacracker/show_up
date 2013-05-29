@@ -5,3 +5,9 @@
 jQuery ($) ->
   ($ '.meeting-list-delete').bind 'ajax:success', ->
     ($ this).closest('tr').fadeOut()
+
+  ($ '.meeting-list-show').bind 'ajax:beforeSend', ->
+    ($ '#mySpinner').show();
+    
+  ($ '.link-delete').bind 'ajax:success', ->
+    ($ '#mySpinner').hide();
