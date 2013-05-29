@@ -9,52 +9,44 @@
   <div class="row">
     <div class="span8">
       
-      <div class="meetings-search-container" data-spy="affix" data-offset-top="125">
+      <div class="meetings-search-container">
         <%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
           <%= text_field_tag :search, params[:search], placeholder: "City or Address", class: "input" %>
-          <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25]], 5) %>
+          <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], 5) %>
           <%= submit_tag "Search", :name => nil, class: "btn" %>
         <% end %>
       </div>
 
       <%= @user_location.ip %>
       
-      <table class="table">
+      
       <% @meetings.each do |meeting| %>
+      <table class="meetings-listing table">
         <tr>
           <td>
             <h4><%= link_to meeting.title, meeting %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
             <small><%= meeting.address %></small><br />
-            <%= render 'tags', :meeting => meeting %>
+            <%= render 'days_of_week_tags', :meeting => meeting  %>
           </td>
-          <td><%= "closed" if meeting.closed_meeting %></td>
-        <tr>
-          <td colspan="2">
-            <%= render 'days_of_week_tags', :meeting => meeting  %><br />
-            <%= meeting.description %>
-          </td>
+          <td><%= "Closed Meeting" if meeting.closed_meeting %></td>
         </tr>
         <tr class="meetings-controls">
-          <td>
+          <td colspan="2">
             <%= link_to 'Show', meeting, remote: true, class: "meeting-list-show btn btn-mini"%>
+            <% if current_user %>
+              <%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %>
+              <%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' }, remote: true, class: "meeting-list-delete btn btn-mini btn-danger" %>
+            <% end %>
           </td>
-          <% if current_user %>
-          <td>
-            <%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %>
-            <%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' }, remote: true, class: "meeting-list-delete btn btn-mini btn-danger" %>
-          </td>
-          <% end %>
+          
         </tr>
-      <% end %>
       </table>
+      <% end %>
+      
     </div>
-    <div id="mySpinner">LOADING...</div>
-    <div id="meeting-preview" class="span4">Meeting Preview</div>
+    <div class="meetings-right-column span4">
+      <div id="meeting-preview" class="span4" data-spy="affix" data-offset-top="125">Meeting Preview</div>
+    </div>
   </div>
 
-  <br />
-
-  <% if current_user %>
-    <%= link_to 'New Meeting', new_meeting_path, class: "btn btn-primary" %>
-  <% end %>
 </div>

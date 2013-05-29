@@ -4,10 +4,10 @@
 
 jQuery ($) ->
   ($ '.meeting-list-delete').bind 'ajax:success', ->
-    ($ this).closest('tr').fadeOut()
+    ($ this).closest('.meetings-listing').fadeOut()
 
-  ($ '.meeting-list-show').bind 'ajax:beforeSend', ->
-    ($ '#mySpinner').show();
-    
-  ($ '.link-delete').bind 'ajax:success', ->
-    ($ '#mySpinner').hide();
+  # ($ '.meeting-list-show').bind 'ajax:beforeSend', ->
+  #   ($ '#mySpinner').show();
+  #   
+  # ($ '.link-delete').bind 'ajax:success', ->
+  #   ($ '#mySpinner').hide();

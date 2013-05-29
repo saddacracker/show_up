@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   # Public: generate a space-separated list of CSS classes to be used in HTML.
   #
   # An idea borrowed from wordpress, a helpful way to do page-specific CSS is by

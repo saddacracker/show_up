@@ -25,7 +25,7 @@ class MeetingsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @meeting }
       format.js do
-       render :js => "$('#meeting-preview').html('#{render_to_string(:partial => 'meeting')}');"
+       render :js => "$('#meeting-preview').html('#{Helper.escape_js(render_to_string(:partial => 'meeting'))}');"
       end
     end
   end
@@ -89,5 +89,15 @@ class MeetingsController < ApplicationController
       format.json { head :no_content }
       format.js   { render :nothing => true } 
     end
+  end
+end
+
+
+class Helper
+  include ActionView::Helpers::JavaScriptHelper
+
+  def self.escape_js( text )
+    @instance ||= self.new
+    return @instance.escape_javascript( text )
   end
 end

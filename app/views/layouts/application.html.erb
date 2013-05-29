@@ -18,6 +18,12 @@
       <% if current_user %>
         <li><p class="navbar-text">Logged in as <%= current_user.email %>.</p></li>
         <li><%= link_to "Log out", log_out_path %></li>
+        <li class="divider-vertical"></li>
+        <li>
+          <%= link_to new_meeting_path do %>
+            <i class="icon-plus icon-white"></i> New Meeting 
+          <% end %>
+        </li>
       <% else %>
         <%#= link_to "Sign up", sign_up_path %>
         <li><%= link_to "log in", log_in_path %></li>
