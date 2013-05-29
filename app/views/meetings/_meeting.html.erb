@@ -5,3 +5,12 @@
 <p><%= @meeting.description %></p>
 
 <%= render 'tags', :meeting => @meeting %>
+
+<% unless @meeting.nearbys(10).blank? %>
+<h5>Nearby meetings</h5>
+<ul>
+<% for meeting in @meeting.nearbys(10) %>
+  <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
+<% end %>
+</ul>
+<% end %>
