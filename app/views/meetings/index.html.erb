@@ -11,7 +11,11 @@
       
       <div class="meetings-search-container">
         <%= form_tag meetings_path, :method => :get, class: "form-inline" do %>
-          <%= text_field_tag :search, params[:search], placeholder: "City or Address", class: "input" %>
+        
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-map-marker"></i></span>
+            <%= text_field_tag :search, params[:search], placeholder: "City or Address or Zip", class: "input" %>
+          </div>
           <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], 5) %>
           <%= submit_tag "Search", :name => nil, class: "btn" %>
         <% end %>
@@ -19,38 +23,74 @@
 
       <%= @user_location.ip %>
       
-      
-      <% @meetings.each do |meeting| %>
-      <table class="meetings-listing table">
-        <tr>
-          <td>
-            <h4><%= link_to meeting.title, meeting, remote: true %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
-            <small><%= meeting.address %></small><br />
-            <%= render 'days_of_week_tags', :meeting => meeting  %>
-          </td>
-          <td><%= "Closed Meeting" if meeting.closed_meeting %></td>
-        </tr>
-        <tr class="meetings-controls">
-          <td colspan="2">
-            <%= link_to 'Show', meeting, remote: true, class: "meeting-list-show btn btn-mini"%>
-            <% if current_user %>
-              <%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %>
-              <%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' }, remote: true, class: "meeting-list-delete btn btn-mini btn-danger" %>
-            <% end %>
-          </td>
-          
-        </tr>
-      </table>
+      <%# @meetings.each do |meeting| %>
+        <%#= render 'listing', :meeting => meeting  %>       
+      <%# end %>
+      <% unless @meetings_on_monday.blank? %>
+        <h3>Monday</h3>
+        <% @meetings_on_monday.each do |meeting| %>
+          <%= render 'listing', :meeting => meeting  %>       
+        <% end %>
+      <% end %>
+
+      <% unless @meetings_on_tuesday.blank? %>
+        <h3>Tuesday</h3>
+        <% @meetings_on_tuesday.each do |meeting| %>
+          <%= render 'listing', :meeting => meeting  %>       
+        <% end %>
+      <% end %>
+
+      <% unless @meetings_on_wednesday.blank? %>
+        <h3>Wednesday</h3>
+        <% @meetings_on_wednesday.each do |meeting| %>
+          <%= render 'listing', :meeting => meeting  %>       
+        <% end %>
+      <% end %>
+
+      <% unless @meetings_on_thursday.blank? %>
+        <h3>Thursday</h3>
+        <% @meetings_on_thursday.each do |meeting| %>
+          <%= render 'listing', :meeting => meeting  %>       
+        <% end %>
+      <% end %>
+
+      <% unless @meetings_on_friday.blank? %>
+        <h3>Friday</h3>
+        <% @meetings_on_friday.each do |meeting| %>
+          <%= render 'listing', :meeting => meeting  %>       
+        <% end %>
+      <% end %>
+            
+      <% unless @meetings_on_saturday.blank? %>
+        <h3>Saturday</h3>
+        <% @meetings_on_saturday.each do |meeting| %>
+          <%= render 'listing', :meeting => meeting  %>       
+        <% end %>
       <% end %>
       
+      <% unless @meetings_on_sunday.blank? %>
+        <h3>Sunday</h3>
+        <% @meetings_on_sunday.each do |meeting| %>
+          <%= render 'listing', :meeting => meeting  %>       
+        <% end %>
+      <% end %>
+      
+      
+      
+      <%#= debug @meeting.week_days["thursday"] %>
+      <%#= debug @meeting %>
+      
     </div>
+    
     <div class="meetings-right-column span4">
       <div id="meeting-preview" class="span4" data-spy="affix" data-offset-top="125">
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $('#meeting-preview').html('<%= Helper.escape_js( render "meeting") %>');
-          });
-        </script>
+        <% unless @meeting.blank? %>
+          <script type="text/javascript">
+            $(document).ready(function() {
+              $('#meeting-preview').html('<%= Helper.escape_js( render "meeting" ) %>');
+            });
+          </script>
+        <% end %>
       </div>
     </div>
   </div>

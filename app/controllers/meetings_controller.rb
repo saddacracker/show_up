@@ -5,14 +5,48 @@ class MeetingsController < ApplicationController
   def index
     @user_location = request.location
     
+    # define the meetings
+    # there has to be a way to DRY this up, besides looping and concatinating
     if params[:search].present?
-      @meetings = Meeting.near(params[:search], params[:distance], :order => :distance)
+      @meetings               = Meeting.near(params[:search], params[:distance], :order => :distance)
+      
+      @meetings_on_sunday     = Meeting.has_sunday("1").near(params[:search], params[:distance], :order => :distance)
+      @meetings_on_monday     = Meeting.has_monday("1").near(params[:search], params[:distance], :order => :distance)
+      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(params[:search], params[:distance], :order => :distance)
+      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(params[:search], params[:distance], :order => :distance)
+      @meetings_on_thursday   = Meeting.has_thursday("1").near(params[:search], params[:distance], :order => :distance)
+      @meetings_on_friday     = Meeting.has_friday("1").near(params[:search], params[:distance], :order => :distance)
+      @meetings_on_saturday   = Meeting.has_saturday("1").near(params[:search], params[:distance], :order => :distance)
     else
       @meetings = Meeting.all
+      
+      @meetings_on_sunday     = Meeting.has_sunday("1")
+      @meetings_on_monday     = Meeting.has_monday("1")
+      @meetings_on_tuesday    = Meeting.has_tuesday("1")
+      @meetings_on_wednesday  = Meeting.has_wednesday("1")
+      @meetings_on_thursday   = Meeting.has_thursday("1")
+      @meetings_on_friday     = Meeting.has_friday("1")
+      @meetings_on_saturday   = Meeting.has_saturday("1")
     end
     
-    # set meeting for initial partial load
-    @meeting = @meetings.first()
+    
+
+    if @meetings_on_monday.first()
+      return @meeting = @meetings_on_monday.first()
+    elsif @meetings_on_tuesday.first()
+      return @meeting = @meetings_on_tuesday.first()
+    elsif @meetings_on_wednesday.first()
+      return @meeting = @meetings_on_wednesday.first()
+    elsif @meetings_on_thursday.first()
+      return @meeting = @meetings_on_thursday.first()
+    elsif @meetings_on_friday.first()
+      return @meeting = @meetings_on_friday.first()
+    elsif @meetings_on_saturday.first()
+      return @meeting = @meetings_on_saturday.first()
+    elsif @meetings_on_sunday.first()
+      return @meeting = @meetings_on_sunday.first()
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb

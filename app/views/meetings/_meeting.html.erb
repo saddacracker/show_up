@@ -8,9 +8,9 @@
 
 <% unless @meeting.nearbys(10).blank? %>
 <h5>Nearby meetings</h5>
-<ul>
+<ul class="unstyled">
 <% for meeting in @meeting.nearbys(10) %>
-  <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
+  <li><%= link_to meeting.title, meeting %> <%= meeting.address %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
 <% end %>
 </ul>
 <% end %>

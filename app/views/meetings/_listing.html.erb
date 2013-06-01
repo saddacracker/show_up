@@ -1,0 +1,19 @@
+<table class="meetings-listing table">
+  <tr>
+    <td>
+      <h4><%= link_to meeting.title, meeting, remote: true %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
+      <small><%= meeting.address %></small><br />
+      <%#= render 'days_of_week_tags', :meeting => meeting  %>
+    </td>
+    <td><%= "Closed Meeting" if meeting.closed_meeting %></td>
+  </tr>
+  <% if current_user %>
+  <tr class="meetings-controls">
+    <td colspan="2">      
+        <%= link_to 'Show', meeting, class: "meeting-list-show btn btn-mini"%>
+        <%= link_to 'Edit', edit_meeting_path(meeting), class: "btn btn-mini" %>
+        <%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' }, remote: true, class: "meeting-list-delete btn btn-mini btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>

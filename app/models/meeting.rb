@@ -9,7 +9,7 @@ class Meeting < ActiveRecord::Base
     attr_accessible key
     
     # add scope for Meeting.has_monday("1")
-    scope "has_#{key}", lambda { |value| where("week_days @> (? => ?)", key, value) }
+    scope "has_#{key}", lambda { |value| where("week_days -> ? LIKE ? ", key, value) }
 
     define_method(key) do
       week_days && week_days[key]
