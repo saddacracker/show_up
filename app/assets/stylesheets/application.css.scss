@@ -19,7 +19,9 @@
  
 @import "bootstrap";
 @import "bootstrap-responsive";
+@import "extensions/named_breakpoints";
 
 // Views
+@import "shared/header";
 @import "welcome";
 @import "meetings";

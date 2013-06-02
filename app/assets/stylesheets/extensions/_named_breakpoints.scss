@@ -1,0 +1,92 @@
+// Tame media queries with the new version of sass
+// Instead of littering our css/js files with pixel-laden queries all over the
+// place, we'll use some named mixins that are congruent with how Bootstrap
+// refers to things
+//
+// Bootstrap uses 3 layouts:
+//  phone
+//  tablet
+//  desktop
+//
+// For each layout, there is a media query mixin that targets only that layout,
+// or everything but that layout. This means you can do...
+//
+// @include phone-only { ... }
+// @include not-phone { ... }
+// @include tablet-only { ... }
+// @include not-tablet { ... }
+// @include desktop-only { ... }
+// @include not-desktop { ... }
+
+// Variable settings
+$mq-tablet-min: 768px;
+$mq-desktop-min: 980px;
+
+// Calculated Vars
+$mq-phone-max: $mq-tablet-min - 1px;
+$mq-tablet-max: $mq-desktop-min - 1px;
+
+
+@mixin desktop-only {
+  @media screen and (min-width:$mq-desktop-min) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width:$mq-tablet-min) and (max-width:$mq-tablet-max) {
+    @content;
+  }
+}
+
+@mixin phone-only {
+  @media screen and (max-width:$mq-phone-max) {
+    @content;
+  }
+}
+
+@mixin not-desktop {
+  @media screen and (max-width:$mq-tablet-max) {
+    @content;
+  }
+}
+
+@mixin not-phone {
+  @media screen and (min-width:$mq-tablet-min) {
+    @content;
+  }
+}
+
+@mixin not-tablet {
+  @include phone-only { @content; }
+  @include desktop-only { @content }
+}
+
+// There are some interactions we want to build in JavaScript that depend on
+// the layout that is currently being presented to the visitor.
+//
+// We use the technique found at http://adactio.com/journal/5429/
+// to make this presentation information available to JavaScript.
+// Basically, we store the layout information in an unpresented pseudo-element.
+//
+// It turns out, this is more reliable than window.matchMedia according
+// to http://caniuse.com/#feat=css-gencontent and http://caniuse.com/#feat=matchmedia
+
+// Bootstrap is built desktop first, so the default layout is desktop.
+body:after {
+  content: "desktop";
+  display: none;
+}
+
+@include tablet-only {
+  body:after {
+    content: "tablet";
+  }
+}
+
+@include phone-only {
+  body:after {
+    content: "phone";
+  }
+}
+

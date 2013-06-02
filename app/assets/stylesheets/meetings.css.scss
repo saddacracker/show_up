@@ -2,14 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#meeting-preview.affix {
-  top: 0px;
-}
+.meetings_controller {
+  background-color: $grayLight;
+  
+  .meetings-header {
+    background-color: $grayDarker;
+  }
+  
+  .meetings-listings {
+    @include box-sizing(border-box);
+    padding: 20px;
+    
+    .meetings-search-container {
+      background-color: $white;
+    }
+    
+    .meetings-listing {
+      background-color: $grayLighter;
+    }
+  }
 
-#mySpinner {
-  display: none;
-}
+  
+  #meeting-preview.affix {
+    top: 41px;
+    
+    @include desktop-only {
+      width: 370px;
+    }
+  }
 
-.meetings-controls {
-  background-color: #F9F9F9;
+  #mySpinner {
+    display: none;
+  }
+
+  .meetings-controls {
+    //background-color: #F9F9F9;
+  }
 }

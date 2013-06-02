@@ -1,4 +1,3 @@
-<table class="meetings-listing table">
   <tr>
     <td>
       <h4><%= link_to meeting.title, meeting, remote: true %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
@@ -16,4 +15,3 @@
     </td>
   </tr>
   <% end %>
-</table>
