@@ -1,3 +1,7 @@
 body:not(.welcome_controller) {
   padding-top: 41px;
 }
+
+.navbar-inner {
+  background: $white url(bg2.gif) repeat left top;
+}

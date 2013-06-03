@@ -8,7 +8,7 @@
 
 // Custom App Colors
 // -------------------------
-$gold:                  #695f44 !default;
+$s_gray:                #4d4d4f !default;
 
 // Grays
 // -------------------------
@@ -26,7 +26,7 @@ $white:                 #fff !default;
 $blue:                  #049cdb !default;
 $blueDark:              #0064cd !default;
 $green:                 #46a546 !default;
-$red:                   #9d261d !default;
+$red:                   #cf2f2e !default;
 $yellow:                #ffc40d !default;
 $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
@@ -41,7 +41,7 @@ $textColor:             $grayDark !default;
 
 // Links
 // -------------------------
-$linkColor:             $gold !default;
+$linkColor:             $s_gray !default;
 $linkColorHover:        darken($linkColor, 15%) !default;
 
 
