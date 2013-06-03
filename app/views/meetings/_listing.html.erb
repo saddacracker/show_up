@@ -1,10 +1,14 @@
   <tr>
     <td>
-      <h4><%= link_to meeting.title, meeting, remote: true %> <small><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></small></h4>
-      <small><%= meeting.address %></small><br />
+      <h4><%= link_to meeting.title, meeting, remote: true %> <small><%= "Closed Meeting" if meeting.closed_meeting %></small></h4>
+      <strong><%= meeting.address %></strong>
+      <% if params[:search].present? %>
+        <span>(<%= meeting.distance.to_f.round(2) %> miles away)</span>
+      <% end %>
+      
       <%#= render 'days_of_week_tags', :meeting => meeting  %>
     </td>
-    <td><%= "Closed Meeting" if meeting.closed_meeting %></td>
+    <td class="meetings-listing-time"><%= fomat_time(meeting.time) %> to <%= get_meeting_end_time(meeting.time, meeting.duration) %></td>
   </tr>
   <% if current_user %>
   <tr class="meetings-controls">

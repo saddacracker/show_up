@@ -3,26 +3,46 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .meetings_controller {
-  background-color: $grayLight;
+  background: lighten($grayLight, 38%) url(bg3.gif) repeat left top;
   
   .meetings-header {
-    background-color: $grayDarker;
+    background: $black url(bg.gif) repeat left top;
+    color: $white;
   }
   
   .meetings-listings {
     @include box-sizing(border-box);
-    padding: 20px;
+    // background-color: $grayLighter;
+    background: $black url(bg3.gif) repeat left top;
     
     .meetings-search-container {
-      background-color: $white;
+      // background-color: $white;
+      
+      padding: 40px 0px;
+      
+      .meetings-search-form {
+        margin-bottom: 0px;
+        margin-left: 20px;
+      }
     }
     
-    .meetings-listing {
-      background-color: $grayLighter;
+    table.meetings-listing {
+      
+      .meetings-listing-header {
+        background-color: $grayDark;
+        color: $white;
+        text-transform: uppercase;
+      }
+      .meetings-listing-time {
+        text-align: right;
+      }
     }
   }
 
   
+  #meeting-preview {
+    color: $black;
+  }
   #meeting-preview.affix {
     top: 41px;
     

@@ -21,7 +21,11 @@
 @import "bootstrap-responsive";
 @import "extensions/named_breakpoints";
 
+// Bootstrap
+@import "bootstrap-overrides/_variables";
+
 // Views
 @import "shared/header";
 @import "welcome";
 @import "meetings";
+
