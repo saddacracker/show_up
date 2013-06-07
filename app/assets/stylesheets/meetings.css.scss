@@ -4,7 +4,7 @@
 
 
 .meetings_controller {
-  color: $s_gray;
+  color: $gray;
   background-color: $grayLighter;
   
   .meetings-body {
@@ -12,19 +12,27 @@
   }
   
   .meetings-header {
-    color: $s_gray;
+    color: $gray;
     text-transform: uppercase;
     padding: 20px 0px;
   }
   
   .meetings-listings-container {
     @include box-sizing(border-box);
-    padding: 0 20px;
+    //padding: 0 20px;
     border-right: $grayLighter 1px solid;
+    
+    .meetings-search-container {
+      @include clearfix;
+      //margin-left: -20px;
+      padding: 40px 0px 50px 20px;
+      border-bottom: $grayLight 1px solid;
+    }
    
     //background-color: $white;
         
     .meetings-listing-table {
+      margin-bottom: 0px;
       
       td, th {
         border: none;
@@ -32,20 +40,28 @@
       }
       
       tr.meeting-listing {
+        color: $grayLight;
         td {
           border-bottom: lighten($s_gray, 50%) 1px dashed;
           padding-bottom: 20px;
+        }
+        
+        td.meeting-listing-info {
+          padding-left: 20px;
+          width: 66%;
         }
       }
       
       .meetings-listing-header {
         //background-color: $grayDark;
-        color: $red;
-        font-size: 36px;
+        color: $grayLighter;
+        background: $s_gray;
+        padding-left: 20px;
+        font-size: 18px;
         text-transform: uppercase;
         font-weight: normal;
         line-height: 1em;
-        padding-top: 20px;
+        padding-top: 8px;
         
       }
       .meeting-listing-time {
@@ -53,7 +69,7 @@
       }
       .meeting-listing-title {
         text-transform: uppercase;
-        font-size: 24px;
+        font-size: 16px;
         line-height: 1.1em;
         margin: 10px 0px;
         font-weight: normal;
@@ -64,6 +80,7 @@
   
   #meeting-preview {
     color: $black;
+    padding-top: 20px;
     
     @include desktop-only {
       width: 320px;

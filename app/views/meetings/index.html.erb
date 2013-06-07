@@ -17,60 +17,81 @@
 
       
       
-      <%# @meetings.each do |meeting| %>
-        <%#= render 'listing', :meeting => meeting  %>       
-      <%# end %>
-      <table class="meetings-listing-table table">
+        <div class="meetings-search-container">
+          <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
+            <div class="input-prepend">
+              <span class="add-on"><i class="icon-map-marker"></i></span>
+              <%= text_field_tag :search, params[:search], placeholder: "#{ @user_location.ip }", class: "input" %>
+            </div>
+            <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], 5) %>
+            <%= submit_tag "Search", :name => nil, class: "btn" %>
+          <% end %>
+        </div>
+      
         
         <% unless @meetings_on_monday.blank? %>
+        <table class="meetings-listing-table table">
           <tr><th colspan="2" class="meetings-listing-header">Monday</th></tr>
           <% @meetings_on_monday.each do |meeting| %>
             <%= render 'listing', :meeting => meeting  %>       
           <% end %>
+        </table>
         <% end %>
 
         <% unless @meetings_on_tuesday.blank? %>
+        <table class="meetings-listing-table table">
           <tr><th colspan="2" class="meetings-listing-header">Tuesday</th></tr>
           <% @meetings_on_tuesday.each do |meeting| %>
             <%= render 'listing', :meeting => meeting  %>       
           <% end %>
+        </table>
         <% end %>
 
         <% unless @meetings_on_wednesday.blank? %>
+        <table class="meetings-listing-table table">
           <tr><th colspan="2" class="meetings-listing-header">Wednesday</th></tr>
           <% @meetings_on_wednesday.each do |meeting| %>
             <%= render 'listing', :meeting => meeting  %>       
           <% end %>
+        </table>
         <% end %>
 
         <% unless @meetings_on_thursday.blank? %>
+        <table class="meetings-listing-table table">
           <tr><th colspan="2" class="meetings-listing-header">Thursday</th></tr>
           <% @meetings_on_thursday.each do |meeting| %>
             <%= render 'listing', :meeting => meeting  %>       
           <% end %>
+        </table>
         <% end %>
 
         <% unless @meetings_on_friday.blank? %>
+        <table class="meetings-listing-table table">
           <tr><th colspan="2" class="meetings-listing-header">Friday</th></tr>
           <% @meetings_on_friday.each do |meeting| %>
             <%= render 'listing', :meeting => meeting  %>       
           <% end %>
+        </table>
         <% end %>
             
         <% unless @meetings_on_saturday.blank? %>
+        <table class="meetings-listing-table table">
           <tr><th colspan="2" class="meetings-listing-header">Saturday</th></tr>
           <% @meetings_on_saturday.each do |meeting| %>
             <%= render 'listing', :meeting => meeting  %>       
           <% end %>
+        </table>
         <% end %>
       
         <% unless @meetings_on_sunday.blank? %>
+        <table class="meetings-listing-table table">
           <tr><th colspan="2" class="meetings-listing-header">Sunday</th></tr>
           <% @meetings_on_sunday.each do |meeting| %>
             <%= render 'listing', :meeting => meeting  %>       
           <% end %>
+        </table>
         <% end %>
-      </table>
+      
       
       
       
