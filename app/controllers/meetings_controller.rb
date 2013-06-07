@@ -10,6 +10,11 @@ class MeetingsController < ApplicationController
     if params[:search].present?
       @meetings               = Meeting.near(params[:search], params[:distance], :order => :distance)
       
+      
+      # try scoped?
+      # meetings_on_sunday = Meeting.scoped
+      # meetings_on_sunday = meetings_on_sunday.where(:colour => 'red')
+      
       @meetings_on_sunday     = Meeting.has_sunday("1").near(params[:search], params[:distance], :order => :distance)
       @meetings_on_monday     = Meeting.has_monday("1").near(params[:search], params[:distance], :order => :distance)
       @meetings_on_tuesday    = Meeting.has_tuesday("1").near(params[:search], params[:distance], :order => :distance)

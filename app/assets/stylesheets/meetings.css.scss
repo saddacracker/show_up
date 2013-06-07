@@ -4,31 +4,27 @@
 
 
 .meetings_controller {
-  background: $white url(bg.gif) repeat left top;
   color: $s_gray;
+  background-color: $grayLighter;
+  
+  .meetings-body {
+    background-color: $white;
+  }
   
   .meetings-header {
-    //background: $black url(bg2.gif) repeat left top;
     color: $s_gray;
     text-transform: uppercase;
     padding: 20px 0px;
   }
   
-  .meetings-listings {
+  .meetings-listings-container {
     @include box-sizing(border-box);
+    padding: 0 20px;
+    border-right: $grayLighter 1px solid;
+   
     //background-color: $white;
-    
-    .meetings-search-container {
-      //background-color: $white;
-      
-      padding: 40px 0px;
-      
-      .meetings-search-form {
-        margin-bottom: 0px;
-      }
-    }
-    
-    table.meetings-listing {
+        
+    .meetings-listing-table {
       
       td, th {
         border: none;
@@ -69,19 +65,22 @@
   #meeting-preview {
     color: $black;
     
+    @include desktop-only {
+      width: 320px;
+    }
+    
     .meeting-preview-header {
       font-size: 18px;
       line-height: 1.1em;
       text-transform: uppercase;
       font-weight: normal;
+      margin-top: 20px;
     }
   }
   #meeting-preview.affix {
-    top: 41px;
+    top: 0px;
     
-    @include desktop-only {
-      width: 370px;
-    }
+    
   }
 
   #mySpinner {

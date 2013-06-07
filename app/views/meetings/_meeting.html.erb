@@ -1,7 +1,7 @@
 <h2 class="meeting-preview-header"><%= @meeting.title %></h2>
 <p><strong><%= @meeting.address %></strong></p>
 <p><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></p>
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=370x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=320x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
 <p><%= @meeting.description %></p>
 
 <%= render 'tags', :meeting => @meeting %>
