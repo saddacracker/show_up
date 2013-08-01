@@ -34,4 +34,6 @@ ShowUp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.middleware.use('SpoofIp', '64.71.24.19')
 end
