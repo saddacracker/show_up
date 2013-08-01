@@ -13,7 +13,15 @@
     line-height: 1em;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 72px;
+    
+    
+    @include desktop-only {
+      font-size: 72px;
+    }
+    
+    @include phone-only {
+      font-size: 24px;
+    }
   }
   
   .container {
