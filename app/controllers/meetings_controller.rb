@@ -22,14 +22,14 @@ class MeetingsController < ApplicationController
     else
       # @meetings = Meeting.all
       
-      # Meetings by IP within 20 miles
-      @meetings_on_sunday     = Meeting.has_sunday("1").near(@user_location.ip, 20, :order => :distance)
-      @meetings_on_monday     = Meeting.has_monday("1").near(@user_location.ip, 20, :order => :distance)
-      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(@user_location.ip, 20, :order => :distance)
-      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(@user_location.ip, 20, :order => :distance)
-      @meetings_on_thursday   = Meeting.has_thursday("1").near(@user_location.ip, 20, :order => :distance)
-      @meetings_on_friday     = Meeting.has_friday("1").near(@user_location.ip, 20, :order => :distance)
-      @meetings_on_saturday   = Meeting.has_saturday("1").near(@user_location.ip, 20, :order => :distance)
+      # Meetings by IP within 25 miles
+      @meetings_on_sunday     = Meeting.has_sunday("1").near(@user_location.ip, 25, :order => :distance)
+      @meetings_on_monday     = Meeting.has_monday("1").near(@user_location.ip, 25, :order => :distance)
+      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(@user_location.ip, 25, :order => :distance)
+      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(@user_location.ip, 25, :order => :distance)
+      @meetings_on_thursday   = Meeting.has_thursday("1").near(@user_location.ip, 25, :order => :distance)
+      @meetings_on_friday     = Meeting.has_friday("1").near(@user_location.ip, 25, :order => :distance)
+      @meetings_on_saturday   = Meeting.has_saturday("1").near(@user_location.ip, 25, :order => :distance)
     end
     
     

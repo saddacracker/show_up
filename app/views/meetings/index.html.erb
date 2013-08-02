@@ -19,8 +19,19 @@
       
         <div class="meetings-search-container">
           <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
-            <%= text_field_tag :search, params[:search], placeholder: "#{ @user_location.city }", class: "input" %>
-            <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], 5) %>
+            <!-- query -->
+            <% if (params[:search]) %>
+              <%= text_field_tag :search, params[:search], placeholder: "Enter Location. ie. Seattle, WA", class: "input" %>
+            <% else %>
+              <%= text_field_tag :search, "#{@user_location.city}, #{@user_location.state}", placeholder: "City, State", class: "input" %>
+            <% end %>
+            <!-- distance -->
+            <% if (params[:distance]) %>
+              <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], params[:distance]) %>
+            <% else %>
+              <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], 25) %>
+            <% end %>
+            
             <%= submit_tag "Search", :name => nil, class: "btn" %>
           <% end %>
         </div>
