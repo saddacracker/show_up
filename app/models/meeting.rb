@@ -20,7 +20,7 @@ class Meeting < ActiveRecord::Base
     end
   end
   
-  # ALL THE tags
+  # ALL THE TAGS
   %w[speaker childcare book_study mens womans gay homegroup].each do |key|
     attr_accessible key
     

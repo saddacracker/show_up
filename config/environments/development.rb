@@ -35,5 +35,7 @@ ShowUp::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
-  config.middleware.use('SpoofIp', '64.71.24.19')
+  # Spoof IP address for local testing
+  # http://stackoverflow.com/questions/6115589/geocoder-how-to-test-locally-when-ip-is-127-0-0-1
+  config.middleware.use('SpoofIp', '24.16.33.51')
 end

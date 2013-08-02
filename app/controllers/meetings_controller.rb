@@ -8,13 +8,10 @@ class MeetingsController < ApplicationController
     # define the meetings
     # there has to be a way to DRY this up, besides looping and concatinating
     if params[:search].present?
-      @meetings               = Meeting.near(params[:search], params[:distance], :order => :distance)
-      
-      
-      # try scoped?
-      # meetings_on_sunday = Meeting.scoped
-      # meetings_on_sunday = meetings_on_sunday.where(:colour => 'red')
-      
+      # @meetings               = Meeting.near(params[:search], params[:distance], :order => :distance)
+
+      # This needs to be refined using group_by and order
+      # Can we scope this?
       @meetings_on_sunday     = Meeting.has_sunday("1").near(params[:search], params[:distance], :order => :distance)
       @meetings_on_monday     = Meeting.has_monday("1").near(params[:search], params[:distance], :order => :distance)
       @meetings_on_tuesday    = Meeting.has_tuesday("1").near(params[:search], params[:distance], :order => :distance)
@@ -23,19 +20,20 @@ class MeetingsController < ApplicationController
       @meetings_on_friday     = Meeting.has_friday("1").near(params[:search], params[:distance], :order => :distance)
       @meetings_on_saturday   = Meeting.has_saturday("1").near(params[:search], params[:distance], :order => :distance)
     else
-      @meetings = Meeting.all
+      # @meetings = Meeting.all
       
-      @meetings_on_sunday     = Meeting.has_sunday("1")
-      @meetings_on_monday     = Meeting.has_monday("1")
-      @meetings_on_tuesday    = Meeting.has_tuesday("1")
-      @meetings_on_wednesday  = Meeting.has_wednesday("1")
-      @meetings_on_thursday   = Meeting.has_thursday("1")
-      @meetings_on_friday     = Meeting.has_friday("1")
-      @meetings_on_saturday   = Meeting.has_saturday("1")
+      # Meetings by IP within 20 miles
+      @meetings_on_sunday     = Meeting.has_sunday("1").near(@user_location.ip, 20, :order => :distance)
+      @meetings_on_monday     = Meeting.has_monday("1").near(@user_location.ip, 20, :order => :distance)
+      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(@user_location.ip, 20, :order => :distance)
+      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(@user_location.ip, 20, :order => :distance)
+      @meetings_on_thursday   = Meeting.has_thursday("1").near(@user_location.ip, 20, :order => :distance)
+      @meetings_on_friday     = Meeting.has_friday("1").near(@user_location.ip, 20, :order => :distance)
+      @meetings_on_saturday   = Meeting.has_saturday("1").near(@user_location.ip, 20, :order => :distance)
     end
     
     
-
+    # I don't know what the heck this is for
     if @meetings_on_monday.first()
       return @meeting = @meetings_on_monday.first()
     elsif @meetings_on_tuesday.first()
