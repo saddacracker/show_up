@@ -26,7 +26,7 @@ $white:                 #fff !default;
 $blue:                  #049cdb !default;
 $blueDark:              #0064cd !default;
 $green:                 #46a546 !default;
-$red:                   #cf2f2e !default;
+$red:                   #d93636 !default;
 $yellow:                #ffc40d !default;
 $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
@@ -41,7 +41,7 @@ $textColor:             $grayDark !default;
 
 // Links
 // -------------------------
-$linkColor:             $s_gray !default;
+$linkColor:             $red !default;
 $linkColorHover:        darken($linkColor, 15%) !default;
 
 

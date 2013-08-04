@@ -4,7 +4,11 @@
         <h1 class="welcome-logo">Suit Up &amp; Show Up</h1>
         <p class="welcome-tagline">Find AA meetings near you</p>
         <%= link_to 'Find Meetings', meetings_path, id: "find-meetings", class: "btn btn-primary btn-large btn-welcome" %>
-        <p class="welcome-admin-signin">Have an Admin Account? Log in now</p>
+        
+        <% unless current_user %>
+          <p class="welcome-admin-signin">Have an Admin Account? <%= link_to "Log in", log_in_path %> now</p>
+        <% end %>
+        
       </h1>
     </div>
   </div>
