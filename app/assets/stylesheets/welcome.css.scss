@@ -8,27 +8,24 @@
     z-index: 2;
   }
   
-  .welcome-cliche {
+  .welcome {
+    text-align: center;
+  }
+  
+  .welcome-logo {
     color: $white;
     line-height: 1em;
     text-transform: uppercase;
     font-weight: bold;
-    
-    
-    @include desktop-only {
-      font-size: 72px;
-    }
+    font-size: 24px;
     
     @include phone-only {
       font-size: 24px;
     }
   }
   
-  .container {
-    
-  }
-  
   .fill-whole-page-bg {
+    background-color: $black;
     position: fixed; 
     top: -50%; 
     left: -50%; 
@@ -44,6 +41,7 @@
       margin: auto; 
       min-width: 50%;
       min-height: 50%;
+      @include opacity(50)
     }
   }
   

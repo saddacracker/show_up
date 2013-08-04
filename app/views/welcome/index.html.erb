@@ -1,13 +1,15 @@
 <div class="content-wrap container">
   <div class="row">
-    <div class="span12">
-        <h1 class="welcome-cliche">If you hang around a barber shop long enough, sooner or later you're gonna get a haircut.</h1>
-        <%= link_to 'Find Meetings', meetings_path, class: "btn btn-primary btn-large" %>
+    <div class="welcome span12">
+        <h1 class="welcome-logo">Suit Up &amp; Show Up</h1>
+        <p class="welcome-tagline">Find AA meetings near you</p>
+        <%= link_to 'Find Meetings', meetings_path, id: "find-meetings", class: "btn btn-primary btn-large btn-welcome" %>
+        <p class="welcome-admin-signin">Have an Admin Account? Log in now</p>
       </h1>
     </div>
   </div>
 </div>
 
 <div class="fill-whole-page-bg">
-  <%= image_tag("1899_ok_barber_shop.jpg") %>
+  <%= image_tag("sat-evening-post.jpg", id: "welcome-bg-image") %>
 </div>
