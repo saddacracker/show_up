@@ -1,13 +1,5 @@
 .welcome_controller {
   
-  // We have to put all the content on top of teh image because 
-  // the image gets yeanked out of teh DOM
-  .content-wrap,
-  footer {
-    position: relative;
-    z-index: 2;
-  }
-  
   .navbar {
     display: none; // hide the toolbar here only
   }
@@ -53,29 +45,15 @@
     margin-top: 2%;
   }
   
-  .fill-whole-page-bg {
-    background-color: $black;
-    position: fixed; 
-    top: -50%; 
-    left: -50%; 
-    width: 200%; 
-    height: 200%;
-
-    img {
-      position: absolute; 
-      top: 0; 
-      left: 0; 
-      right: 0; 
-      bottom: 0; 
-      margin: auto; 
-      min-width: 50%;
-      min-height: 50%;
-      @include opacity(50)
-    }
-  }
-  
   footer {
     display: none;
+  }
+  
+  // fade bg for rollover effect
+  .fill-whole-page-bg {
+    img {
+      @include opacity(50)
+    }
   }
 }
 

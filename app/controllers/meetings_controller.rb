@@ -33,7 +33,8 @@ class MeetingsController < ApplicationController
     end
     
     
-    # I don't know what the heck this is for
+    # Get the first record for the first set of meetings 
+    # for the inital ajax map view in the sidebar & bg
     if @meetings_on_monday.first()
       return @meeting = @meetings_on_monday.first()
     elsif @meetings_on_tuesday.first()
