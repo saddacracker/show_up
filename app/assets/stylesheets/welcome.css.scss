@@ -40,7 +40,13 @@
     margin-top: 5%;
     @include border-radius(10px);
     background: none;
+    @include translucent-background($red, 0);
     border: 1px solid $white;
+    @include transition(background-color 500ms linear);
+    
+    &:hover {
+      @include translucent-background($red, 1);
+    }
   }
   
   .welcome-admin-signin {
