@@ -12,13 +12,13 @@ class MeetingsController < ApplicationController
 
       # This needs to be refined using group_by and order
       # Can we scope this?
-      @meetings_on_sunday     = Meeting.has_sunday("1").near(params[:search], params[:distance], :order => :distance)
-      @meetings_on_monday     = Meeting.has_monday("1").near(params[:search], params[:distance], :order => :distance)
-      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(params[:search], params[:distance], :order => :distance)
-      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(params[:search], params[:distance], :order => :distance)
-      @meetings_on_thursday   = Meeting.has_thursday("1").near(params[:search], params[:distance], :order => :distance)
-      @meetings_on_friday     = Meeting.has_friday("1").near(params[:search], params[:distance], :order => :distance)
-      @meetings_on_saturday   = Meeting.has_saturday("1").near(params[:search], params[:distance], :order => :distance)
+      @meetings_on_sunday     = Meeting.has_sunday("1").near(params[:search], 25, :order => :distance)
+      @meetings_on_monday     = Meeting.has_monday("1").near(params[:search], 25, :order => :distance)
+      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(params[:search], 25, :order => :distance)
+      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(params[:search], 25, :order => :distance)
+      @meetings_on_thursday   = Meeting.has_thursday("1").near(params[:search], 25, :order => :distance)
+      @meetings_on_friday     = Meeting.has_friday("1").near(params[:search], 25, :order => :distance)
+      @meetings_on_saturday   = Meeting.has_saturday("1").near(params[:search], 25, :order => :distance)
     else
       # @meetings = Meeting.all
       

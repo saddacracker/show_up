@@ -13,21 +13,21 @@ $s_gray:                #4d4d4f !default;
 // Grays
 // -------------------------
 $black:                 #000 !default;
-$grayDarker:            #222 !default;
-$grayDark:              #333 !default;
-$gray:                  #555 !default;
+$grayDarker:            #2c2b2b !default; // big search input
+$grayDark:              #414040 !default; // big search bg / tab on text / popup text
+$gray:                  #666666 !default; // body copy
 $grayLight:             #999 !default;
-$grayLighter:           #eee !default;
+$grayLighter:           #ededed !default; // tab off bg
 $white:                 #fff !default;
 
 
 // Accent colors
 // -------------------------
-$blue:                  #049cdb !default;
+$blue:                  #003764 !default;
 $blueDark:              #0064cd !default;
 $green:                 #46a546 !default;
-$red:                   #d93636 !default;
-$yellow:                #ffc40d !default;
+$red:                   #a93439 !default;
+$yellow:                #d9a84e !default;
 $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;

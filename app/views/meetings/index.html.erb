@@ -1,33 +1,16 @@
 <% title "All The District 19 AA Meetings" %>
-
-<div class="meetings-header front-of-bg">
-  <div class="container">   
-    <div class="row">
-      <div class="span12">
-        <h1 class="meetings-header-title">Meetings</h1>
-        <p class="meetings-header-cliche">Underneath every skirt is a slip.</p>
-      </div>
-    </div>
-  </div>
-</div>
   
-<div class="meetings-body front-of-bg container">   
-  <div class="row">
-    <div class="meetings-listings-container span8">
+<div class="meetings-body container">   
+  <div class="row-fluid">
+    <div class="meetings-listings-container span12">
       
         <div class="meetings-search-container">
           <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
             <!-- query -->
             <% if (params[:search]) %>
-              <%= text_field_tag :search, params[:search], placeholder: "Enter Location. ie. Seattle, WA", class: "input" %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search for a meeting in city, zipcode etc...", class: "input" %>
             <% else %>
-              <%= text_field_tag :search, "#{@user_location.city}, #{@user_location.state}", placeholder: "City, State", class: "input" %>
-            <% end %>
-            <!-- distance -->
-            <% if (params[:distance]) %>
-              <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], params[:distance]) %>
-            <% else %>
-              <%= select_tag :distance, options_for_select([['2 Miles', 2], ['5 Miles', 5], ['10 Miles', 10], ['25 Miles', 25], ['100 Miles', 100]], 25) %>
+              <%= text_field_tag :search, "#{@user_location.city}, #{@user_location.state}", placeholder: "Search for a meeting in city, zipcode etc...", class: "input" %>
             <% end %>
             
             <%= submit_tag "Search", :name => nil, class: "btn" %>
@@ -97,30 +80,24 @@
           <% end %>
         </table>
         <% end %>
-      
-      
-      
-      
+
       <%#= debug @meeting.week_days["thursday"] %>
       <%#= debug @meeting %>
       
     </div>
-    
+    <!-- 
     <div class="meeting-preview-container span4 hidden-phone">
       <div id="meeting-preview" data-spy="affix" data-offset-top="200">
-        <% unless @meeting.blank? %>
+        <%# unless @meeting.blank? %>
           <script type="text/javascript">
             $(document).ready(function() {
-              $('#meeting-preview').html('<%= Helper.escape_js( render "meeting" ) %>');
+              $('#meeting-preview').html('<%#= Helper.escape_js( render "meeting" ) %>');
             });
           </script>
-        <% end %>
+        <%# end %>
       </div>
     </div>
+     -->
   </div>
 
-</div>
-
-<div class="fill-whole-page-bg">
-  <%= image_tag("http://maps.googleapis.com/maps/api/staticmap?center=#{@meeting.latitude},#{@meeting.longitude}&zoom=13&scale=1&size=1680x1050&maptype=hybrid&sensor=false", id: "welcome-bg-image") %>
 </div>

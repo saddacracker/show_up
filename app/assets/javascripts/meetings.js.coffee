@@ -13,8 +13,8 @@ jQuery ($) ->
   #   ($ '#mySpinner').hide();
   
   # check for a value in teh search field
-  unless $("#search").val() != ""
-    alert("Looks like you forgot to put in a location. Try something like, Seattle, WA")
+  # unless $("#search").val() != ""
+  #   alert("Looks like you forgot to put in a location. Try something like, Seattle, WA")
 
 
   

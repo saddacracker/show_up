@@ -1,20 +1,9 @@
-// Place all the styles related to the Meetings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
 .meetings_controller {
-  color: $gray;
+  color: #e8e9ea;
   background-color: $grayLighter;
   
   .meetings-body {
     background-color: $white;
-  }
-  
-  .meetings-header {
-    color: $gray;
-    text-transform: uppercase;
-    padding: 20px 0px;
   }
   
   .meetings-listings-container {
@@ -28,9 +17,7 @@
       padding: 40px 0px 50px 20px;
       border-bottom: $grayLight 1px solid;
     }
-   
-    //background-color: $white;
-        
+           
     .meetings-listing-table {
       margin-bottom: 0px;
       
