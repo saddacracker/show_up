@@ -5,6 +5,10 @@ class MeetingsController < ApplicationController
   def index
     @user_location = request.location
     
+    # ==================================================
+    # = @TODO: REDO THE QUERIES! Use group_by and sort =
+    # ==================================================
+    
     # define the meetings
     # there has to be a way to DRY this up, besides looping and concatinating
     if params[:search].present?
@@ -23,6 +27,9 @@ class MeetingsController < ApplicationController
       # update user location based on params
       @map_location = Geocoder.search(params[:search]);
       @map_location = @map_location[0]
+      
+      # Concatinate all the meetings so we don't have to run teh query again
+       @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
     else
       # @meetings = Meeting.all
       
@@ -37,7 +44,12 @@ class MeetingsController < ApplicationController
       
       # update user location based on ip only
       @map_location = request.location
+      
+      # Concatinate all the meetings so we don't have to run teh query again
+       @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
     end
+    
+
     
     
     # Get the first record for the first set of meetings 

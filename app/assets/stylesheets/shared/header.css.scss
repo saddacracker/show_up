@@ -1,38 +1,42 @@
 // ==========
 // = Header =
 // ==========
-.navbar-inverse .navbar-inner {
-  background: $red;
-  border: none;
-  @include box-shadow(none);
+#meetingsMainNavBar.navbar {
+  margin-bottom: 0px;
   
-  .container {
-    width: $gridRowWidth1200;
-  }
-  
-  .brand {
-    font-weight: bold;
-    font-size: 16px;
-    color: $white;
-    text-transform: uppercase;
-    text-shadow: none;
-  }
-  
-  .brand-description,
-  .navbar-district-info {
-    line-height: 40px;
-    font-size: 14px;
-    color: #d49a9c;
-  }
-  
-  .navbar-district-info {
-    font-family: $serifFontFamily;
-    color: $white;
-    
-    a {
+  .navbar-inner {
+    background: $red;
+    border: none;
+    @include box-shadow(none);
+
+    .container {
+      width: $gridRowWidth1200;
+    }
+
+    .brand {
+      font-weight: bold;
+      font-size: 16px;
       color: $white;
-      &:hover {
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+
+    .brand-description,
+    .navbar-district-info {
+      line-height: 40px;
+      font-size: 14px;
+      color: #d49a9c;
+    }
+
+    .navbar-district-info {
+      font-family: $serifFontFamily;
+      color: $white;
+
+      a {
         color: $white;
+        &:hover {
+          color: $white;
+        }
       }
     }
   }
