@@ -5,16 +5,16 @@
     <div class="meetings-listings-container span12">
       
         <div class="meetings-search-container">
-          <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
-            <!-- query -->
-            <% if (params[:search]) %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search for a meeting in city, zipcode etc...", class: "input" %>
-            <% else %>
-              <%= text_field_tag :search, "#{@user_location.city}, #{@user_location.state}", placeholder: "Search for a meeting in city, zipcode etc...", class: "input" %>
-            <% end %>
+            <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
+              <!-- query -->
+              <% if (params[:search]) %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search for a meeting in city, zipcode etc...", class: "input giant-input" %>
+              <% else %>
+                <%= text_field_tag :search, "#{@user_location.city}", placeholder: "Search for a meeting in city, zipcode etc...", class: "input giant-input" %>
+              <% end %>
             
-            <%= submit_tag "Search", :name => nil, class: "btn" %>
-          <% end %>
+              <%= submit_tag "Search", :name => nil, class: "giant-search-btn btn" %>
+            <% end %>
         </div>
       
         
