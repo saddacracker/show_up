@@ -8,7 +8,7 @@ class MeetingsController < ApplicationController
     # define the meetings
     # there has to be a way to DRY this up, besides looping and concatinating
     if params[:search].present?
-      # @meetings               = Meeting.near(params[:search], params[:distance], :order => :distance)
+      # @meetings             = Meeting.near(params[:search], params[:distance], :order => :distance)
 
       # This needs to be refined using group_by and order
       # Can we scope this?
@@ -19,6 +19,10 @@ class MeetingsController < ApplicationController
       @meetings_on_thursday   = Meeting.has_thursday("1").near(params[:search], 25, :order => :distance)
       @meetings_on_friday     = Meeting.has_friday("1").near(params[:search], 25, :order => :distance)
       @meetings_on_saturday   = Meeting.has_saturday("1").near(params[:search], 25, :order => :distance)
+      
+      # update user location based on params
+      @map_location = Geocoder.search(params[:search]);
+      @map_location = @map_location[0]
     else
       # @meetings = Meeting.all
       
@@ -30,6 +34,9 @@ class MeetingsController < ApplicationController
       @meetings_on_thursday   = Meeting.has_thursday("1").near(@user_location.ip, 25, :order => :distance)
       @meetings_on_friday     = Meeting.has_friday("1").near(@user_location.ip, 25, :order => :distance)
       @meetings_on_saturday   = Meeting.has_saturday("1").near(@user_location.ip, 25, :order => :distance)
+      
+      # update user location based on ip only
+      @map_location = request.location
     end
     
     

@@ -11,6 +11,26 @@
     //padding: 0 20px;
     border-right: $grayLighter 1px solid;
     
+    // =======
+    // = Map =
+    // =======
+    .meetings-map-container {
+      background: $white;
+      padding: 10px;
+    }
+    .meetings-map-canvas {
+      width: 100%;
+      height: 536px;
+      background-color: $grayLighter;
+      
+      img {
+        max-width: none;
+      }
+    }
+    
+    // ==========
+    // = Search =
+    // ==========
     .meetings-search-container {
       background: $grayDark;
       padding: 58px 100px;
