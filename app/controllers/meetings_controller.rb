@@ -74,7 +74,6 @@ class MeetingsController < ApplicationController
       return @meeting = @meetings_on_sunday.first()
     end
 
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @meetings }

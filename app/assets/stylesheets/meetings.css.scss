@@ -77,6 +77,22 @@
       
     }
     
+    // ========
+    // = TABS =
+    // ========
+    .nav-tabs {
+      li {
+        width: $gridRowWidth1200 / 7;
+        text-align: center;
+        font-size: 24px;
+        text-transform: uppercase;
+        
+        a {
+          color: #b6b5b5;
+        }
+      }
+    }
+    
     
            
     .meetings-listing-table {

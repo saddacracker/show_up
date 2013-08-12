@@ -6,6 +6,11 @@
       var mapOptions = {
         // zoom: 9,
         center: new google.maps.LatLng(<%= @map_location.latitude %>, <%= @map_location.longitude %>),
+        mapTypeControl: false,
+        zoomControl: true,
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.SMALL
+        },
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
       var map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -29,21 +34,25 @@
       // = Markers =
       // ===========
       var marker
-      var image = 'images/aa-map-marker.png';
+      var image = '<%= asset_path "aa-map-marker.png" %>';
       var i;
+      
+      // http://gmaps-samples-v3.googlecode.com/svn/trunk/infowindow_custom/infowindow-custom.html
+      // http://stackoverflow.com/questions/8881577/google-map-api-infobox-and-for-loop
       var infowindow = new google.maps.InfoWindow(); // info windows
       
       for (i = 0; i < locations.length; i++) {  
         // plot the markers
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
-          map: map
+          map: map,
+          icon: image
         });
-        
+                
         // add listener for popup
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent(locations[i].address + locations[i].distance);
+            infowindow.setContent('<div id="infoWindowContent"><h3>'+locations[i].address + '</h3><p>'+ locations[i].distance +'</p></div>');
             infowindow.open(map, marker);
           }
         })(marker, i));
@@ -76,73 +85,86 @@
               <%= submit_tag "Search", :name => nil, class: "giant-search-btn btn" %>
             <% end %>
         </div>
-      
         
-        <% unless @meetings_on_monday.blank? %>
-        <table class="meetings-listing-table table">
-          <tr><th colspan="2" class="meetings-listing-header">Monday</th></tr>
-          <% @meetings_on_monday.each do |meeting| %>
-            <%= render 'listing', :meeting => meeting  %>       
-          <% end %>
-        </table>
-        <% end %>
-
-        <% unless @meetings_on_tuesday.blank? %>
-        <table class="meetings-listing-table table">
-          <tr><th colspan="2" class="meetings-listing-header">Tuesday</th></tr>
-          <% @meetings_on_tuesday.each do |meeting| %>
-            <%= render 'listing', :meeting => meeting  %>       
-          <% end %>
-        </table>
-        <% end %>
-
-        <% unless @meetings_on_wednesday.blank? %>
-        <table class="meetings-listing-table table">
-          <tr><th colspan="2" class="meetings-listing-header">Wednesday</th></tr>
-          <% @meetings_on_wednesday.each do |meeting| %>
-            <%= render 'listing', :meeting => meeting  %>       
-          <% end %>
-        </table>
-        <% end %>
-
-        <% unless @meetings_on_thursday.blank? %>
-        <table class="meetings-listing-table table">
-          <tr><th colspan="2" class="meetings-listing-header">Thursday</th></tr>
-          <% @meetings_on_thursday.each do |meeting| %>
-            <%= render 'listing', :meeting => meeting  %>       
-          <% end %>
-        </table>
-        <% end %>
-
-        <% unless @meetings_on_friday.blank? %>
-        <table class="meetings-listing-table table">
-          <tr><th colspan="2" class="meetings-listing-header">Friday</th></tr>
-          <% @meetings_on_friday.each do |meeting| %>
-            <%= render 'listing', :meeting => meeting  %>       
-          <% end %>
-        </table>
-        <% end %>
-            
-        <% unless @meetings_on_saturday.blank? %>
-        <table class="meetings-listing-table table">
-          <tr><th colspan="2" class="meetings-listing-header">Saturday</th></tr>
-          <% @meetings_on_saturday.each do |meeting| %>
-            <%= render 'listing', :meeting => meeting  %>       
-          <% end %>
-        </table>
-        <% end %>
+        <%= debug Time.now.monday? %>
+        
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#mon" data-toggle="tab">Mon</a></li>
+          <li><a href="#tue" data-toggle="tab">Tue</a></li>
+          <li><a href="#wed" data-toggle="tab">Wed</a></li>
+          <li><a href="#thu" data-toggle="tab">Thu</a></li>
+          <li><a href="#fri" data-toggle="tab">Fri</a></li>
+          <li><a href="#sat" data-toggle="tab">Sat</a></li>
+          <li><a href="#sun" data-toggle="tab">Sun</a></li>
+        </ul>
+        
+        <div class="tab-content">
+          <div class="tab-pane active" id="mon">
+            <% unless @meetings_on_monday.blank? %>
+            <table class="meetings-listing-table table">
+              <% @meetings_on_monday.each do |meeting| %>
+                <%= render 'listing', :meeting => meeting  %>       
+              <% end %>
+            </table>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="tue">
+            <% unless @meetings_on_tuesday.blank? %>
+            <table class="meetings-listing-table table">
+              <% @meetings_on_tuesday.each do |meeting| %>
+                <%= render 'listing', :meeting => meeting  %>       
+              <% end %>
+            </table>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="wed">
+            <% unless @meetings_on_wednesday.blank? %>
+            <table class="meetings-listing-table table">
+              <% @meetings_on_wednesday.each do |meeting| %>
+                <%= render 'listing', :meeting => meeting  %>       
+              <% end %>
+            </table>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="thu">
+            <% unless @meetings_on_thursday.blank? %>
+            <table class="meetings-listing-table table">
+              <% @meetings_on_thursday.each do |meeting| %>
+                <%= render 'listing', :meeting => meeting  %>       
+              <% end %>
+            </table>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="fri">
+            <% unless @meetings_on_friday.blank? %>
+            <table class="meetings-listing-table table">
+              <% @meetings_on_friday.each do |meeting| %>
+                <%= render 'listing', :meeting => meeting  %>       
+              <% end %>
+            </table>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="sat">
+            <% unless @meetings_on_saturday.blank? %>
+            <table class="meetings-listing-table table">
+              <% @meetings_on_saturday.each do |meeting| %>
+                <%= render 'listing', :meeting => meeting  %>       
+              <% end %>
+            </table>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="sun">
+            <% unless @meetings_on_sunday.blank? %>
+            <table class="meetings-listing-table table">
+              <% @meetings_on_sunday.each do |meeting| %>
+                <%= render 'listing', :meeting => meeting  %>       
+              <% end %>
+            </table>
+            <% end %>
+          </div>
+        </div>
       
-        <% unless @meetings_on_sunday.blank? %>
-        <table class="meetings-listing-table table">
-          <tr><th colspan="2" class="meetings-listing-header">Sunday</th></tr>
-          <% @meetings_on_sunday.each do |meeting| %>
-            <%= render 'listing', :meeting => meeting  %>       
-          <% end %>
-        </table>
-        <% end %>
 
-      <%#= debug @meeting.week_days["thursday"] %>
-      <%#= debug @meeting %>
       
     </div>
     <!-- 
