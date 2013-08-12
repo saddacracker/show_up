@@ -1,43 +1,49 @@
 <% title "All The District 19 AA Meetings" %>
-<%= debug @all_results %>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
     function initialize() {
+
       var mapOptions = {
-        zoom: 9,
+        // zoom: 9,
         center: new google.maps.LatLng(<%= @map_location.latitude %>, <%= @map_location.longitude %>),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
       var map = new google.maps.Map(document.getElementById('map-canvas'),
                                     mapOptions);
-                                    
-      // icon image
-      var image = 'images/beachflag.png';
       
-      // info windows
-       var infowindow = new google.maps.InfoWindow();
+      var locations = <%= @all_results.to_s.html_safe %>
       
-      // markers
-      var locations = [
-        <% unless @all_results.blank? %> 
-          ['<%= @all_results[0].address %>', <%= @all_results[0].latitude %>, <%= @all_results[0].longitude %>, <%= @all_results[0].distance.to_f.round(2) %>],
-        <% end %>
-        // ['Cronulla Beach', -34.028249, 151.157507, 3],
-        // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-        // ['Maroubra Beach', -33.950198, 151.259302, 1]
-      ];
-      
-      var marker, i;
+      // ==========
+      // = Bounds =
+      // ==========
+      var LatLngList = new Array ();
+      var bounds = new google.maps.LatLngBounds();
       
       for (i = 0; i < locations.length; i++) {  
+        LatLngList.push( new google.maps.LatLng(locations[i].latitude, locations[i].longitude) )
+        bounds.extend (LatLngList[i]);
+      }
+      map.fitBounds (bounds);
+      
+      // ===========
+      // = Markers =
+      // ===========
+      var marker
+      var image = 'images/aa-map-marker.png';
+      var i;
+      var infowindow = new google.maps.InfoWindow(); // info windows
+      
+      for (i = 0; i < locations.length; i++) {  
+        // plot the markers
         marker = new google.maps.Marker({
-          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
           map: map
         });
-
+        
+        // add listener for popup
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent(locations[i][0] + locations[i][3]);
+            infowindow.setContent(locations[i].address + locations[i].distance);
             infowindow.open(map, marker);
           }
         })(marker, i));

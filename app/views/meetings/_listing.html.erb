@@ -2,9 +2,7 @@
     <td class="meeting-listing-info">
       <h4 class="meeting-listing-title"><%= link_to meeting.title, meeting, remote: false %></h4>
       <span class="meeting-listing-address"><%= meeting.address %></span>
-      <% if params[:search].present? %>
-        <span>(<%= meeting.distance.to_f.round(2) %> miles away)</span>
-      <% end %>
+      <span>(<%= meeting.distance.to_f.round(2) %> miles away)</span>
       
       <%= "Closed Meeting" if meeting.closed_meeting %>
       

@@ -24,12 +24,11 @@ class MeetingsController < ApplicationController
       @meetings_on_friday     = Meeting.has_friday("1").near(params[:search], 25, :order => :distance)
       @meetings_on_saturday   = Meeting.has_saturday("1").near(params[:search], 25, :order => :distance)
       
-      # update user location based on params
+      # set user location based on params
       @map_location = Geocoder.search(params[:search]);
       @map_location = @map_location[0]
       
-      # Concatinate all the meetings so we don't have to run teh query again
-       @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
+
     else
       # @meetings = Meeting.all
       
@@ -42,14 +41,19 @@ class MeetingsController < ApplicationController
       @meetings_on_friday     = Meeting.has_friday("1").near(@user_location.ip, 25, :order => :distance)
       @meetings_on_saturday   = Meeting.has_saturday("1").near(@user_location.ip, 25, :order => :distance)
       
-      # update user location based on ip only
+      # set user location based on ip only
       @map_location = request.location
       
-      # Concatinate all the meetings so we don't have to run teh query again
-       @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
     end
     
-
+    # Concatinate all the meetings 
+    @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
+    
+    if @all_results.blank?
+      flash[:notice] = "Sorry no meetings listed in your area."
+    else
+      @all_results = @all_results.to_json(:only => [:address, :latitude, :longitude, :distance, :closed_meeting])
+    end
     
     
     # Get the first record for the first set of meetings 
@@ -111,7 +115,7 @@ class MeetingsController < ApplicationController
   # POST /meetings.json
   def create
     @meeting = Meeting.new(params[:meeting])
-
+    
     respond_to do |format|
       if @meeting.save
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
