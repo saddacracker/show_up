@@ -14,52 +14,32 @@
 </head>
 <body class="<%= body_classes %>">
 
-<div class="navbar navbar-inverse front-of-bg">
-  <div class="navbar-inner">
-    <%= link_to "Suit Up & Show Up", root_path, class: "brand" %>
-        
-    <ul class="nav pull-right">
-      <% if current_user %>
-        <li><p class="navbar-text">Logged in as <%= current_user.email %>.</p></li>
-        <li><%= link_to "Log out", log_out_path %></li>
-        <li class="divider-vertical"></li>
-        <li>
-          <%= link_to new_meeting_path do %>
-            <i class="icon-plus icon-white"></i> New Meeting 
-          <% end %>
-        </li>
-      <% else %>
-        <%#= link_to "Sign up", sign_up_path %>
-        <li><%= link_to "log in", log_in_path %></li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+<%= render 'shared/header' %>
 
-<% flash.each do |name, msg| %>
-  <div class="container"><div class="row"><div class="span12">
-    <div class="alert">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= content_tag :p, msg, :id => "flash_#{name}" %>
-    </div> 
-  </div></div></div> 
-<% end %>
+  <% flash.each do |name, msg| %>
+    <div class="container"><div class="row"><div class="span12">
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= content_tag :p, msg, :id => "flash_#{name}" %>
+      </div> 
+    </div></div></div> 
+  <% end %>
 
 
-<%= yield %>
+  <%= yield %>
 
 
-<footer class="front-of-bg">
-    <div class="footer">
-       <div class="container">
-          <div class="row">
-            <div class="span12">
-              <p>Built for you by <%= link_to "@saddacracker", "https://twitter.com/saddacracker", target: "_blank" %> for <%= link_to "His Glory", "http://www.aa.org/bigbookonline/en_appendiceii.cfm", target: "_blank" %></p>
+  <footer class="front-of-bg">
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+              <div class="span12">
+                <p>Built for you by <%= link_to "@saddacracker", "https://twitter.com/saddacracker", target: "_blank" %> for <%= link_to "His Glory", "http://www.aa.org/bigbookonline/en_appendiceii.cfm", target: "_blank" %></p>
+              </div>
             </div>
-          </div>
-       </div>
-    </div>
-</footer>
+         </div>
+      </div>
+  </footer>
 
 </body>
 </html>
