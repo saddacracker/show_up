@@ -5,6 +5,8 @@
 jQuery ($) ->
   ($ '.meeting-list-delete').bind 'ajax:success', ->
     ($ this).closest('.meetings-listing').fadeOut()
+    
+  ($ '[data-toggle="tooltip"]').tooltip()
 
   # ($ '.meeting-list-show').bind 'ajax:beforeSend', ->
   #   ($ '#mySpinner').show();

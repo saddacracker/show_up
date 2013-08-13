@@ -82,6 +82,7 @@
     .nav-tabs {
       background: $grayLighter;
       border-bottom-color: #c5c6c6;
+      margin-bottom: 0px;
       
       li:last-child a {
         border-right: none;
@@ -116,89 +117,64 @@
     .meetings-listing-table {
       margin-bottom: 0px;
       
+      tr {
+        border-bottom: 1px solid #e6e7e8;
+      }
+      
       td, th {
         border: none;
         padding-left: 0px;
-      }
+        vertical-align: middle;
+        color: $gray;
+      }      
+    }
+    
+    .meeting-listing-icon {
+      width: 8%;
+      text-align: center;
+    }
+    .meeting-listing-time {
+      width: 12%;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+    .meeting-listing-isclosed {
+      width: 4%;
+    }
+    .meeting-listing-info {
+      width: 38%;
       
-      tr.meeting-listing {
-        color: $grayLight;
-        td {
-          border-bottom: lighten($s_gray, 50%) 1px dashed;
-          padding-bottom: 20px;
-        }
-        
-        td.meeting-listing-info {
-          padding-left: 20px;
-          width: 66%;
-        }
-      }
-      
-      .meetings-listing-header {
-        //background-color: $grayDark;
-        color: $grayLighter;
-        background: $s_gray;
-        padding-left: 20px;
-        font-size: 18px;
-        text-transform: uppercase;
-        font-weight: normal;
-        line-height: 1em;
-        padding-top: 8px;
-        
-      }
-      .meeting-listing-time {
-        text-align: right;
-      }
       .meeting-listing-title {
+        font-size: 36px;
+        line-height: 36px;
         text-transform: uppercase;
-        font-size: 16px;
-        line-height: 1.1em;
-        margin: 10px 0px;
-        font-weight: normal;
+        
+        a:hover {
+          text-decoration: none;
+        }
       }
     }
+    .meeting-listing-address {
+      width: 38%;
+      
+      .meeting-listing-address-title {
+        font-size: 18px;
+        font-weight: normal;
+      }
+      .meeting-listing-description {
+        font-family: $serifFontFamily;
+        font-size: 14px;
+      }
+    }
+    
+    
   }
 
   
-  #meeting-preview {
-    color: $black;
-    padding-top: 20px;
-    
-    @include desktop-only {
-      width: 320px;
-    }
-    
-    .meeting-preview-header {
-      font-size: 18px;
-      line-height: 1.1em;
-      text-transform: uppercase;
-      font-weight: normal;
-      margin-top: 20px;
-    }
-  }
-  #meeting-preview.affix {
-    top: 0px;
-    
-    
-  }
 
-  #mySpinner {
-    display: none;
-  }
 
   .meetings-controls {
     //background-color: #F9F9F9;
   }
-  
-  .fill-whole-page-bg {
-    img {
-      //-webkit-filter: blur(3px);
-      //-moz-filter: blur(3px);
-      //-o-filter: blur(3px);
-      //-ms-filter: blur(3px);
-      //filter: blur(3px);
-    }
-  }
-  
 
 }
