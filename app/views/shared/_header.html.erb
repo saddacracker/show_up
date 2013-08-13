@@ -1,7 +1,7 @@
 <div id="meetingsMainNavBar" class="navbar navbar-inverse front-of-bg">
   <div class="navbar-inner">
    <div class="container"><div class="row-fluid"><div class="span12"> <%= link_to "Suit Up & Show Up", root_path, class: "brand" %> 
-    <span class="brand-description"><strong>AA</strong> | <strong>District 19</strong> meetings near you</span>
+    <span class="brand-description"><strong>AA</strong> meetings near you</span>
         
     <ul class="nav pull-right">
       <% if current_user %>
@@ -16,7 +16,7 @@
       <% else %>
         <li><%#= link_to "Sign up", sign_up_path %></li>
         <li><%#= link_to "log in", log_in_path %></li>
-        <li><span class="navbar-district-info"><%= mail_to "district19@snocoaa.org", "district19@snocoaa.org", cc: "ccaddress@domain.com", subject: "Inquiry from website" %> | 425 252-2525</span></li>
+        <li><span class="navbar-district-info"><%= link_to "Is A.A. for you?", "http://www.aa.org/lang/en/subpage.cfm?page=12", target: "_blank" %></span></li>
       <% end %>
     </ul></div></div></div>
   </div>

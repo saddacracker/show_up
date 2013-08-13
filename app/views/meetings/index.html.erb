@@ -86,20 +86,18 @@
             <% end %>
         </div>
         
-        <%= debug Time.now.thursday? %>
-        
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#mon" data-toggle="tab">Mon</a></li>
-          <li><a href="#tue" data-toggle="tab">Tue</a></li>
-          <li><a href="#wed" data-toggle="tab">Wed</a></li>
-          <li><a href="#thu" data-toggle="tab">Thu</a></li>
-          <li><a href="#fri" data-toggle="tab">Fri</a></li>
-          <li><a href="#sat" data-toggle="tab">Sat</a></li>
-          <li><a href="#sun" data-toggle="tab">Sun</a></li>
+          <li class="<%= Time.now.monday? ? "active" : "" %>"><a href="#mon" data-toggle="tab">Mon</a></li>
+          <li class="<%= Time.now.tuesday? ? "active" : "" %>"><a href="#tue" data-toggle="tab">Tue</a></li>
+          <li class="<%= Time.now.wednesday? ? "active" : "" %>"><a href="#wed" data-toggle="tab">Wed</a></li>
+          <li class="<%= Time.now.thursday? ? "active" : "" %>"><a href="#thu" data-toggle="tab">Thu</a></li>
+          <li class="<%= Time.now.thursday? ? "active" : "" %>"><a href="#fri" data-toggle="tab">Fri</a></li>
+          <li class="<%= Time.now.saturday? ? "active" : "" %>"><a href="#sat" data-toggle="tab">Sat</a></li>
+          <li class="<%= Time.now.sunday? ? "active" : "" %>"><a href="#sun" data-toggle="tab">Sun</a></li>
         </ul>
         
         <div class="tab-content">
-          <div class="tab-pane active" id="mon">
+          <div class="tab-pane <%= Time.now.monday? ? "active" : "" %>" id="mon">
             <% unless @meetings_on_monday.blank? %>
             <table class="meetings-listing-table table">
               <% @meetings_on_monday.each do |meeting| %>
@@ -108,7 +106,7 @@
             </table>
             <% end %>
           </div>
-          <div class="tab-pane" id="tue">
+          <div class="tab-pane <%= Time.now.tuesday? ? "active" : "" %>" id="tue">
             <% unless @meetings_on_tuesday.blank? %>
             <table class="meetings-listing-table table">
               <% @meetings_on_tuesday.each do |meeting| %>
@@ -117,7 +115,7 @@
             </table>
             <% end %>
           </div>
-          <div class="tab-pane" id="wed">
+          <div class="tab-pane <%= Time.now.wednesday? ? "active" : "" %>" id="wed">
             <% unless @meetings_on_wednesday.blank? %>
             <table class="meetings-listing-table table">
               <% @meetings_on_wednesday.each do |meeting| %>
@@ -126,7 +124,7 @@
             </table>
             <% end %>
           </div>
-          <div class="tab-pane" id="thu">
+          <div class="tab-pane <%= Time.now.thursday? ? "active" : "" %>" id="thu">
             <% unless @meetings_on_thursday.blank? %>
             <table class="meetings-listing-table table">
               <% @meetings_on_thursday.each do |meeting| %>
@@ -135,7 +133,7 @@
             </table>
             <% end %>
           </div>
-          <div class="tab-pane" id="fri">
+          <div class="tab-pane <%= Time.now.thursday? ? "active" : "" %>" id="fri">
             <% unless @meetings_on_friday.blank? %>
             <table class="meetings-listing-table table">
               <% @meetings_on_friday.each do |meeting| %>
@@ -144,7 +142,7 @@
             </table>
             <% end %>
           </div>
-          <div class="tab-pane" id="sat">
+          <div class="tab-pane <%= Time.now.saturday? ? "active" : "" %>" id="sat">
             <% unless @meetings_on_saturday.blank? %>
             <table class="meetings-listing-table table">
               <% @meetings_on_saturday.each do |meeting| %>
@@ -153,7 +151,7 @@
             </table>
             <% end %>
           </div>
-          <div class="tab-pane" id="sun">
+          <div class="tab-pane <%= Time.now.sunday? ? "active" : "" %>" id="sun">
             <% unless @meetings_on_sunday.blank? %>
             <table class="meetings-listing-table table">
               <% @meetings_on_sunday.each do |meeting| %>

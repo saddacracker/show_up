@@ -1,5 +1,4 @@
 .meetings_controller {
-  color: #e8e9ea;
   background-color: $grayLighter;
   
   .meetings-body {
@@ -81,14 +80,33 @@
     // = TABS =
     // ========
     .nav-tabs {
+      background: $grayLighter;
+      border-bottom-color: #c5c6c6;
+      
+      li:last-child a {
+        border-right: none;
+      }
+    
       li {
         width: $gridRowWidth1200 / 7;
         text-align: center;
         font-size: 24px;
         text-transform: uppercase;
         
+        &.active a {
+          color: $grayDark;
+          border-left: none; 
+        }
+        
         a {
           color: #b6b5b5;
+          margin-right: 0px;
+          border-right: 1px solid #c5c6c6; 
+          padding-top: 26px;
+          padding-bottom: 26px;
+          @include border-radius(0px);
+          
+          
         }
       }
     }

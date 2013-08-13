@@ -24,3 +24,19 @@
     min-height: 50%;
   }
 }
+
+footer {
+  .credits {
+    background: $grayDark;
+    color: #ccc;
+    font-size: 14px;
+    font-style: italic;
+    font-family: $serifFontFamily;
+    padding: 29px;
+    margin-bottom: 0;
+    
+    a {
+      color: $white;
+    }
+  }
+}
