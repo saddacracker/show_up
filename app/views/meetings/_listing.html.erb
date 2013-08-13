@@ -5,7 +5,7 @@
     <%= image_tag "aa-map-marker-grey.png" %>
   </td>
   
-  <td class="meeting-listing-time"><%= fomat_time(meeting.time) %></td>
+  <td class="meeting-listing-time"><p><%= fomat_time(meeting.time) %></p></td>
   
   <td class="meeting-listing-isclosed">
     <%= image_tag "icon-closed-meeting.png", data: { toggle: "tooltip" }, title: "Closed Meeting" if meeting.closed_meeting %>
