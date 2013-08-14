@@ -52,7 +52,7 @@ class MeetingsController < ApplicationController
     if @all_results.blank?
       flash[:notice] = "Sorry no meetings listed in your area."
     else
-      @all_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting])
+      @all_json_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting])
     end
     
     

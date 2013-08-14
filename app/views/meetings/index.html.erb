@@ -4,7 +4,7 @@
 <script>
 function initialize() {
   
-  var locations = <%= @all_results.to_s.html_safe %>
+  var locations = <%= @all_json_results.to_s.html_safe %>
   var boxList =[];
   
   // ===========
@@ -41,6 +41,7 @@ function initialize() {
   // ===========
   var marker
   var image = '<%= asset_path "aa-map-marker.png" %>';
+  var close_button = '<%= asset_path("btn-close.png") %>';
   var i;
   
   for (i = 0; i < locations.length; i++) {  
@@ -68,8 +69,8 @@ function initialize() {
             opacity: 1,
             width: "314px",
         },
-        closeBoxMargin: "2px 10px 2px 2px",
-        closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+        closeBoxMargin: "20px 12px 0px 0px",
+        closeBoxURL: close_button,
         infoBoxClearance: new google.maps.Size(1, 1),
         isHidden: false,
         pane: "floatPane",
