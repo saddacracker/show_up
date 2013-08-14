@@ -175,7 +175,64 @@
     
   }
 
+  // InfoBox Map MArker Popups
+  .info-box-container {
+    //position: relative;
+    background: $white;
+
+    &:after {
+      bottom: 100%;
+      border: solid transparent;
+      content: "";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(255, 255, 255, 0);
+      border-bottom-color: $blue;
+      border-width: 10px;
+      left: 50%;
+      margin-left: -10px;
+    }
+    
+  }
+
+  .info-box-header {
+    padding: 22px;
+    background: $blue;
+    color: $white;
+    
+    i {
+      font-size: 12px;
+      margin: 0;
+      font-family: $serifFontFamily;
+    }
+    
+    h5 {
+      font-size: 18px;
+      margin: 0;
+    }
+  }
   
+  .info-box-body {
+    position: relative;
+    padding: 22px;
+    color: $grayDark;
+    font-size: 14px;
+    
+    h5 {
+      font-size: 18px;
+    }
+    
+    .closed-icon {
+      height: 24px;
+      width: 20px;
+      background: url('icon-closed-meeting.png') no-repeat left top;
+      position: absolute;
+      right: 30px;
+      top: 50px;
+    }
+  }
 
 
   .meetings-controls {
