@@ -50,6 +50,11 @@ GEM
     flickraw (0.9.6)
     geocoder (1.1.6)
     hike (1.2.1)
+    hipchat (0.11.0)
+      httparty
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     i18n (0.6.4)
     journey (1.0.4)
     jquery-rails (2.2.1)
@@ -62,6 +67,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.22)
     multi_json (1.7.2)
+    multi_xml (0.5.5)
     newrelic_rpm (3.6.0.83)
     pg (0.15.0)
     pg-hstore (1.1.7)
@@ -123,6 +129,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   flickraw
   geocoder
+  hipchat (~> 0.11.0)
   jquery-rails
   newrelic_rpm
   pg

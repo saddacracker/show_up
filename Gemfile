@@ -35,7 +35,8 @@ gem 'newrelic_rpm'
 
 
 group :development do
-  gem 'flickraw'
+  gem 'flickraw' #flickr api 
+  gem "hipchat", "~> 0.11.0"
 end
 
 

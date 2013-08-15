@@ -14,9 +14,8 @@ flickr.upload_photo PHOTO_PATH, :title => COMMIT_MSG, :description => "Whenever 
 
 puts "photo uploaded to flickr [()]"
 
+# http://www.flickr.com/services/api/explore/flickr.people.getPhotos
 list   = flickr.people.getPhotos :user_id => '30359366@N03'
-
-puts list
 
 id     = list[0].id
 secret = list[0].secret
@@ -28,5 +27,13 @@ puts info.dates.taken     # => "2006-07-06 15:16:18"
 sizes = flickr.photos.getSizes :photo_id => id
 
 original = sizes.find {|s| s.label == 'Original' }
-puts original.width       # => "800" -- may fail if they have no original marked image
 puts original.source
+
+# 
+# set :hipchat_token, '99351bbe8fe1c56116cd751cb81ab6'
+# set :hipchat_room_name, 'Mars Hill'
+# set :hipchat_announce, false # notify users
+# set :hipchat_message_format, "text"
+
+client = HipChat::Client.new('99351bbe8fe1c56116cd751cb81ab6')
+client['Mars Hill'].send('@JohnCardwell', original.source)
