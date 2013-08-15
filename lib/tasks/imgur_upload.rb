@@ -1,4 +1,5 @@
 require 'flickraw'
+require 'hipchat'
 
 FlickRaw.api_key="e825db2e351e6361c957b5243e799f61"
 FlickRaw.shared_secret="ac3698ca90edbe8c"
