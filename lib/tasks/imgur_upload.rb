@@ -37,4 +37,4 @@ puts original.source
 # set :hipchat_message_format, "text"
 
 client = HipChat::Client.new('99351bbe8fe1c56116cd751cb81ab6')
-client['Mars Hill'].send('@JohnCardwell', original.source)
+client['Mars Hill'].send('@JohnCardwell', "<img src='#{original.source}'", :message_format => 'html', :notify => true)
