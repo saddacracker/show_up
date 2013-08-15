@@ -11,6 +11,7 @@ PHOTO_PATH=ARGV[0]
 COMMIT_MSG=ARGV[1]
 
 # You need to be authentified to do that, see the previous examples.
+# https://github.com/hanklords/flickraw
 flickr.upload_photo PHOTO_PATH, :title => COMMIT_MSG, :description => "Whenever I commit code to my project, you get a snapshot"
 
 puts "photo uploaded to flickr [()]"
@@ -32,5 +33,6 @@ puts original.source
 
 
 puts "Sending to Mars Hill Hipchat..."
+# https://github.com/hipchat/hipchat-rb
 client = HipChat::Client.new('99351bbe8fe1c56116cd751cb81ab6')
 client['Mars Hill'].send('@JohnCardwell', "<img src='#{original.source}'", :message_format => 'html', :notify => true)
