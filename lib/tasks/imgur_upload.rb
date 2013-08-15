@@ -30,11 +30,7 @@ sizes = flickr.photos.getSizes :photo_id => id
 original = sizes.find {|s| s.label == 'Original' }
 puts original.source
 
-# 
-# set :hipchat_token, '99351bbe8fe1c56116cd751cb81ab6'
-# set :hipchat_room_name, 'Mars Hill'
-# set :hipchat_announce, false # notify users
-# set :hipchat_message_format, "text"
 
+puts "Sending to Mars Hill Hipchat..."
 client = HipChat::Client.new('99351bbe8fe1c56116cd751cb81ab6')
 client['Mars Hill'].send('@JohnCardwell', "<img src='#{original.source}'", :message_format => 'html', :notify => true)
