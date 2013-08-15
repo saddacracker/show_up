@@ -11,3 +11,5 @@ COMMIT_MSG=ARGV[1]
 
 # You need to be authentified to do that, see the previous examples.
 flickr.upload_photo PHOTO_PATH, :title => COMMIT_MSG, :description => "Whenever I commit code to my project, you get a snapshot"
+
+puts "photo uploaded to flickr"
