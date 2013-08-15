@@ -27,4 +27,4 @@ sizes = flickr.photos.getSizes :photo_id => id
 
 original = sizes.find {|s| s.label == 'Original' }
 puts original.width       # => "800" -- may fail if they have no original marked image
-puts original.url
+puts original.source
