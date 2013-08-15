@@ -14,7 +14,7 @@ flickr.upload_photo PHOTO_PATH, :title => COMMIT_MSG, :description => "Whenever 
 
 puts "photo uploaded to flickr [()]"
 
-list   = flickr.people.getRecent
+list   = flickr.photos.getRecent
 
 puts list
 
