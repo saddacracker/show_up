@@ -26,6 +26,10 @@
 }
 
 footer {
+  
+  @include phone-only {
+    text-align: center;
+  }
   .credits {
     background: $grayDark;
     color: #ccc;
@@ -42,5 +46,10 @@ footer {
   
   .footnote {
     font-size: 10px;
+    @include phone-only {
+      line-height: 1.6em;
+      display: block;
+      margin-top: 20px;
+    }
   }
 }

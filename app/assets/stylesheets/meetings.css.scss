@@ -34,6 +34,9 @@
       background: $grayDark;
       padding: 58px 100px;
       @include clearfix();
+      @include phone-only {
+        padding: 11px 4px 16px 16px;
+      }
       
       .meetings-search-form {
         width: 100%;
@@ -51,6 +54,14 @@
           padding-right: 2%;
           padding-left: 2%;
           @include box-shadow(none);
+          @include phone-only {
+            font-size: 12px;
+            line-height: 12px;
+            padding: 10px 0px;
+            padding-right: 3%;
+            padding-left: 3%;
+          }
+
           
           &:focus {
             border: 1px solid $grayDarker;
@@ -70,6 +81,11 @@
           font-size: 24px;
           line-height: 24px;
           padding: 38px 0px;
+          @include phone-only {
+            font-size: 12px;
+            line-height: 12px;
+            padding: 14px 0px;
+          }
         }
       }
       
@@ -134,33 +150,64 @@
         padding-left: 0px;
         vertical-align: middle;
         color: $gray;
+        @include phone-only {
+          padding: 5px 4px 5px 0px;
+        }
+        
+        h5, p {
+          @include phone-only {
+            margin: 0px;
+          }
+        }
       }      
     }
     
     .meeting-listing-icon {
       width: 8%;
       text-align: center;
+      @include phone-only {
+        width: 0%;
+      }
     }
     .meeting-listing-time {
       width: 12%;
+      @include phone-only {
+        width: 15%;
+        padding-left: 10px !important;
+      }
       
       p {
         font-size: 24px;
         line-height: 24px;
         text-transform: uppercase;
         margin: 5px 0 0 0;
+        @include phone-only {
+          font-size: 12px;
+          line-height: 12px;
+        }
       }
     }
     .meeting-listing-isclosed {
       width: 4%;
+      @include phone-only {
+        width: 5%;
+        padding-right: 8px !important;
+      }
     }
     .meeting-listing-info {
       width: 38%;
+       @include phone-only {
+         width: 40%;
+       }
       
       .meeting-listing-title {
         font-size: 36px;
         line-height: 36px;
         text-transform: uppercase;
+        @include phone-only {
+          font-size: 14px;
+          line-height: 14px;
+        }
         
         a:hover {
           text-decoration: none;
@@ -169,14 +216,28 @@
     }
     .meeting-listing-address {
       width: 38%;
+      @include phone-only {
+        width: 40%;
+      }
       
       .meeting-listing-address-title {
         font-size: 18px;
         font-weight: normal;
+        @include phone-only {
+          font-size: 12px;
+          line-height: 1.4em;
+          margin-bottom: 3px;
+        }
+
       }
       .meeting-listing-description {
         font-family: $serifFontFamily;
         font-size: 14px;
+        @include phone-only {
+          font-size: 10px;
+          line-height: 1.2em;
+        }
+
       }
     }
     

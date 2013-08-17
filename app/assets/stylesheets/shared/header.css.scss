@@ -11,6 +11,10 @@
 
     .container {
       width: $gridRowWidth1200;
+      
+      @include phone-only {
+        width: 100%;
+      }
     }
 
     .brand {
@@ -31,6 +35,9 @@
     .navbar-district-info {
       font-family: $serifFontFamily;
       color: $white;
+      @include phone-only {
+        font-size: 11px;
+      }
 
       a {
         color: $white;
