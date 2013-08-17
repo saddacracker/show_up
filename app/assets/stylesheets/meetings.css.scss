@@ -89,10 +89,14 @@
       }
     
       li {
-        width: 151px;
+        width: 14.25%;
         text-align: center;
         font-size: 24px;
         text-transform: uppercase;
+        
+        @include phone-only {
+          font-size: 10px;;
+        }
         
         &.active a {
           color: $grayDark;
@@ -106,6 +110,10 @@
           padding-top: 26px;
           padding-bottom: 26px;
           @include border-radius(0px);
+          
+          @include phone-only {
+            padding: 10px 0px;
+          }
           
           
         }
