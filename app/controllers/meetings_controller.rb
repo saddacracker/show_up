@@ -76,7 +76,7 @@ class MeetingsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @meetings }
+      format.json { render json: @all_results }
     end
   end
 
