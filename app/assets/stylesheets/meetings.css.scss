@@ -1,5 +1,9 @@
 .meetings_controller {
   background-color: $grayLighter;
+  @include phone-only {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   
   .meetings-body {
     background-color: $white;
