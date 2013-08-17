@@ -55,6 +55,10 @@ module ShowUp
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    
+    # Tell Rails not to bootstrap your application during asset compilation in
+    # http://stackoverflow.com/questions/13712012/error-pushing-to-heroku-aborting-my-rake-assetsprecompile
+    config.assets.initialize_on_precompile = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
