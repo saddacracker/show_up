@@ -12,39 +12,31 @@ class MeetingsController < ApplicationController
     # define the meetings
     # there has to be a way to DRY this up, besides looping and concatinating
     if params[:search].present?
-      # @meetings             = Meeting.near(params[:search], params[:distance], :order => :distance)
 
-      # This needs to be refined using group_by and order
-      # Can we scope this?
-      @meetings_on_sunday     = Meeting.has_sunday("1").near(params[:search], 25, :order => :time)
-      @meetings_on_monday     = Meeting.has_monday("1").near(params[:search], 25, :order => :time)
-      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(params[:search], 25, :order => :time)
-      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(params[:search], 25, :order => :time)
-      @meetings_on_thursday   = Meeting.has_thursday("1").near(params[:search], 25, :order => :time)
-      @meetings_on_friday     = Meeting.has_friday("1").near(params[:search], 25, :order => :time)
-      @meetings_on_saturday   = Meeting.has_saturday("1").near(params[:search], 25, :order => :time)
+      search_params = params[:search]
       
       # set user location based on params
       @map_location = Geocoder.search(params[:search]);
       @map_location = @map_location[0]
-      
 
     else
       # @meetings = Meeting.all
       
-      # Meetings by IP within 25 miles
-      @meetings_on_sunday     = Meeting.has_sunday("1").near(@user_location.ip, 25, :order => :time)
-      @meetings_on_monday     = Meeting.has_monday("1").near(@user_location.ip, 25, :order => :time)
-      @meetings_on_tuesday    = Meeting.has_tuesday("1").near(@user_location.ip, 25, :order => :time)
-      @meetings_on_wednesday  = Meeting.has_wednesday("1").near(@user_location.ip, 25, :order => :time)
-      @meetings_on_thursday   = Meeting.has_thursday("1").near(@user_location.ip, 25, :order => :time)
-      @meetings_on_friday     = Meeting.has_friday("1").near(@user_location.ip, 25, :order => :time)
-      @meetings_on_saturday   = Meeting.has_saturday("1").near(@user_location.ip, 25, :order => :time)
+      search_params = @user_location.ip
       
       # set user location based on ip only
       @map_location = request.location
       
     end
+    
+    # @TODO: use group_by
+    @meetings_on_sunday     = Meeting.has_sunday("1").near(search_params, 25, :order => :time)
+    @meetings_on_monday     = Meeting.has_monday("1").near(search_params, 25, :order => :time)
+    @meetings_on_tuesday    = Meeting.has_tuesday("1").near(search_params, 25, :order => :time)
+    @meetings_on_wednesday  = Meeting.has_wednesday("1").near(search_params, 25, :order => :time)
+    @meetings_on_thursday   = Meeting.has_thursday("1").near(search_params, 25, :order => :time)
+    @meetings_on_friday     = Meeting.has_friday("1").near(search_params, 25, :order => :time)
+    @meetings_on_saturday   = Meeting.has_saturday("1").near(search_params, 25, :order => :time)
     
     # Concatinate all the meetings 
     @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
