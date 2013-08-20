@@ -1,79 +1,64 @@
-<div class="container">
+<div class="container meetings-detail">
   
   <div class="row">
-    <div class="span12">
-      <h1>
-        <%= @meeting.title %>
-      </h1>
+    <div class="meetings-detail-search span12">
+      <div class="row">
+        <div class="span8">Search Area</div>
+        <div class="pull-right">
+          <% if current_user %>
+            <%= link_to 'Edit', edit_meeting_path(@meeting), class: "btn" %>
+          <% end %>
+          <%= link_to 'Back To Meetings', meetings_path, class: "btn btn-link" %>
+        </div>
+      </div>
     </div>
-    <br />
-    <div class="span12">
-    <% if current_user %>
-      <%= link_to 'Edit', edit_meeting_path(@meeting), class: "btn" %>
-    <% end %>
-    <%= link_to 'Back To Meetings', meetings_path, class: "btn" %>
-    </div>
-    
-    <hr />
   </div>
-  <br />
-
+  
   <div class="row">
     <div class="span4">
-      <p>
-        <b>Address:</b>
-        <%= @meeting.address %>
-      </p>
+      <h1><%= @meeting.title %></h1>
+      <p><%= @meeting.address %></p>
       
-      <p>
-        <b>Meeting Time</b>
-        <span><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></span>
-      </p>
-
-      <p>
-        <b>Days of week:</b><br />
-        <%= render 'days_of_week_tags', :meeting => @meeting  %>
-      </p>
-
-      <p>
-        <b>Closed meeting:</b>
-        <%= @meeting.closed_meeting %>
-      </p>
-
       <% if @meeting.description? %>
-      <p>
-        <b>Description:</b>
-        <%= @meeting.description %>
-      </p>
+        <p><%= @meeting.description %></p>
       <% end %>
-
-      <p>
-        <b>Tags:</b><br />
-        <%= render 'tags', :meeting => @meeting  %>
-      </p>
       
+      <div class="row">
+        <div class="span3">
+          <b>Time</b>
+          <span><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></span>
+        </div>
+        <div class="span1"><%= @meeting.closed_meeting %></div>
+      </div>
+      
+      <div class="row">
+        <div class="span2">
+          <b>Days of week:</b><br />
+          <%= render 'days_of_week_tags', :meeting => @meeting  %>
+        </div>
+        <div class="span2">
+          <b>Tags:</b><br />
+          <%= render 'tags', :meeting => @meeting  %>
+        </div>
+      </div>
+      
+    </div>
+    <div class="span4">
+      <!-- MAP  -->
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
+    </div>
+    <div class="span4">
+      <!-- Nearby -->
       <h3>Nearby meetings (within 10 miles)</h3>
       <ul>
       <% for meeting in @meeting.nearbys(10) %>
         <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
       <% end %>
       </ul>
-      
     </div>
-    
-    <div class="span7 offset1">
-      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x300&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %>
-      
-      <%= image_tag "http://maps.googleapis.com/maps/api/streetview?size=640x300&location=#{@meeting.latitude},%20#{@meeting.longitude}&fov=120&heading=235&pitch=10&sensor=false" %>
-      
-      
-      
-    </div>
+
   </div>
-
-
-    
-
-
+  
+  <%#= image_tag "http://maps.googleapis.com/maps/api/streetview?size=640x300&location=#{@meeting.latitude},%20#{@meeting.longitude}&fov=120&heading=235&pitch=10&sensor=false" %>
   
 </div>

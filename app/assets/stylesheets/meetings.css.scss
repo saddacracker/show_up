@@ -313,5 +313,20 @@
   .meetings-controls {
     //background-color: #F9F9F9;
   }
+  
+  // ========
+  // = SHOW =
+  // ========
+  
+  &.show_action {
+    
+    .meetings-detail {
+      background: $white;
+    }
+    
+    .meetings-detail-search {
+      background: $grayDark;
+    }
+  }
 
 }
