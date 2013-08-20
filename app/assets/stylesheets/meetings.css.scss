@@ -321,11 +321,37 @@
   &.show_action {
     
     .meetings-detail {
-      background: $white;
+      background-color: #f4f4f4;
     }
     
     .meetings-detail-search {
       background: $grayDark;
+    }
+    
+    .meetings-detail-back {
+      color: #878686;
+      text-shadow: none;
+      font-size: 12px;
+      text-decoration: underline;
+    }
+    
+    .meetings-detail-main {
+      background-color: $white;
+    }
+    .meetings-detail-main-guts {
+      border-right: 1px solid #d3d3d3;
+    }
+    .meetings-detail-column {
+      padding-top: 30px;
+    }
+    
+    .meetings-detail-nearby {
+      height: 100%;
+      
+    }
+    
+    .meetings-detail-map {
+      padding-right: 20px;
     }
   }
 
