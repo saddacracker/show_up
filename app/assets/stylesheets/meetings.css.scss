@@ -322,6 +322,20 @@
     
     .meetings-detail {
       background-color: #f4f4f4;
+      font-size: 18px;
+      
+      h1 {
+        color: $red;
+        font-size: 30px;
+        margin-top: 0px;
+        line-height: 1.1em;
+      }
+      
+      h3 {
+        margin-top: 0px;
+      }
+      
+      
     }
     
     .meetings-detail-search {
@@ -337,17 +351,87 @@
     
     .meetings-detail-main {
       background-color: $white;
+      @include desktop-only {
+       min-height: 750px; 
+       border-right: 1px solid #d3d3d3;
+      }
     }
-    .meetings-detail-main-guts {
-      border-right: 1px solid #d3d3d3;
-    }
+
     .meetings-detail-column {
       padding-top: 30px;
+      @include desktop-only {
+        margin-left: 19px;
+        
+        h3, ul {
+          margin-right: 30px;
+        }
+      }
     }
+    
+    .meetings-detail-info {
+      @include desktop-only {
+        padding-left: 30px;
+      }
+      
+      .meetings-detail-tags {
+        width: 50%;
+        float: left;
+        
+        b {
+          font-size: 14px;
+        }
+        strong {
+          font-weight: normal;
+          font-size: 12px;
+          color: $gray;
+        }
+      }
+
+    }
+    
+    .meetings-detail-time {
+      font-size: 14px;
+      float: left;
+      width: 75%;
+      
+      b, span {
+        display: block;
+      }
+    }
+    
+    .well {
+      @include clearfix;
+      padding: 10px 20px 10px 10px;
+      @include box-shadow(none);
+    }
+    
+    .meeting-listing-isclosed {
+      float: left;
+      width: 25%;
+      text-align: right;
+      
+      img {
+        margin-top: 6px;
+      }
+    }
+    
     
     .meetings-detail-nearby {
       height: 100%;
       
+      h3 {
+        font-size: 18px;
+        color: $gray;
+        text-transform: uppercase;
+      }
+      
+      .meetings-detail-nearby-listing {
+        font-size: 14px;
+        border-bottom: 1px solid #d3d3d3;
+        margin-bottom: 15px;
+        padding-bottom: 14px;
+        color: $gray;
+      }      
     }
     
     .meetings-detail-map {

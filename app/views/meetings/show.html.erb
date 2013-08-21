@@ -19,27 +19,30 @@
     <div class="meetings-detail-main span8">
       <div class="row">
         <div class="meetings-detail-column span4">
-          <h1><%= @meeting.title %></h1>
-          <p><%= @meeting.address %></p>
+          <div class="meetings-detail-info">
+            <h1><%= @meeting.title %></h1>
+            <p class="meetings-detail-address"><strong><%= @meeting.address %></strong></p>
       
-          <% if @meeting.description? %>
-            <p><%= @meeting.description %></p>
-          <% end %>
+            <% if @meeting.description? %>
+              <p><%= @meeting.description %></p>
+            <% end %>
+            
+            <%= link_to "Directions", "#", class: "btn" %>
       
-          <div class="row">
-            <div class="span3">
-              <b>Time</b>
-              <span><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></span>
-            </div>
-            <div class="span1"><%= @meeting.closed_meeting %></div>
-          </div>
+              <div class="well">
+                <div class="meetings-detail-time">
+                  <b>Time</b>
+                  <span><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></span>
+                </div>
+                <div class="meeting-listing-isclosed"><%= image_tag "icon-closed-meeting.png", data: { toggle: "tooltip" }, title: "Closed Meeting" if @meeting.closed_meeting %></div>
+              </div>
+              
       
-          <div class="row">
-            <div class="span2">
-              <b>Days of week:</b><br />
+            <div class="meetings-detail-tags">
+              <b>Days:</b><br />
               <%= render 'days_of_week_tags', :meeting => @meeting  %>
             </div>
-            <div class="span2">
+            <div class="meetings-detail-tags">
               <b>Tags:</b><br />
               <%= render 'tags', :meeting => @meeting  %>
             </div>
@@ -55,10 +58,10 @@
     
     <!-- Nearby -->
     <div class="meetings-detail-column meetings-detail-nearby span4">
-      <h3>Nearby meetings (within 10 miles)</h3>
-      <ul>
+      <h3>Nearby meetings</h3>
+      <ul class="unstyled">
       <% for meeting in @meeting.nearbys(10) %>
-        <li><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
+        <li class="meetings-detail-nearby-listing"><%= link_to meeting.address, meeting %> (<%= meeting.distance.to_f.round(2) %> miles)</li>
       <% end %>
       </ul>
     </div>
