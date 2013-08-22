@@ -22,10 +22,14 @@ class MeetingsController < ApplicationController
     else
       # @meetings = Meeting.all
       
-      search_params = @user_location.ip
+      if @user_location.ip
+        search_params = @user_location.ip
+      else 
+        search_params = "United States"
+      end
       
       # set user location based on ip only
-      @map_location = request.location
+      @map_location = @user_location
       
     end
     
@@ -50,21 +54,21 @@ class MeetingsController < ApplicationController
     
     # Get the first record for the first set of meetings 
     # for the inital ajax map view in the sidebar & bg
-    if @meetings_on_monday.first()
-      return @meeting = @meetings_on_monday.first()
-    elsif @meetings_on_tuesday.first()
-      return @meeting = @meetings_on_tuesday.first()
-    elsif @meetings_on_wednesday.first()
-      return @meeting = @meetings_on_wednesday.first()
-    elsif @meetings_on_thursday.first()
-      return @meeting = @meetings_on_thursday.first()
-    elsif @meetings_on_friday.first()
-      return @meeting = @meetings_on_friday.first()
-    elsif @meetings_on_saturday.first()
-      return @meeting = @meetings_on_saturday.first()
-    elsif @meetings_on_sunday.first()
-      return @meeting = @meetings_on_sunday.first()
-    end
+    # if @meetings_on_monday.first()
+    #   return @meeting = @meetings_on_monday.first()
+    # elsif @meetings_on_tuesday.first()
+    #   return @meeting = @meetings_on_tuesday.first()
+    # elsif @meetings_on_wednesday.first()
+    #   return @meeting = @meetings_on_wednesday.first()
+    # elsif @meetings_on_thursday.first()
+    #   return @meeting = @meetings_on_thursday.first()
+    # elsif @meetings_on_friday.first()
+    #   return @meeting = @meetings_on_friday.first()
+    # elsif @meetings_on_saturday.first()
+    #   return @meeting = @meetings_on_saturday.first()
+    # elsif @meetings_on_sunday.first()
+    #   return @meeting = @meetings_on_sunday.first()
+    # end
 
     respond_to do |format|
       format.html # index.html.erb

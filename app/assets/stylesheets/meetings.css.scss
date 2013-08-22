@@ -323,6 +323,9 @@
     .meetings-detail {
       background-color: #f4f4f4;
       font-size: 18px;
+      @include phone-only {
+        background-color: $white;
+      }
       
       h1 {
         color: $red;
@@ -366,11 +369,27 @@
           margin-right: 30px;
         }
       }
+      
+      @include phone-only {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      
+
     }
     
     .meetings-detail-info {
       @include desktop-only {
-        padding-left: 30px;
+        padding-left: 30px;        
+      }
+      
+      h1, p {
+       margin-bottom: 1em;
+      }
+      
+      .meetings-detail-directions-btn {
+        margin-bottom: 2em;
+        
       }
       
       .meetings-detail-tags {
@@ -435,7 +454,9 @@
     }
     
     .meetings-detail-map {
-      padding-right: 20px;
+      @include desktop-only {
+        padding-right: 20px;
+      }
     }
   }
 
