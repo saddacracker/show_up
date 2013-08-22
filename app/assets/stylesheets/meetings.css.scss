@@ -387,6 +387,10 @@
        margin-bottom: 1em;
       }
       
+      p {
+        line-height: 1.4em;
+      }
+      
       .meetings-detail-directions-btn {
         margin-bottom: 2em;
         
@@ -442,15 +446,44 @@
         font-size: 18px;
         color: $gray;
         text-transform: uppercase;
+        line-height: 1.4em;
       }
       
       .meetings-detail-nearby-listing {
         font-size: 14px;
+        font-weight: 100;
         border-bottom: 1px solid #d3d3d3;
-        margin-bottom: 15px;
-        padding-bottom: 14px;
+        margin-bottom: 3px;
+        padding-bottom: 2px;
         color: $gray;
-      }      
+        
+        .meeting-nearby-top-row {
+          .meetings-detail-nearby-title {
+            color: $blue;
+            text-transform: none;
+          }
+          .meetings-start-time {
+            font-size: 12px;
+            display: block;
+            float: right;
+          }
+          
+          .meetings-closed-icon {
+            margin-top: -7px;
+            margin-left: 4px;
+          }
+          
+        }
+        .meeting-nearby-btm-row {
+          font-size: 12px;
+          .meetings-distance {
+            font-size: 10px;
+            color: #999;
+          }
+        }
+      } 
+      
+           
     }
     
     .meetings-detail-map {
