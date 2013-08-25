@@ -21,17 +21,23 @@ class MeetingsController < ApplicationController
 
     else
       # @meetings = Meeting.all
-      
-      if @user_location.ip
+            
+      if !@user_location.ip.blank?
         search_params = @user_location.ip
-      else 
+      elsif !cookie[:latitude].blank?
+        search_params = cookie[:latitude] + "," + cookie[:longitude]
+      else
         search_params = "United States"
       end
       
-      # set user location based on ip only
       @map_location = @user_location
       
+      
     end
+    
+    @browser_latitude = cookies[:latitude]
+    @browser_longitude = cookies
+
     
     # @TODO: use group_by
     @meetings_on_sunday     = Meeting.has_sunday("1").near(search_params, 25, :order => :time)
