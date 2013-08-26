@@ -12,7 +12,8 @@
   </td>
   
   <td class="meeting-listing-info">
-    <h4 class="meeting-listing-title"><%= link_to truncate(meeting.title, length: 15), meeting, data: { toggle: "tooltip" }, title: meeting.title %></h4>
+    <h4 class="meeting-listing-title visible-desktop"><%= link_to truncate(meeting.title, length: 15), meeting, data: { toggle: "tooltip" }, title: meeting.title %></h4>
+    <h4 class="meeting-listing-title hidden-desktop"><%= link_to truncate(meeting.title, length: 15), meeting, title: meeting.title %></h4>
   </td>
   
   <td class="meeting-listing-address">
