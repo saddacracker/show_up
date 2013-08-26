@@ -19,8 +19,15 @@ class @ShowUp
 
   getGeoLocation: () ->
     if navigator.geolocation
-      navigator.geolocation.getCurrentPosition(@setGeoCookie);
+      navigator.geolocation.getCurrentPosition(@setGeoCookie, @handleErrors);
 
   setGeoCookie: (position) ->
     cookie_val = position.coords.latitude + "|" + position.coords.longitude
-    document.cookie = "lat_lng=" + escape(cookie_val);
+    document.cookie = "lat_lng=" + escape(cookie_val)
+  
+  handleErrors: (error) ->
+    switch(error.code)  
+      when error.PERMISSION_DENIED then alert("user did not share geolocation data");  
+      when error.POSITION_UNAVAILABLE then alert("could not detect current position");  
+      when error.TIMEOUT then alert("retrieving position timed out");  
+      else alert("unknown error");  

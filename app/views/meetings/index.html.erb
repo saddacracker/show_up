@@ -116,7 +116,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div class="meetings-listings-container span12">
       
       
-        <h1><%= @lat_lng %></h1>
+        <h1><%= @lat_lng.blank? ? "No Lat Long Set" : @lat_lng %></h1>
       
         <div class="meetings-map-container hidden-phone">
           <div id="map-canvas" class="meetings-map-canvas"></div>

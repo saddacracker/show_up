@@ -4,7 +4,9 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     
-    @lat_lng = cookies[:lat_lng].split("|")
+    if cookies[:lat_lng]
+      @lat_lng = cookies[:lat_lng].split("|")
+    end
     
     @user_location = request.location
     
