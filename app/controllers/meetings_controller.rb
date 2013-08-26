@@ -3,7 +3,13 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
+    
+    @lat_lng = cookies[:lat_lng].split("|")
+    
     @user_location = request.location
+    
+    
+    
     
     # ==================================================
     # = @TODO: REDO THE QUERIES! Use group_by and sort =
@@ -34,9 +40,6 @@ class MeetingsController < ApplicationController
       
       
     end
-    
-    @browser_latitude = cookies[:latitude]
-    @browser_longitude = cookies
 
     
     # @TODO: use group_by
@@ -48,7 +51,8 @@ class MeetingsController < ApplicationController
     @meetings_on_friday     = Meeting.has_friday("1").near(search_params, 25, :order => :time)
     @meetings_on_saturday   = Meeting.has_saturday("1").near(search_params, 25, :order => :time)
     
-    # Concatinate all the meetings 
+    # Concatinate all the meetings VS querying 
+    # Meeting.near(search_params, 25, :order => :time)
     @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
     
     if @all_results.blank?
@@ -56,25 +60,7 @@ class MeetingsController < ApplicationController
     else
       @all_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting])
     end
-    
-    
-    # Get the first record for the first set of meetings 
-    # for the inital ajax map view in the sidebar & bg
-    # if @meetings_on_monday.first()
-    #   return @meeting = @meetings_on_monday.first()
-    # elsif @meetings_on_tuesday.first()
-    #   return @meeting = @meetings_on_tuesday.first()
-    # elsif @meetings_on_wednesday.first()
-    #   return @meeting = @meetings_on_wednesday.first()
-    # elsif @meetings_on_thursday.first()
-    #   return @meeting = @meetings_on_thursday.first()
-    # elsif @meetings_on_friday.first()
-    #   return @meeting = @meetings_on_friday.first()
-    # elsif @meetings_on_saturday.first()
-    #   return @meeting = @meetings_on_saturday.first()
-    # elsif @meetings_on_sunday.first()
-    #   return @meeting = @meetings_on_sunday.first()
-    # end
+
 
     respond_to do |format|
       format.html # index.html.erb

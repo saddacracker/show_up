@@ -1,6 +1,16 @@
 <% title "All The District 19 AA Meetings" %>
-<!-- booger -->
 
+<!-- Get HTML5 Geolocation -->
+<%- unless @lat_lng %>
+  <script>
+  $(function() {
+    new ShowUp().getGeoLocation();
+  });
+  </script>
+<%- end %>
+
+
+<!-- Make a map -->
 <script>
 function initialize() {
   
@@ -105,7 +115,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <div class="row-fluid">
     <div class="meetings-listings-container span12">
       
-        <h1><%= debug @browser_longitude %></h1>
+      
+        <h1><%= @lat_lng %></h1>
       
         <div class="meetings-map-container hidden-phone">
           <div id="map-canvas" class="meetings-map-canvas"></div>
