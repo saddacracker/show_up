@@ -1,18 +1,13 @@
 class MeetingsController < ApplicationController
-    
+
   # GET /meetings
   # GET /meetings.json
   def index
     
-    if cookies[:lat_lng]
-      @lat_lng = cookies[:lat_lng].split("|")
-    end
+    # @meetings = Meeting.all
     
     @user_location = request.location
-    
-    
-    
-    
+
     # ==================================================
     # = @TODO: REDO THE QUERIES! Use group_by and sort =
     # ==================================================
@@ -23,19 +18,16 @@ class MeetingsController < ApplicationController
 
       search_params = params[:search]
       
-      # set user location based on params
+      # set map location based on params
       @map_location = Geocoder.search(params[:search]);
       @map_location = @map_location[0]
 
     else
-      # @meetings = Meeting.all
             
       if !@user_location.ip.blank?
         search_params = @user_location.ip
-      elsif !cookie[:latitude].blank?
-        search_params = cookie[:latitude] + "," + cookie[:longitude]
       else
-        search_params = "United States"
+        search_params = "Seattle, WA"
       end
       
       @map_location = @user_location
@@ -74,6 +66,8 @@ class MeetingsController < ApplicationController
   # GET /meetings/1.json
   def show
     @meeting = Meeting.find(params[:id])
+    # @lat_lng = cookies[:lat_lng].split("|")
+
 
     respond_to do |format|
       format.html # show.html.erb
