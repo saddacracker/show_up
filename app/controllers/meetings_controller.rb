@@ -34,7 +34,6 @@ class MeetingsController < ApplicationController
       
       
     end
-
     
     # @TODO: use group_by
     @meetings_on_sunday     = Meeting.has_sunday("1").near(search_params, 25, :order => :time)
