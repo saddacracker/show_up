@@ -57,7 +57,7 @@ function initialize() {
     var boxText = document.createElement("div");
     boxText.id = i;
     boxText.style.cssText = "border-bottom: 1px solid #bab6af; padding: 0px; background: #fff;";
-    boxText.innerHTML = "<div class='info-box-container'><div class='info-box-header'><i>"+ Math.round(locations[i].distance) +" miles away</i><h5>"+ locations[i].address +"</h5></div><div class='info-box-body'><h5>"+ locations[i].title +"</h5>" + (locations[i].closed_meeting ? '<div class="closed-icon"></div>' : '') + "</div></div>";
+    boxText.innerHTML = "<div class='info-box-container'><div class='info-box-header'><h5>"+ locations[i].title +"</h5></div><div class='info-box-body'><h5>"+ locations[i].address +"</h5><i>"+ Math.round(locations[i].distance) +" miles away</i><p class='info-box-tags'>" + prettyTags(locations[i].tags) + "</p><p class='info-box-days'><strong class='info-box-time'>" + getFormattedTime(locations[i].time.toString()) + "</strong> on " + prettyTags(locations[i].week_days, true) + "</p>"+ (locations[i].closed_meeting ? '<div class="closed-icon"></div>' : '') + "<a href='http://maps.google.com?daddr=" + locations[i].address + "' target='_blank' class='btn'>Directions</a></div></div>";
 
     var myOptions = {
         content: boxText,
@@ -69,16 +69,19 @@ function initialize() {
             opacity: 1,
             width: "314px",
         },
-        closeBoxMargin: "20px 12px 0px 0px",
+        closeBoxMargin: "26px 12px 0px 0px",
         closeBoxURL: close_button,
         infoBoxClearance: new google.maps.Size(1, 1),
         isHidden: false,
         pane: "floatPane",
         enableEventPropagation: false
     };
+    
 
     var ib = new InfoBox(myOptions);
     boxList.push(ib);
+    
+
             
     // add listener for Marker
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -96,7 +99,53 @@ function initialize() {
     
   }
   
+  
 }
+
+function prettyTags (tag, isDays) {
+  var tags = [];
+  for (var key in tag) {
+    if (tag.hasOwnProperty(key)) {
+      if (tag[key] == '1') {
+         var key = key.replace("_"," ")
+         // tags += key + " -> " + tag[key];
+         if (isDays) {
+           key = key + "'s";
+         }
+         tags.push('<span>'+key+'</span>');
+      }
+    }
+  }
+  
+  if (tags.length > 1) {
+    last = tags.pop();
+    var str = tags.join(', ') + " and " + last;
+    return str;
+  } else {
+    return tags.toString();
+  }
+
+}
+
+function getFormattedTime (fourDigitTime) {
+    fourDigitTime = pad_with_zeroes(fourDigitTime, 4)
+    var hours24 = parseInt(fourDigitTime.substring(0, 2),10);
+    var hours = ((hours24 + 11) % 12) + 1;
+    var amPm = hours24 > 11 ? 'pm' : 'am';
+    var minutes = fourDigitTime.substring(2);
+
+    return hours + ':' + minutes + amPm;
+};
+
+function pad_with_zeroes(number, length) {
+    var my_string = '' + number;
+    while (my_string.length < length) {
+        my_string = '0' + my_string;
+    }
+    return my_string;
+}
+
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>

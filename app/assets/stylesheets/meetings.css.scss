@@ -274,15 +274,7 @@
     padding: 22px;
     background: $blue;
     color: $white;
-    
-    i {
-      font-size: 12px;
-      margin: 0;
-      margin-top: -15px;
-      margin-bottom: 8px;
-      font-family: $serifFontFamily;
-    }
-    
+      
     h5 {
       font-size: 18px;
       margin: 0;
@@ -294,9 +286,39 @@
     padding: 22px;
     color: $grayDark;
     font-size: 14px;
+    font-weight: 400;
     
     h5 {
       font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 0px;
+    }
+    
+    i {
+      font-size: 12px;
+      margin: 0;
+      margin-top: -15px;
+      margin-bottom: 8px;
+      font-family: $serifFontFamily;
+    }
+    
+    .info-box-tags {
+      width: 75%;
+      line-height: 1.2em;
+      font-size: 12px;
+      margin-top: 10px;
+      
+      span {
+        font-weight: bold;
+        font-size: 12px;
+      }
+    }
+    
+    .info-box-days { 
+      width: 100%;
+      span {
+        font-size: 14px;
+      }
     }
     
     .closed-icon {
@@ -305,7 +327,7 @@
       background: url('icon-closed-meeting.png') no-repeat left top;
       position: absolute;
       right: 30px;
-      top: 50px;
+      top: 70px;
     }
   }
 

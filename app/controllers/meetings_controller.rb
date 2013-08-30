@@ -24,7 +24,7 @@ class MeetingsController < ApplicationController
 
     else
             
-      if !@user_location.ip.blank?
+      if @user_location.ip.present?
         search_params = @user_location.ip
       else
         search_params = "Seattle, WA"
@@ -51,7 +51,7 @@ class MeetingsController < ApplicationController
     if @all_results.blank?
       flash[:notice] = "Sorry no meetings listed in your area."
     else
-      @all_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting])
+      @all_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting, :tags, :week_days, :time])
     end
 
 
