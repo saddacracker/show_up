@@ -22,7 +22,7 @@ function initialize() {
   }
   var map = new google.maps.Map(document.getElementById('map-canvas'),
                                 mapOptions);
-
+  
   
   // ==========
   // = Bounds =
@@ -81,9 +81,6 @@ function initialize() {
     var ib = new InfoBox(myOptions);
     boxList.push(ib);
     
-
-            
-    // add listener for Marker
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
         boxList[i].open(map, this);
