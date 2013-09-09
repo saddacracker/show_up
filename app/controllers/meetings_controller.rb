@@ -21,7 +21,7 @@ class MeetingsController < ApplicationController
       @map_location = Geocoder.search(params[:search]);
       @map_location = @map_location[0]
     else
-      if @user_location.ip.present?
+      if @user_location.city.present?
         search_params = @user_location.city
       else
         search_params = "Seattle, WA"
