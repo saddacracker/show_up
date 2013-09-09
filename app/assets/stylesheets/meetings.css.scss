@@ -53,7 +53,7 @@
       
       .meetings-search-query {
         display: inline-block;
-        width: 49%;
+        width: 60%;
         color: #6e6d6d;
         font-size: 30px;
         font-style: italic;
@@ -62,9 +62,8 @@
       }
       
       .meetings-search-form {
-        width: 100%;
         float: right;
-        width: 50%;
+        width: 39%;
         
         
         .giant-input {
@@ -100,11 +99,12 @@
 
         .giant-search-btn {
           width: 25%;
-          background: $red;
-          border: 1px solid $red;
+          background: $grayDarker;
+          border: 1px solid $grayDarker;
+          border-left: 1px solid $grayDark;
           @include box-shadow(none);
           text-shadow: none;
-          color: #eed6d7;
+          color: $gray;
           margin-left: -4px;
           margin-top: 0;
           font-size: 18px;

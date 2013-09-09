@@ -157,9 +157,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
               <!-- query -->
               <% if (params[:search]) %>
-                <%= text_field_tag :search, params[:search], placeholder: "Search for a meeting in city, zipcode etc...", class: "input giant-input" %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search for a meeting in city, zipcode etc...", autofocus: true, class: "input giant-input" %>
               <% else %>
-                <%= text_field_tag :search, "", placeholder: "Search for a meeting in city, zipcode etc...", class: "input giant-input" %>
+                <%= text_field_tag :search, "", placeholder: "Search for a meeting in city, zipcode etc...", autofocus: true, class: "input giant-input" %>
               <% end %>
             
               <%= submit_tag "Search", :name => nil, class: "giant-search-btn btn" %>
