@@ -152,8 +152,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div class="meetings-listings-container span12">
         
         <div class="meetings-search-container">
-            <div class="meetings-search-query">AA Meetings near <%= @place %></div>
-          
             <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
               <!-- query -->
               <% if (params[:search]) %>
@@ -164,6 +162,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
             
               <%= submit_tag "Search", :name => nil, class: "giant-search-btn btn" %>
             <% end %>
+            
+            <div class="meetings-search-query">AA Meetings near <%= @place %></div>
         </div>
         
         <div class="row meetings-map-and-listings">

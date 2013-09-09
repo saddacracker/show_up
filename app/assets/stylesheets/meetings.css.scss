@@ -13,6 +13,9 @@
     @include box-sizing(border-box);
     //padding: 0 20px;
     border-right: $grayLighter 1px solid;
+    @include phone-only {
+      border-right: none;
+    }
     
     .meetings-map-and-listings {
       @include desktop-only {
@@ -48,7 +51,7 @@
       padding: 18px 20px;
       @include clearfix();
       @include phone-only {
-        padding: 11px 4px 16px 16px;
+        padding: 15px 15px 20px 15px;
       }
       
       .meetings-search-query {
@@ -59,11 +62,20 @@
         font-style: italic;
         font-family: $serifFontFamily;
         margin-top: 11px;
+        @include phone-only {
+          width: 100%;
+          margin-top: 25px;
+          font-size: 16px;
+          text-align: center;
+        }
       }
       
       .meetings-search-form {
         float: right;
         width: 39%;
+        @include phone-only {
+          width: 100%;          
+        }
         
         
         .giant-input {
@@ -113,7 +125,7 @@
           @include box-sizing(border-box);
           @include phone-only {
             font-size: 12px;
-            line-height: 12px;
+            line-height: 16px;
             padding: 14px 0px;
           }
         }
