@@ -7,7 +7,9 @@ class MeetingsController < ApplicationController
     # @meetings = Meeting.all
     
     # ================================
-    # = @TODO: Client Side GEOCODING http://stackoverflow.com/questions/6451099/using-geocoder-on-production-server =
+    # = @TODO: Client Side GEOCODING 
+    # =         http://stackoverflow.com/questions/6451099/using-geocoder-on-production-server =
+    # =         https://developers.google.com/maps/articles/geocodestrat?csw=1
     # ================================
     
     @user_location = request.location
