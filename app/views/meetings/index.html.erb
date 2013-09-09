@@ -152,7 +152,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div class="meetings-listings-container span12">
         
         <div class="meetings-search-container">
-            <div class="meetings-search-query">AA Meetings in <%= @search_params %></div>
+            <div class="meetings-search-query">AA Meetings in <%= @place %></div>
           
             <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
               <!-- query -->
