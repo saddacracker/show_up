@@ -15,25 +15,22 @@ class MeetingsController < ApplicationController
     # define the meetings
     # there has to be a way to DRY this up, besides looping and concatinating
     if params[:search].present?
-
       search_params = params[:search]
       
       # set map location based on params
       @map_location = Geocoder.search(params[:search]);
       @map_location = @map_location[0]
-
     else
-            
       if @user_location.ip.present?
-        search_params = @user_location.ip
+        search_params = @user_location.city
       else
         search_params = "Seattle, WA"
       end
       
-      @map_location = @user_location
-      
-      
+      @map_location = @user_location      
     end
+    
+    @search_params = search_params
     
     # @TODO: use group_by
     @meetings_on_sunday     = Meeting.has_sunday("1").near(search_params, 25, :order => :time)
@@ -53,7 +50,6 @@ class MeetingsController < ApplicationController
     else
       @all_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting, :tags, :week_days, :time])
     end
-
 
     respond_to do |format|
       format.html # index.html.erb
