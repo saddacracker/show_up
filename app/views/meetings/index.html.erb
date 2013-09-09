@@ -179,67 +179,81 @@ google.maps.event.addDomListener(window, 'load', initialize);
             </ul>
             <div class="tab-content">
               <div class="tab-pane <%= Time.now.monday? ? "active" : "" %>" id="mon">
-                <% unless @meetings_on_monday.blank? %>
+                <% if @meetings_on_monday.present? %>
                 <table class="meetings-listing-table table">
                   <% @meetings_on_monday.each do |meeting| %>
                     <%= render 'listing', :meeting => meeting  %>       
                   <% end %>
                 </table>
+                <% else %>
+                  <%= render 'no_meeting' %>
                 <% end %>
               </div>
               <div class="tab-pane <%= Time.now.tuesday? ? "active" : "" %>" id="tue">
-                <% unless @meetings_on_tuesday.blank? %>
+                <% if @meetings_on_tuesday.present? %>
                 <table class="meetings-listing-table table">
                   <% @meetings_on_tuesday.each do |meeting| %>
                     <%= render 'listing', :meeting => meeting  %>       
                   <% end %>
                 </table>
-                <% end %>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
               </div>
               <div class="tab-pane <%= Time.now.wednesday? ? "active" : "" %>" id="wed">
-                <% unless @meetings_on_wednesday.blank? %>
+                <% if @meetings_on_wednesday.present? %>
                 <table class="meetings-listing-table table">
                   <% @meetings_on_wednesday.each do |meeting| %>
                     <%= render 'listing', :meeting => meeting  %>       
                   <% end %>
                 </table>
-                <% end %>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
               </div>
               <div class="tab-pane <%= Time.now.thursday? ? "active" : "" %>" id="thu">
-                <% unless @meetings_on_thursday.blank? %>
+                <% if @meetings_on_thursday.present? %>
                 <table class="meetings-listing-table table">
                   <% @meetings_on_thursday.each do |meeting| %>
                     <%= render 'listing', :meeting => meeting  %>       
                   <% end %>
                 </table>
-                <% end %>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
               </div>
               <div class="tab-pane <%= Time.now.friday? ? "active" : "" %>" id="fri">
-                <% unless @meetings_on_friday.blank? %>
+                <% if @meetings_on_friday.present? %>
                 <table class="meetings-listing-table table">
                   <% @meetings_on_friday.each do |meeting| %>
                     <%= render 'listing', :meeting => meeting  %>       
                   <% end %>
                 </table>
-                <% end %>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
               </div>
               <div class="tab-pane <%= Time.now.saturday? ? "active" : "" %>" id="sat">
-                <% unless @meetings_on_saturday.blank? %>
+                <% if @meetings_on_saturday.present? %>
                 <table class="meetings-listing-table table">
                   <% @meetings_on_saturday.each do |meeting| %>
                     <%= render 'listing', :meeting => meeting  %>       
                   <% end %>
                 </table>
-                <% end %>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
               </div>
               <div class="tab-pane <%= Time.now.sunday? ? "active" : "" %>" id="sun">
-                <% unless @meetings_on_sunday.blank? %>
+                <% if @meetings_on_sunday.present? %>
                 <table class="meetings-listing-table table">
                   <% @meetings_on_sunday.each do |meeting| %>
                     <%= render 'listing', :meeting => meeting  %>       
                   <% end %>
                 </table>
-                <% end %>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
               </div>
             </div>
           </div>

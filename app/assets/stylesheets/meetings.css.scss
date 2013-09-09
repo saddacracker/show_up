@@ -21,6 +21,14 @@
       @include desktop-only {
         width: 1080px;
       }
+      
+      .alert {
+        margin: 10px;
+        
+        button.close {
+          top: 1px;
+        }
+      }
     }
     
     // =======
