@@ -40,7 +40,7 @@ function initialize() {
   // = Markers =
   // ===========
   var marker
-  var image = '<%= asset_path "aa-map-marker.png" %>';
+  var image = '<%= asset_path "aa-map-marker.png?booger=true" %>';
   var close_button = '<%= asset_path("btn-close.png") %>';
   var i;
   
@@ -148,100 +148,129 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </script>
   
 <div class="meetings-body container">   
-  <div class="row-fluid">
+  <div class="row">
     <div class="meetings-listings-container span12">
-      
-        <div class="meetings-map-container hidden-phone">
-          <div id="map-canvas" class="meetings-map-canvas"></div>
-        </div>
-      
+        
         <div class="meetings-search-container">
             <%= form_tag meetings_path, :method => :get, class: "meetings-search-form navbar-form pull-left form-inline" do %>
               <!-- query -->
               <% if (params[:search]) %>
-                <%= text_field_tag :search, params[:search], placeholder: "Search for a meeting in city, zipcode etc...", class: "input giant-input" %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search for a meeting in city, zipcode etc...", autofocus: true, class: "input giant-input" %>
               <% else %>
-                <%= text_field_tag :search, "", placeholder: "Search for a meeting in city, zipcode etc...", class: "input giant-input" %>
+                <%= text_field_tag :search, "", placeholder: "Search for a meeting in city, zipcode etc...", autofocus: true, class: "input giant-input" %>
               <% end %>
             
               <%= submit_tag "Search", :name => nil, class: "giant-search-btn btn" %>
             <% end %>
+            
+            <div class="meetings-search-query">AA Meetings near <%= @place %></div>
         </div>
-        <ul class="nav nav-tabs">
-          <li class="<%= Time.now.monday? ? "active" : "" %>"><a href="#mon" data-toggle="tab">Mon</a></li>
-          <li class="<%= Time.now.tuesday? ? "active" : "" %>"><a href="#tue" data-toggle="tab">Tue</a></li>
-          <li class="<%= Time.now.wednesday? ? "active" : "" %>"><a href="#wed" data-toggle="tab">Wed</a></li>
-          <li class="<%= Time.now.thursday? ? "active" : "" %>"><a href="#thu" data-toggle="tab">Thu</a></li>
-          <li class="<%= Time.now.friday? ? "active" : "" %>"><a href="#fri" data-toggle="tab">Fri</a></li>
-          <li class="<%= Time.now.saturday? ? "active" : "" %>"><a href="#sat" data-toggle="tab">Sat</a></li>
-          <li class="<%= Time.now.sunday? ? "active" : "" %>"><a href="#sun" data-toggle="tab">Sun</a></li>
-        </ul>
         
-        <div class="tab-content">
-          <div class="tab-pane <%= Time.now.monday? ? "active" : "" %>" id="mon">
-            <% unless @meetings_on_monday.blank? %>
-            <table class="meetings-listing-table table">
-              <% @meetings_on_monday.each do |meeting| %>
-                <%= render 'listing', :meeting => meeting  %>       
-              <% end %>
-            </table>
-            <% end %>
+        <div class="row meetings-map-and-listings">
+          <div class="span6">
+            <ul class="nav nav-tabs">
+              <li class="<%= Time.now.monday? ? "active" : "" %>"><a href="#mon" data-toggle="tab">Mon</a></li>
+              <li class="<%= Time.now.tuesday? ? "active" : "" %>"><a href="#tue" data-toggle="tab">Tue</a></li>
+              <li class="<%= Time.now.wednesday? ? "active" : "" %>"><a href="#wed" data-toggle="tab">Wed</a></li>
+              <li class="<%= Time.now.thursday? ? "active" : "" %>"><a href="#thu" data-toggle="tab">Thu</a></li>
+              <li class="<%= Time.now.friday? ? "active" : "" %>"><a href="#fri" data-toggle="tab">Fri</a></li>
+              <li class="<%= Time.now.saturday? ? "active" : "" %>"><a href="#sat" data-toggle="tab">Sat</a></li>
+              <li class="<%= Time.now.sunday? ? "active" : "" %>"><a href="#sun" data-toggle="tab">Sun</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane <%= Time.now.monday? ? "active" : "" %>" id="mon">
+                <% if @meetings_on_monday.present? %>
+                <table class="meetings-listing-table table">
+                  <% @meetings_on_monday.each do |meeting| %>
+                    <%= render 'listing', :meeting => meeting  %>       
+                  <% end %>
+                </table>
+                <% else %>
+                  <%= render 'no_meeting' %>
+                <% end %>
+              </div>
+              <div class="tab-pane <%= Time.now.tuesday? ? "active" : "" %>" id="tue">
+                <% if @meetings_on_tuesday.present? %>
+                <table class="meetings-listing-table table">
+                  <% @meetings_on_tuesday.each do |meeting| %>
+                    <%= render 'listing', :meeting => meeting  %>       
+                  <% end %>
+                </table>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
+              </div>
+              <div class="tab-pane <%= Time.now.wednesday? ? "active" : "" %>" id="wed">
+                <% if @meetings_on_wednesday.present? %>
+                <table class="meetings-listing-table table">
+                  <% @meetings_on_wednesday.each do |meeting| %>
+                    <%= render 'listing', :meeting => meeting  %>       
+                  <% end %>
+                </table>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
+              </div>
+              <div class="tab-pane <%= Time.now.thursday? ? "active" : "" %>" id="thu">
+                <% if @meetings_on_thursday.present? %>
+                <table class="meetings-listing-table table">
+                  <% @meetings_on_thursday.each do |meeting| %>
+                    <%= render 'listing', :meeting => meeting  %>       
+                  <% end %>
+                </table>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
+              </div>
+              <div class="tab-pane <%= Time.now.friday? ? "active" : "" %>" id="fri">
+                <% if @meetings_on_friday.present? %>
+                <table class="meetings-listing-table table">
+                  <% @meetings_on_friday.each do |meeting| %>
+                    <%= render 'listing', :meeting => meeting  %>       
+                  <% end %>
+                </table>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
+              </div>
+              <div class="tab-pane <%= Time.now.saturday? ? "active" : "" %>" id="sat">
+                <% if @meetings_on_saturday.present? %>
+                <table class="meetings-listing-table table">
+                  <% @meetings_on_saturday.each do |meeting| %>
+                    <%= render 'listing', :meeting => meeting  %>       
+                  <% end %>
+                </table>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
+              </div>
+              <div class="tab-pane <%= Time.now.sunday? ? "active" : "" %>" id="sun">
+                <% if @meetings_on_sunday.present? %>
+                <table class="meetings-listing-table table">
+                  <% @meetings_on_sunday.each do |meeting| %>
+                    <%= render 'listing', :meeting => meeting  %>       
+                  <% end %>
+                </table>
+                 <% else %>
+                    <%= render 'no_meeting' %>
+                  <% end %>
+              </div>
+            </div>
           </div>
-          <div class="tab-pane <%= Time.now.tuesday? ? "active" : "" %>" id="tue">
-            <% unless @meetings_on_tuesday.blank? %>
-            <table class="meetings-listing-table table">
-              <% @meetings_on_tuesday.each do |meeting| %>
-                <%= render 'listing', :meeting => meeting  %>       
-              <% end %>
-            </table>
-            <% end %>
-          </div>
-          <div class="tab-pane <%= Time.now.wednesday? ? "active" : "" %>" id="wed">
-            <% unless @meetings_on_wednesday.blank? %>
-            <table class="meetings-listing-table table">
-              <% @meetings_on_wednesday.each do |meeting| %>
-                <%= render 'listing', :meeting => meeting  %>       
-              <% end %>
-            </table>
-            <% end %>
-          </div>
-          <div class="tab-pane <%= Time.now.thursday? ? "active" : "" %>" id="thu">
-            <% unless @meetings_on_thursday.blank? %>
-            <table class="meetings-listing-table table">
-              <% @meetings_on_thursday.each do |meeting| %>
-                <%= render 'listing', :meeting => meeting  %>       
-              <% end %>
-            </table>
-            <% end %>
-          </div>
-          <div class="tab-pane <%= Time.now.friday? ? "active" : "" %>" id="fri">
-            <% unless @meetings_on_friday.blank? %>
-            <table class="meetings-listing-table table">
-              <% @meetings_on_friday.each do |meeting| %>
-                <%= render 'listing', :meeting => meeting  %>       
-              <% end %>
-            </table>
-            <% end %>
-          </div>
-          <div class="tab-pane <%= Time.now.saturday? ? "active" : "" %>" id="sat">
-            <% unless @meetings_on_saturday.blank? %>
-            <table class="meetings-listing-table table">
-              <% @meetings_on_saturday.each do |meeting| %>
-                <%= render 'listing', :meeting => meeting  %>       
-              <% end %>
-            </table>
-            <% end %>
-          </div>
-          <div class="tab-pane <%= Time.now.sunday? ? "active" : "" %>" id="sun">
-            <% unless @meetings_on_sunday.blank? %>
-            <table class="meetings-listing-table table">
-              <% @meetings_on_sunday.each do |meeting| %>
-                <%= render 'listing', :meeting => meeting  %>       
-              <% end %>
-            </table>
-            <% end %>
+          
+          <div class="span6 meetings-map-section">
+            <div class="meetings-map-container hidden-phone">
+              <div id="map-canvas" class="meetings-map-canvas"></div>
+            </div>
           </div>
         </div>
+        
+        
+      
+        
+        
+        
+        
       
 
       

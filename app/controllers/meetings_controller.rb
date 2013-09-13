@@ -6,34 +6,34 @@ class MeetingsController < ApplicationController
     
     # @meetings = Meeting.all
     
-    @user_location = request.location
-
-    # ==================================================
-    # = @TODO: REDO THE QUERIES! Use group_by and sort =
-    # ==================================================
+    # ================================
+    # = @TODO: Client Side GEOCODING 
+    # =         http://stackoverflow.com/questions/6451099/using-geocoder-on-production-server =
+    # =         https://developers.google.com/maps/articles/geocodestrat?csw=1
+    # ================================
     
-    # define the meetings
-    # there has to be a way to DRY this up, besides looping and concatinating
+    @user_location = request.location
+    
     if params[:search].present?
-
       search_params = params[:search]
       
       # set map location based on params
       @map_location = Geocoder.search(params[:search]);
       @map_location = @map_location[0]
-
     else
-            
-      if @user_location.ip.present?
-        search_params = @user_location.ip
+      
+      if @user_location.present?
+        search_params = @user_location.city
+        @map_location = @user_location
       else
         search_params = "Seattle, WA"
+        @map_location = Geocoder.search(search_params);  
+        @map_location = @map_location[0]
       end
-      
-      @map_location = @user_location
-      
-      
+   
     end
+    
+    @place = search_params
     
     # @TODO: use group_by
     @meetings_on_sunday     = Meeting.has_sunday("1").near(search_params, 25, :order => :time)
@@ -53,7 +53,6 @@ class MeetingsController < ApplicationController
     else
       @all_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting, :tags, :week_days, :time])
     end
-
 
     respond_to do |format|
       format.html # index.html.erb

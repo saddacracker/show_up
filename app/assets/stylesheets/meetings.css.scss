@@ -13,13 +13,33 @@
     @include box-sizing(border-box);
     //padding: 0 20px;
     border-right: $grayLighter 1px solid;
+    @include phone-only {
+      border-right: none;
+    }
+    
+    .meetings-map-and-listings {
+      @include desktop-only {
+        width: 1080px;
+      }
+      
+      .alert {
+        margin: 10px;
+        
+        button.close {
+          top: 1px;
+        }
+      }
+    }
     
     // =======
     // = Map =
     // =======
+    .meetings-map-section {
+      margin-left: 0px;
+      width: 50%;
+    }
     .meetings-map-container {
       background: $white;
-      padding: 10px;
     }
     .meetings-map-canvas {
       width: 100%;
@@ -36,27 +56,50 @@
     // ==========
     .meetings-search-container {
       background: $grayDark;
-      padding: 58px 100px;
+      padding: 18px 20px;
       @include clearfix();
       @include phone-only {
-        padding: 11px 4px 16px 16px;
+        padding: 15px 15px 20px 15px;
+      }
+      
+      .meetings-search-query {
+        display: inline-block;
+        width: 60%;
+        color: #6e6d6d;
+        font-size: 30px;
+        font-style: italic;
+        font-family: $serifFontFamily;
+        margin-top: 11px;
+        @include phone-only {
+          width: 100%;
+          margin-top: 25px;
+          font-size: 16px;
+          text-align: center;
+        }
       }
       
       .meetings-search-form {
-        width: 100%;
+        float: right;
+        width: 39%;
+        @include phone-only {
+          width: 100%;          
+        }
         
         
         .giant-input {
-          width: 70%;
+          width: 75%;
+          height: 46px;
           background: $grayDarker;
           border: 1px solid $grayDarker;
           @include placeholder(#434242);
           color: $grayLight;
-          font-size: 24px;
-          line-height: 24px;
-          padding: 40px 0px;
+          font-size: 12px;
+          line-height: 12px;
+          padding: 12px 0px;
           padding-right: 2%;
           padding-left: 2%;
+          margin-top: 0;
+          @include box-sizing(border-box);
           @include box-shadow(none);
           @include phone-only {
             font-size: 12px;
@@ -75,19 +118,22 @@
         }
 
         .giant-search-btn {
-          width: 22%;
-          background: $red;
-          border: 1px solid $red;
+          width: 25%;
+          background: $grayDarker;
+          border: 1px solid $grayDarker;
+          border-left: 1px solid $grayDark;
           @include box-shadow(none);
           text-shadow: none;
-          color: #eed6d7;
+          color: $gray;
           margin-left: -4px;
-          font-size: 24px;
-          line-height: 24px;
-          padding: 38px 0px;
+          margin-top: 0;
+          font-size: 18px;
+          line-height: 18px;
+          padding: 13px 0px;
+          @include box-sizing(border-box);
           @include phone-only {
             font-size: 12px;
-            line-height: 12px;
+            line-height: 16px;
             padding: 14px 0px;
           }
         }
@@ -111,7 +157,7 @@
       li {
         width: 14.25%;
         text-align: center;
-        font-size: 24px;
+        font-size: 12px;
         text-transform: uppercase;
         
         @include phone-only {
@@ -127,8 +173,8 @@
           color: #b6b5b5;
           margin-right: 0px;
           border-right: 1px solid #c5c6c6; 
-          padding-top: 26px;
-          padding-bottom: 26px;
+          padding-top: 12px;
+          padding-bottom: 12px;
           @include border-radius(0px);
           
           @include phone-only {
@@ -151,11 +197,10 @@
       
       td, th {
         border: none;
-        padding-left: 0px;
         vertical-align: middle;
         color: $gray;
         @include phone-only {
-          padding: 5px 4px 5px 0px;
+          padding: 5px 4px 5px 10px;
         }
         
         h5, p {
@@ -166,23 +211,12 @@
       }      
     }
     
-    .meeting-listing-icon {
-      width: 8%;
-      text-align: center;
-      @include phone-only {
-        width: 0%;
-      }
-    }
     .meeting-listing-time {
-      width: 12%;
-      @include phone-only {
-        width: 15%;
-        padding-left: 10px !important;
-      }
+      width: 15%;
       
       p {
-        font-size: 24px;
-        line-height: 24px;
+        font-size: 12px;
+        line-height: 12px;
         text-transform: uppercase;
         margin: 5px 0 0 0;
         @include phone-only {
@@ -192,22 +226,19 @@
       }
     }
     .meeting-listing-isclosed {
-      width: 4%;
-      @include phone-only {
-        width: 5%;
-        padding-right: 8px !important;
-      }
+      width: 10%;
     }
     .meeting-listing-info {
-      width: 38%;
-       @include phone-only {
-         width: 40%;
-       }
-      
+      width: 75%;
+      padding-left: 15px;
+       
       .meeting-listing-title {
-        font-size: 36px;
-        line-height: 36px;
+        font-size: 18px;
+        line-height: 18px;
         text-transform: uppercase;
+        font-weight: normal;
+        margin-bottom: 0px;
+        margin-top: 4px;
         @include phone-only {
           font-size: 14px;
           line-height: 14px;
@@ -217,35 +248,23 @@
           text-decoration: none;
         }
       }
-    }
-    .meeting-listing-address {
-      width: 38%;
-      @include phone-only {
-        width: 40%;
-      }
-      
       .meeting-listing-address-title {
-        font-size: 18px;
+        font-size: 12px;
         font-weight: normal;
+        margin-top: 1px;
+        margin-bottom: 0px;
         @include phone-only {
           font-size: 12px;
           line-height: 1.4em;
           margin-bottom: 3px;
         }
-
-      }
-      .meeting-listing-description {
-        font-family: $serifFontFamily;
-        font-size: 14px;
-        @include phone-only {
-          font-size: 10px;
-          line-height: 1.2em;
+        
+        .distance {
+          color: $grayLight;
         }
 
       }
     }
-    
-    
   }
 
   // InfoBox Map MArker Popups
