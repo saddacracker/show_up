@@ -9,7 +9,11 @@ jQuery ($) ->
   
   # tooltip
   ($ '[data-toggle="tooltip"]').tooltip()
-
+  
+  # affix map
+  ($ '.meetings-map-container').affix
+    offset:
+      top: 120
 
   # set directions link to use accurate locaton for start address
   if ($ '.meetings-detail-directions-btn').length > 0
@@ -27,36 +31,3 @@ jQuery ($) ->
         #   when error.TIMEOUT then alert("retrieving position timed out");  
         #   else alert("unknown error");
   
-
-
-
-# http://stackoverflow.com/questions/4664156/running-a-coffeescript-class-on-document-ready
-# class ShowUp
-#   _latitude = -> 0
-#   _longitude = -> 0
-#   
-#   constructor: () -> 
-#     # return x * x # constructors require an explicit return
-# 
-#   geoLocate: () ->
-#     if navigator.geolocation
-#       navigator.geolocation.getCurrentPosition(@setPosition, @handleErrors);
-# 
-#   setPosition: (position) ->
-#     @_latitude   = -> position.coords.latitude
-#     @_longitude  = -> position.coords.longitude
-#     # @setCookie(position)
-#    
-#   getLatitude:  -> @_latitude() 
-#   getLongitude: -> @_longitude() 
-#     
-#   setCookie: (position) ->
-#     cookie_val = position.coords.latitude + "|" + position.coords.longitude
-#     document.cookie = "lat_lng=" + escape(cookie_val)
-#   
-#   handleErrors: (error) ->
-#     switch(error.code)  
-#       when error.PERMISSION_DENIED then alert("user did not share geolocation data");  
-#       when error.POSITION_UNAVAILABLE then alert("could not detect current position");  
-#       when error.TIMEOUT then alert("retrieving position timed out");  
-#       else alert("unknown error");  

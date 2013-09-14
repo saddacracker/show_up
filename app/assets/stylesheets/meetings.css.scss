@@ -18,6 +18,8 @@
     }
     
     .meetings-map-and-listings {
+      position: relative;
+      
       @include desktop-only {
         width: 1080px;
       }
@@ -40,6 +42,10 @@
     }
     .meetings-map-container {
       background: $white;
+      &.affix {
+        top: 0;
+        width: 540px;
+      }
     }
     .meetings-map-canvas {
       width: 100%;
