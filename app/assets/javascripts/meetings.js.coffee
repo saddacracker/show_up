@@ -13,7 +13,7 @@ jQuery ($) ->
   # affix map
   ($ '.meetings-map-container').affix
     offset:
-      top: 120
+      top: ($ '.meetings-search-container').height() + ($ '#meetingsMainNavBar').height()
 
   # set directions link to use accurate locaton for start address
   if ($ '.meetings-detail-directions-btn').length > 0
