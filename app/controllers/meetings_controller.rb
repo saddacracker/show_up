@@ -65,6 +65,7 @@ class MeetingsController < ApplicationController
   def show
     @meeting = Meeting.find(params[:id])
     # @lat_lng = cookies[:lat_lng].split("|")
+    # session[:return_to] ||= request.referer
 
 
     respond_to do |format|

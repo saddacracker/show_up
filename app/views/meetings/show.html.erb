@@ -8,7 +8,7 @@
           <% if current_user %>
             <%= link_to 'Edit', edit_meeting_path(@meeting), class: "btn" %>
           <% end %>
-          <%= link_to 'Back To Meetings', meetings_path, class: "meetings-detail-back btn btn-link" %>
+          <%= link_to 'Back To Results', request.referer, class: "meetings-detail-back btn btn-link" %>
         </div>
       </div>
     </div>
