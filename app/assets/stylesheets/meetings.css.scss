@@ -42,15 +42,23 @@
     }
     .meetings-map-container {
       background: $white;
+      
       &.affix {
         top: 0;
         width: 540px;
+        
+        @include tablet-only {
+          width: 371px;
+        }
       }
     }
     .meetings-map-canvas {
       width: 100%;
       height: 536px;
       background-color: $grayLighter;
+      @include tablet-only {
+        height: 371px;
+      }
       
       img {
         max-width: none;

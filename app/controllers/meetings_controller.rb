@@ -49,7 +49,7 @@ class MeetingsController < ApplicationController
     @all_results = @meetings_on_sunday + @meetings_on_monday + @meetings_on_tuesday + @meetings_on_wednesday + @meetings_on_thursday + @meetings_on_friday + @meetings_on_saturday
     
     if @all_results.blank?
-      flash[:notice] = "Sorry no meetings listed in your area."
+      flash.now[:notice] = "Sorry no meetings listed in your area."
     else
       @all_results = @all_results.to_json(:only => [:title, :address, :latitude, :longitude, :distance, :closed_meeting, :tags, :week_days, :time])
     end
