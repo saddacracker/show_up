@@ -12,7 +12,7 @@ function initialize() {
   // ===========
   var mapOptions = {
     // zoom: 9,
-    center: new google.maps.LatLng(<%= @map_location.latitude %>, <%= @map_location.longitude %>),
+    center: new google.maps.LatLng(<%= @map_location.latitude if @map_location.present? %>, <%= @map_location.longitude if @map_location.present? %>),
     mapTypeControl: false,
     zoomControl: true,
     zoomControlOptions: {
