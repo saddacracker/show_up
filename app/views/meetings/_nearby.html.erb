@@ -1,0 +1,9 @@
+<h3>Meetings near <%= meeting.title %></h3>
+<ul class="unstyled">
+<% for meeting in meeting.nearbys(10) %>
+  <li class="meetings-detail-nearby-listing">
+    <div class="meeting-nearby-top-row"><%= link_to meeting.title, meeting, class: "meetings-detail-nearby-title" %> <%= image_tag "icon-closed-meeting.png", size: "11x10", class: "meetings-closed-icon" if meeting.closed_meeting %>  <span class="meetings-start-time"><%= fomat_time meeting.time %></span></div>
+    <div class="meeting-nearby-btm-row"><%= meeting.address %> <span class="meetings-distance">(<%= meeting.distance.to_f.round(2) %> miles)</span></div>
+  </li>
+<% end %>
+</ul>

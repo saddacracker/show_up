@@ -51,22 +51,14 @@
         </div>
         <div class="meetings-detail-column span4">
           <!-- MAP  -->
-          <div class="meetings-detail-map"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=16&markers=#{@meeting.latitude}%2C#{@meeting.longitude}" %></div>
+          <div class="meetings-detail-map"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=16&markers=icon:http://showup.heroku.com#{asset_path "aa-map-marker.png"}%7C#{@meeting.latitude}%2C#{@meeting.longitude}" %></div>
         </div>
       </div>
     </div>
     
     <!-- Nearby -->
     <div class="meetings-detail-column meetings-detail-nearby span4">
-      <h3>Meetings near <%= @meeting.title %></h3>
-      <ul class="unstyled">
-      <% for meeting in @meeting.nearbys(10) %>
-        <li class="meetings-detail-nearby-listing">
-          <div class="meeting-nearby-top-row"><%= link_to meeting.title, meeting, class: "meetings-detail-nearby-title" %> <%= image_tag "icon-closed-meeting.png", size: "11x10", class: "meetings-closed-icon" if meeting.closed_meeting %>  <span class="meetings-start-time"><%= fomat_time meeting.time %></span></div>
-          <div class="meeting-nearby-btm-row"><%= meeting.address %> <span class="meetings-distance">(<%= meeting.distance.to_f.round(2) %> miles)</span></div>
-        </li>
-      <% end %>
-      </ul>
+      <%#= render 'nearby', :meeting => @meeting  %>
     </div>
 
   </div>
