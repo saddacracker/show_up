@@ -52,6 +52,7 @@
         <div class="meetings-detail-column span4">
           <!-- MAP  -->
           <div class="meetings-detail-map"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=16&markers=icon:http://showup.heroku.com#{asset_path "aa-map-marker.png"}%7C#{@meeting.latitude}%2C#{@meeting.longitude}" %></div>
+          <div><small>Incorrect information? <%= mail_to "cardwell.john@gmail.com", "Email Us", subject: "Problem with meeting info: #{request.protocol}#{request.host_with_port}#{request.fullpath}" %></small></div>
         </div>
       </div>
     </div>
