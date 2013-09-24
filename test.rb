@@ -12,13 +12,16 @@ def change_the_case(name)
 end
 
 days = %w[sunday monday tuesday wednesday thursday friday saturday]
+number = 0
 
 days.each do |day|
   url = "http://seattleaa.org/directory/web#{day}.html"
   doc = Nokogiri::HTML(open(url))
+  
+  puts "\n ::::::: #{day.capitalize} ::::::: \n\n"
 
   doc.css('table tr').each do |item|
-    # puts item.content
+    
     if  item.at_css("td")
       division  = item.at_css("td").text
       time      = item.at_css("td + td").text
@@ -35,8 +38,10 @@ days.each do |day|
       else 
         duration = 60
       end
+      
+      number = number+1
 
-      puts "#{time} - #{name} - #{address} - #{is_closed} - #{division} - #{tags} - #{duration}"
+      puts "#{number}    #{time} - #{name} - #{address} - #{is_closed} - #{division} - #{tags} - #{duration}"
     end
   end
 end
