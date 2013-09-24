@@ -6,13 +6,10 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
 gem 'activerecord-postgres-hstore'
-
 gem "bcrypt-ruby", :require => "bcrypt"
-
+gem "nokogiri", "~> 1.6.0"
 gem 'geocoder'
-
 gem "simple_form", "~> 2.1.0"
 
 # Gems used only for assets and not required
@@ -28,9 +25,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem "bootstrap-sass", "~> 2.3.1.0"
-
 gem 'newrelic_rpm'
 
 
