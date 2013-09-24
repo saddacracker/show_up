@@ -2,7 +2,7 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 
-days = %w[sunday monday tuesday wednesday thursday friday saturday]
+
 
 def change_the_case(name)
   name.downcase
@@ -10,6 +10,8 @@ def change_the_case(name)
     word.capitalize
   end
 end
+
+days = %w[sunday monday tuesday wednesday thursday friday saturday]
 
 days.each do |day|
   url = "http://seattleaa.org/directory/web#{day}.html"
@@ -25,8 +27,16 @@ days.each do |day|
       name      = change_the_case(name)
       address   = item.at_css("td + td + td + td + td").text
       tags      = item.at_css("td + td + td + td + td + td").text 
+      duration  = tags.gsub!('oh',' ')
+      
+      # check if there is 'oh' (one-hour) in the tags
+      if duration.nil?
+        duration = 90
+      else 
+        duration = 60
+      end
 
-      puts "#{time} - #{name} - #{address} - #{is_closed} - #{division} - #{tags}"
+      puts "#{time} - #{name} - #{address} - #{is_closed} - #{division} - #{tags} - #{duration}"
     end
   end
 end
