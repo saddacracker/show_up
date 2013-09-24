@@ -21,6 +21,10 @@ days.each do |day|
   puts "\n ::::::: #{day.capitalize} ::::::: \n\n"
 
   doc.css('table tr').each do |item|
+    # @TODO: convert noons & midnights to times
+    # @TODO: convert times to military time
+    # @TODO: convert their tags to my tag and create hash (hstore compliant)
+    # @TODO: check for matching title (update day of week hash, if so)
     
     if  item.at_css("td")
       division  = item.at_css("td").text
@@ -41,7 +45,7 @@ days.each do |day|
       
       number = number+1
 
-      puts "#{number}    #{time} - #{name} - #{address} - #{is_closed} - #{division} - #{tags} - #{duration}"
+      puts "#{number} #{division} : #{time} - #{name} - #{address} - #{is_closed} - #{tags} - #{duration}"
     end
   end
 end
