@@ -4,6 +4,13 @@ require 'open-uri'
 
 days = %w[sunday monday tuesday wednesday thursday friday saturday]
 
+def change_the_case(name)
+  name.downcase
+  name.gsub(/\w+/) do |word|
+    word.capitalize
+  end
+end
+
 days.each do |day|
   url = "http://seattleaa.org/directory/web#{day}.html"
   doc = Nokogiri::HTML(open(url))
@@ -14,7 +21,8 @@ days.each do |day|
       division  = item.at_css("td").text
       time      = item.at_css("td + td").text
       is_closed = item.at_css("td + td + td").text
-      name      = item.at_css("td + td + td + td").text.capitalize
+      name      = item.at_css("td + td + td + td").text
+      name      = change_the_case(name)
       address   = item.at_css("td + td + td + td + td").text
       tags      = item.at_css("td + td + td + td + td + td").text 
 
@@ -22,6 +30,10 @@ days.each do |day|
     end
   end
 end
+
+
+
+
 
 
 
