@@ -22,37 +22,41 @@
           <div class="meetings-detail-info">
             <h1><%= @meeting.title %></h1>
             <p class="meetings-detail-address"><strong><%= @meeting.address %></strong></p>
+            
+            <%= link_to "Directions", "http://maps.google.com?saddr=&daddr=#{@meeting.address}", target: "_blank", class: "meetings-detail-directions-btn btn", data: { daddr: "#{@meeting.address}"} %>
       
             <% if @meeting.description? %>
               <p><%= @meeting.description %></p>
             <% end %>
             
-            <%= link_to "Directions", "http://maps.google.com?saddr=&daddr=#{@meeting.address}", target: "_blank", class: "meetings-detail-directions-btn btn", data: { daddr: "#{@meeting.address}"} %>
-      
-              <div class="well">
-                <div class="meetings-detail-time">
-                  <b>Time</b>
-                  <span><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></span>
-                </div>
-                <div class="meeting-listing-isclosed"><%= image_tag "icon-closed-meeting.png", data: { toggle: "tooltip" }, title: "Closed Meeting" if @meeting.closed_meeting %></div>
-              </div>
-              
-      
-            <div class="meetings-detail-tags days_of_week">
-              <b>Days:</b><br />
-              <%= render 'days_of_week_tags', :meeting => @meeting  %>
-            </div>
-            <div class="meetings-detail-tags tags">
-              <b>Tags:</b><br />
-              <%= render 'tags', :meeting => @meeting  %>
-            </div>
           </div>
       
         </div>
         <div class="meetings-detail-column span4">
           <!-- MAP  -->
           <div class="meetings-detail-map"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x350&sensor=false&zoom=16&markers=icon:http://showup.heroku.com#{asset_path "aa-map-marker.png"}%7C#{@meeting.latitude}%2C#{@meeting.longitude}" %></div>
-          <div><small>Incorrect information? <%= mail_to "cardwell.john@gmail.com", "Email Us", subject: "Problem with meeting info: #{request.protocol}#{request.host_with_port}#{request.fullpath}" %></small></div>
+          
+          <div class="well">
+            <div class="meetings-detail-time">
+              <b>Meeting Time</b>
+              <span><%= fomat_time @meeting.time %> to <%= get_meeting_end_time @meeting.time, @meeting.duration %></span>
+            </div>
+            <div class="meeting-listing-isclosed"><%= image_tag "icon-closed-meeting.png", data: { toggle: "tooltip" }, title: "Closed Meeting" if @meeting.closed_meeting %></div>
+          </div>
+          
+  
+        <div class="meetings-detail-tags-container">
+          <div class="meetings-detail-tags days_of_week">
+            <b>Days:</b><br />
+            <%= render 'days_of_week_tags', :meeting => @meeting  %>
+          </div>
+          <div class="meetings-detail-tags tags">
+            <b>Tags:</b><br />
+            <%= render 'tags', :meeting => @meeting  %>
+          </div>
+        </div>
+          
+          <div class="meetings-change-info"><small>Incorrect information? <%= mail_to "cardwell.john@gmail.com", "Email Us", subject: "Problem with meeting info: #{request.protocol}#{request.host_with_port}#{request.fullpath}" %></small></div>
         </div>
       </div>
     </div>

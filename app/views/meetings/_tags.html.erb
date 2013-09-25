@@ -1,5 +1,8 @@
 <% meeting.tags.each do |tag,value| %>
   <% if value == "1" %>
+    <% tag = "women only" if tag == "womans" %>
+    <% tag = "men only" if tag == "mens" %>
+    <% tag = "book study" if tag == "book_study" %>
     <strong><%= tag %></strong>
   <% end %>
 <% end %>
