@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'time'
 
-
+meetings = Array.new 
 
 def change_the_case(name)
   name.downcase
@@ -102,22 +102,28 @@ days.each do |day|
       is_closed == "C" ? is_closed = true : is_closed = false
       
       number = number+1
+
+      # puts "CREATING: #{number} #{division} : #{time} - #{name} - #{address} - #{is_closed} - #{tags} - #{duration}"
       
       # 2) @TODO: check for matching title (update day of week hash, if so)
-      # make an array of titles
+      if meetings.include? name
+        puts "UPDATING: #{number} #{name}"
+        # http://apidock.com/rails/ActiveRecord/Relation/update_all
+        # Meeting.where('title LIKE ?', "%#{name}%").update(:week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 0, :wednesday => 0})
+        
+        # m = Meeting.where('title LIKE ?', "%#{name}%")
+        # m = m.first
+        # m.update_attribute :friday, 1
+        
+        # UPDATE meeting SET week_days = week_days || '"#{day}"=>"1"'::hstore
       
-      
-      # if it matches, update with new day of week
-      # http://apidock.com/rails/ActiveRecord/Relation/update_all
-      # Meeting.where('title LIKE ?', "%#{name}%").update_all(:week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 0, :wednesday => 0})
-      
-      # if it doesn't match, create
-      # http://ruby.jieck.com/blog/2013/03/19/nosqlize-postgresql-with-hstore-in-rails-3.2plus/
-      puts "CREATING: #{number} #{division} : #{time} - #{name} - #{address} - #{is_closed} - #{tags} - #{duration}"
-      
-      # Meeting.create(:address => address, :week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 0, :wednesday => 0}, :duration => duration, :time => time, :closed_meeting => is_closed, :description => "No Description", :title => name, :tags => {})
-      
-      
+      else 
+        puts "CREATING: #{number} #{name}"
+        meetings << name
+        # http://ruby.jieck.com/blog/2013/03/19/nosqlize-postgresql-with-hstore-in-rails-3.2plus/
+        # Meeting.create(:address => address, :week_days => {day.to_sym => 1}, :duration => duration, :time => time, :closed_meeting => is_closed, :description => "No Description", :title => name, :tags => {})
+      end     
+
     end
   end
 end
