@@ -105,23 +105,24 @@ days.each do |day|
 
       # puts "CREATING: #{number} #{division} : #{time} - #{name} - #{address} - #{is_closed} - #{tags} - #{duration}"
       
-      # 2) @TODO: check for matching title (update day of week hash, if so)
       if meetings.include? name
         puts "UPDATING: #{number} #{name}"
         # http://apidock.com/rails/ActiveRecord/Relation/update_all
         # Meeting.where('title LIKE ?', "%#{name}%").update(:week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 0, :wednesday => 0})
         
-        # m = Meeting.where('title LIKE ?', "%#{name}%")
+        temp_meetings = Meeting.where('title LIKE ?', "%#{name}%")
         # m = m.first
-        # m.update_attribute :friday, 1
+        temp_meetings.each do |m|
+          m.update_attribute :friday, 1
+        end
         
-        # UPDATE meeting SET week_days = week_days || '"#{day}"=>"1"'::hstore
       
       else 
         puts "CREATING: #{number} #{name}"
         meetings << name
+        Meeting.create(:address => address, :week_days => {day => 1}, :duration => duration, :time => time, :closed_meeting => is_closed, :description => "No Description", :title => name, :tags => {})
         # http://ruby.jieck.com/blog/2013/03/19/nosqlize-postgresql-with-hstore-in-rails-3.2plus/
-        # Meeting.create(:address => address, :week_days => {day.to_sym => 1}, :duration => duration, :time => time, :closed_meeting => is_closed, :description => "No Description", :title => name, :tags => {})
+        # Meeting.create(:address => "100 Testickle Ave. Easthampton, MA", :week_days => {"monday"=>"1"}, :duration => 90, :time => 1200, :closed_meeting => true, :description => "No Description", :title => "Test Scaper", :tags => {})
       end     
 
     end
