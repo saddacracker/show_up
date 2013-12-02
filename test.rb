@@ -3,7 +3,8 @@ require 'nokogiri'
 require 'open-uri'
 require 'time'
 
-meetings = Array.new 
+@meetings = Array.new 
+@halls = Array.new
 
 def change_the_case(name)
   name.downcase
@@ -28,13 +29,14 @@ def convert_tags(tags)
   #   end
 end
 
-def convert_halls(hall)
+def convert_hall(hall)
+  
   # Alano Club Of The Eastside 
   # 12302 NE 8th, Bellevue 98005
   
   # Capital Hill Alano Club
   
-  # Ed-Lynn Fellowship Hall
+  # Ed Lynn Fellowship
   # 5800 198th SW, Suite 1, Lynnwood 98036
   
   # Fremont Fellowship Hall
@@ -63,6 +65,27 @@ def convert_halls(hall)
   
   # Cherry Fellowship
   # 2701 East Cherry, Seattle 98122
+  
+  
+  # list of halls
+  # Ed Lynn Fellowship
+  #   Pass It On - 17801 1st Ave S 98148
+  #   Serenity Hall
+  #   Southend Fellowship
+  #   12 & 12 Fellowship
+  #   Pass It On -17801 1st Ave S 98148
+  #   A New Beginning
+  
+  hall = hall.strip
+  
+  if @halls.include? hall
+    
+  else
+    @halls << hall
+    print hall
+  end
+  
+  
 end
 
 days = %w[sunday monday tuesday wednesday thursday friday saturday]
@@ -101,26 +124,32 @@ days.each do |day|
       # convert is_closed
       is_closed == "C" ? is_closed = true : is_closed = false
       
+      if address.empty?
+        convert_hall(name)
+      end
+      
       number = number+1
 
       # puts "CREATING: #{number} #{division} : #{time} - #{name} - #{address} - #{is_closed} - #{tags} - #{duration}"
       
-      if meetings.include? name
-        puts "UPDATING: #{number} #{name}"
+      if @meetings.include? name
+        print "-"
         # http://apidock.com/rails/ActiveRecord/Relation/update_all
         # Meeting.where('title LIKE ?', "%#{name}%").update(:week_days => {:friday => 0, :monday => 0, :sunday => 0, :tuesday => 0, :saturday => 0, :thursday => 0, :wednesday => 0})
         
-        temp_meetings = Meeting.where('title LIKE ?', "%#{name}%")
-        # m = m.first
-        temp_meetings.each do |m|
-          m.update_attribute :friday, 1
-        end
+        # temp_meetings = Meeting.where('title LIKE ?', "%#{name}%")
+        #         # m = m.first
+        #         temp_meetings.each do |m|
+        #           m.update_attribute :friday, 1
+        #         end
         
       
       else 
-        puts "CREATING: #{number} #{name}"
-        meetings << name
-        Meeting.create(:address => address, :week_days => {day => 1}, :duration => duration, :time => time, :closed_meeting => is_closed, :description => "No Description", :title => name, :tags => {})
+        print "."
+        @meetings << name
+        #        Meeting.create(:address => address, :week_days => {day => 1}, :duration => duration, :time => time, :closed_meeting => is_closed, :description => "No Description", :title => name, :tags => {})
+        
+        
         # http://ruby.jieck.com/blog/2013/03/19/nosqlize-postgresql-with-hstore-in-rails-3.2plus/
         # Meeting.create(:address => "100 Testickle Ave. Easthampton, MA", :week_days => {"monday"=>"1"}, :duration => 90, :time => 1200, :closed_meeting => true, :description => "No Description", :title => "Test Scaper", :tags => {})
       end     
