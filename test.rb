@@ -85,51 +85,16 @@ def convert_empty_hall(hall)
   # Cherry Fellowship
   # 2701 East Cherry, Seattle 98122
   
-  
-  # adding addresses to halls missing addresses from the scraped website  
-  # correct_halls = [{
-  #   "Ed Lynn Fellowship" => "5800 198th SW, Suite 1, Lynnwood 98036",
-  #   "Pass It On - 17801 1st Ave S 98148" => "17801 1st Ave S 98148",
-  #   "Serenity Hall" => "12536 Renton Ave South, Renton 98178",
-  #   "Southend Fellowship" => "321 3rd Ave South, Kent 98032",
-  #   "12 & 12 Fellowship" => "23732 Bothell Everett Hwy Bothell, WA 98021",
-  #   "Pass It On -17801 1st Ave S 98148" => "17801 1st Ave S 98148",
-  #   "A New Beginning" => "15403 Ambaum Blvd S.W., Burien 98166",
-  #   }]
-  
-  # unless @halls.include? hall
-  #   @halls << hall
-  #   print hall
-  # end
-  
   hall = hall.strip
-  
   return @halls[hall]
-  
-  
 end
 
-def convert_hall_to_address(hall)
-  
-  # Lynnwood Alano Club
-  # Phoenix Club
-  # Fremont Fellowship Hall
-  # Cherry Fellowship
-  # South King Alano Club
-  # South County Alano Club
-  # Alano Club of the Eastside
-  # Eastside Alano Club
-  # 12 & 12 Fellowship
-  # 12 & 12 Study
-  # 12 & 12 FELLOWSHIP
-  # South County Alano Club
-  # South King Alano Club
-  
-  hall = hall.strip
-  
-  return @halls[hall] 
-  
-end
+# def convert_hall_to_address(hall)
+#   hall = hall.strip
+#   if @halls[address]
+#     address = @halls[address]
+#   end
+# end
 
 days = %w[sunday monday tuesday wednesday thursday friday saturday]
 number = 0
@@ -167,15 +132,15 @@ days.each do |day|
       # convert is_closed
       is_closed == "C" ? is_closed = true : is_closed = false
       
+      # obvioussly we need an address if it's empty
       if address.empty?
         address = convert_empty_hall(name)
       end
       
-      # if @halls.key(address)
-      #   puts address
-      #   # address = convert_hall_to_address(address)
-      #   # puts address
-      # end
+      # check if the address supplied is actually the name of a hall and not really an address
+      if @halls[address]
+        address = @halls[address]
+      end
       
       number = number+1
 
