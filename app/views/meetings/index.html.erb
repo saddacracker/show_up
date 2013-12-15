@@ -1,151 +1,4 @@
 <% title "AA Meetings near #{@place.titleize}" %>
-
-<!-- Make a map -->
-<script>
-function initialize() {
-  
-  var locations = <%= @all_results.to_s.html_safe %>
-  var boxList =[];
-  
-  // ===========
-  // = The Map =
-  // ===========
-  var mapOptions = {
-    // zoom: 9,
-    center: new google.maps.LatLng(<%= @map_location.latitude if @map_location.present? %>, <%= @map_location.longitude if @map_location.present? %>),
-    mapTypeControl: false,
-    zoomControl: true,
-    zoomControlOptions: {
-      style: google.maps.ZoomControlStyle.SMALL
-    },
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-                                mapOptions);
-  
-  
-  // ==========
-  // = Bounds =
-  // ==========
-  var LatLngList = new Array ();
-  var bounds = new google.maps.LatLngBounds();
-  
-  for (i = 0; i < locations.length; i++) {  
-    LatLngList.push( new google.maps.LatLng(locations[i].latitude, locations[i].longitude) )
-    bounds.extend (LatLngList[i]);
-  }
-  map.fitBounds (bounds);
-  
-  // ===========
-  // = Markers =
-  // ===========
-  var marker
-  var image = '<%= asset_path "aa-map-marker.png" %>';
-  var close_button = '<%= asset_path("btn-close.png") %>';
-  var i;
-  
-  for (i = 0; i < locations.length; i++) {  
-    // plot the markers
-    marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
-      map: map,
-      id: i,
-      title: locations[i].title,
-      icon: image
-    });
-    
-    var boxText = document.createElement("div");
-    boxText.id = i;
-    boxText.style.cssText = "border-bottom: 1px solid #bab6af; padding: 0px; background: #fff;";
-    boxText.innerHTML = "<div class='info-box-container'><div class='info-box-header'><h5>"+ locations[i].title +"</h5></div><div class='info-box-body'><h5>"+ locations[i].address +"</h5><i>"+ Math.round(locations[i].distance) +" miles away</i><p class='info-box-tags'>" + prettyTags(locations[i].tags) + "</p><p class='info-box-days'><strong class='info-box-time'>" + getFormattedTime(locations[i].time.toString()) + "</strong> on " + prettyTags(locations[i].week_days, true) + "</p>"+ (locations[i].closed_meeting ? '<div class="closed-icon"></div>' : '') + "<a href='http://maps.google.com?daddr=" + locations[i].address + "' target='_blank' class='btn'>Directions</a></div></div>";
-
-    var myOptions = {
-        content: boxText,
-        disableAutoPan: false,
-        maxWidth: 0,
-        pixelOffset: new google.maps.Size(-157, 15),
-        zIndex: null,
-        boxStyle: {
-            opacity: 1,
-            width: "314px",
-        },
-        closeBoxMargin: "26px 12px 0px 0px",
-        closeBoxURL: close_button,
-        infoBoxClearance: new google.maps.Size(1, 1),
-        isHidden: false,
-        pane: "floatPane",
-        enableEventPropagation: false
-    };
-    
-
-    var ib = new InfoBox(myOptions);
-    boxList.push(ib);
-    
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-      return function() {
-        boxList[i].open(map, this);
-      }
-    })(marker, i));
-    
-    // add listener for InfoBox
-    google.maps.event.addDomListener(boxList[i].content_,'click',(function(marker, i) {
-      return function() {
-        // alert('clicked ' + locations[i].title)
-      }
-    })(marker, i));
-    
-  }
-  
-  
-}
-
-function prettyTags (tag, isDays) {
-  var tags = [];
-  for (var key in tag) {
-    if (tag.hasOwnProperty(key)) {
-      if (tag[key] == '1') {
-         var key = key.replace("_"," ")
-         // tags += key + " -> " + tag[key];
-         if (isDays) {
-           key = key + "'s";
-         }
-         tags.push('<span>'+key+'</span>');
-      }
-    }
-  }
-  
-  if (tags.length > 1) {
-    last = tags.pop();
-    var str = tags.join(', ') + " and " + last;
-    return str;
-  } else {
-    return tags.toString();
-  }
-
-}
-
-function getFormattedTime (fourDigitTime) {
-    fourDigitTime = pad_with_zeroes(fourDigitTime, 4)
-    var hours24 = parseInt(fourDigitTime.substring(0, 2),10);
-    var hours = ((hours24 + 11) % 12) + 1;
-    var amPm = hours24 > 11 ? 'pm' : 'am';
-    var minutes = fourDigitTime.substring(2);
-
-    return hours + ':' + minutes + amPm;
-};
-
-function pad_with_zeroes(number, length) {
-    var my_string = '' + number;
-    while (my_string.length < length) {
-        my_string = '0' + my_string;
-    }
-    return my_string;
-}
-
-
-
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
   
 <div class="meetings-body container">   
   <div class="row">
@@ -264,14 +117,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
             </div>
           </div>
         </div>
-        
-        
-      
-        
-        
-        
-        
-      
 
       
     </div>
@@ -291,3 +136,5 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </div>
 
 </div>
+
+<%= render 'map' %>
