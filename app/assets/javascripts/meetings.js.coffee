@@ -30,4 +30,8 @@ jQuery ($) ->
         #   when error.POSITION_UNAVAILABLE then alert("could not detect current position");  
         #   when error.TIMEOUT then alert("retrieving position timed out");  
         #   else alert("unknown error");
+
   
+  ($ "[data-meeting]" ).click (e) ->
+    e.preventDefault()   
+    openInfoWindow($(this).attr("data-meeting"))  

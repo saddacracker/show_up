@@ -1,5 +1,7 @@
 <!-- Make a map -->
 <script>
+var markers = [];
+
 function initialize() {
   
   var locations = <%= @all_results.to_s.html_safe %>
@@ -92,9 +94,14 @@ function initialize() {
       }
     })(marker, i));
     
-  }
+    markers.push(marker);
+  }  
   
-  
+}
+
+// function called from the list of pastor names
+function openInfoWindow(id){
+  google.maps.event.trigger(markers[id], 'click');
 }
 
 function prettyTags (tag, isDays) {

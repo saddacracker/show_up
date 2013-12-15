@@ -1,6 +1,6 @@
 <tr class="meeting-listing">
   <td class="meeting-listing-info">
-    <h4 class="meeting-listing-title"><%= link_to truncate(meeting.title, length: 35), meeting, title: meeting.title %></h4>
+    <h4 class="meeting-listing-title"><%= link_to truncate(meeting.title, length: 35), meeting, title: meeting.title, data: { meeting: "1" } %></h4>
     <h5 class="meeting-listing-address-title"><%= truncate(meeting.address, length: 45) %> <span class="distance">(<%= meeting.distance.to_f.round(2) %> miles)</span></h5>
   </td>
   

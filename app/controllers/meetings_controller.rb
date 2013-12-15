@@ -2,6 +2,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings
   # GET /meetings.json
+  
+  DEFAULT_DISTANCE = 10.freeze
+  
   def index
     
     # @meetings = Meeting.all
@@ -36,13 +39,13 @@ class MeetingsController < ApplicationController
     @place = search_params
     
     # @TODO: use group_by
-    @meetings_on_sunday     = Meeting.has_sunday("1").near(search_params, 25, :order => :time)
-    @meetings_on_monday     = Meeting.has_monday("1").near(search_params, 25, :order => :time)
-    @meetings_on_tuesday    = Meeting.has_tuesday("1").near(search_params, 25, :order => :time)
-    @meetings_on_wednesday  = Meeting.has_wednesday("1").near(search_params, 25, :order => :time)
-    @meetings_on_thursday   = Meeting.has_thursday("1").near(search_params, 25, :order => :time)
-    @meetings_on_friday     = Meeting.has_friday("1").near(search_params, 25, :order => :time)
-    @meetings_on_saturday   = Meeting.has_saturday("1").near(search_params, 25, :order => :time)
+    @meetings_on_sunday     = Meeting.has_sunday("1").near(search_params, DEFAULT_DISTANCE, :order => :time)
+    @meetings_on_monday     = Meeting.has_monday("1").near(search_params, DEFAULT_DISTANCE, :order => :time)
+    @meetings_on_tuesday    = Meeting.has_tuesday("1").near(search_params, DEFAULT_DISTANCE, :order => :time)
+    @meetings_on_wednesday  = Meeting.has_wednesday("1").near(search_params, DEFAULT_DISTANCE, :order => :time)
+    @meetings_on_thursday   = Meeting.has_thursday("1").near(search_params, DEFAULT_DISTANCE, :order => :time)
+    @meetings_on_friday     = Meeting.has_friday("1").near(search_params, DEFAULT_DISTANCE, :order => :time)
+    @meetings_on_saturday   = Meeting.has_saturday("1").near(search_params, DEFAULT_DISTANCE, :order => :time)
     
     # Concatinate all the meetings VS querying 
     # Meeting.near(search_params, 25, :order => :time)
