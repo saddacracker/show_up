@@ -21,6 +21,6 @@
 #
 # CONTROLLER SPECIFIC
 # -------------------
-#=
+#= require show_up/_config 
 #= require_tree .
 

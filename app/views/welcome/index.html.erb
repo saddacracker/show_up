@@ -1,9 +1,5 @@
-<div ng-app>
-  <h1>Meetings</h1>
-
-  <form>
-    <input type="text" ng-model="newEntry.name">
-  </form> 
-
-  {{newEntry.name}}
+<div ng-app="ShowUp" ng-controller="WelcomeCtrl">
+  <header class="header"><h1>Suit Up and Show Up</h1></header>
+  <error></error>
+  <ng-view></ng-view>
 </div>
