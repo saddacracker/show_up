@@ -3,7 +3,7 @@ class MeetingsController < ApplicationController
   
   DEFAULT_DISTANCE = 10.freeze
   
-  # http://localhost:3001/meetings.json?search=Everett
+  # /meetings.json?search=Everett
   def index
     # Geocode
     # Geocoder.search(params[:search])
