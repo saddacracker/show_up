@@ -1,21 +1,9 @@
-<div class="front-of-bg container">
-  <div class="row">
-    <div class="welcome span12">
-        <h1 class="welcome-logo">Suit Up &amp; Show Up</h1>
-        <p class="welcome-tagline">Find AA meetings near you</p>
-        <%= link_to 'Find Meetings', meetings_path, id: "find-meetings", class: "btn btn-primary btn-large btn-welcome" %>
-        
-        <% unless current_user %>
-          <p class="welcome-admin-signin">Have an Admin Account? <%= link_to "Log in", log_in_path %> now</p>
-        <% else %>
-          <p class="welcome-admin-signin"><%= link_to "Log out", log_out_path %></p>
-        <% end %>
-        
-      </h1>
-    </div>
-  </div>
-</div>
+<div ng-app>
+  <h1>Meetings</h1>
 
-<div class="fill-whole-page-bg">
-  <%= image_tag("sat-evening-post.jpg", id: "welcome-bg-image") %>
+  <form>
+    <input type="text" ng-model="newEntry.name">
+  </form> 
+
+  {{newEntry.name}}
 </div>
