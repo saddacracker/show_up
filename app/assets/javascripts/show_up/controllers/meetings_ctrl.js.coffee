@@ -15,14 +15,13 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
     }
   }
   
+  $scope.togglePane = () ->
+    $scope.meeting.selected = !$scope.meeting.selected
+  
   $scope.getMeetingOpts = (meeting) ->
-    angular.extend(
-      { title: meeting.title }, 
-      if $scope.options.selected
-        meeting.selected = true  
-      else
-        meeting.selected = false
-    )
+    angular.extend
+        title: meeting.title
+      , (if meeting.selected then $scope.options.selected else $scope.options.notselected) 
   
   $scope.selectMeeting = (meeting) ->
     if ($scope.meeting)
@@ -30,8 +29,8 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
       
     $scope.meeting = meeting
     $scope.meeting.selected = true;
-
     $scope.$broadcast 'gmMarkersUpdate', 'meetings'
+  
   
   # Meetings
   $scope.meetings = Meeting.query()

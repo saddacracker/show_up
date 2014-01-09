@@ -29,6 +29,18 @@
     top: 0px;  
     left: 0px;  
     position: relative;
+   } 
+   
+   .close-panel {
+     position: absolute;
+     z-index: 100;
+     width: 40px;
+     left: 400px;
+     background-color: rgba(0,0,0,.5);
+     color: #f0f0f0;
+     bottom: 0;
+     top: 0;
+     cursor: pointer;
    }
  
    .listings-panel {  
@@ -50,9 +62,36 @@
       }
    } 
  
-   .detail-panel {
-   
-   } 
+    .meeting-panel {
+      @include box-sizing(border-box);
+      @include transition(all .5s ease);
+      @include backface-visibility(hidden); 
+      @include translate3d(-440px,0,0); 
+      @include translucent-background($white, .95);
+      position: absolute; 
+      top: 80px;
+      left: -440px;
+      bottom: 0px;
+      width: 400px; 
+      border-right: #333 1px solid;
+      
+      &.show { 
+        left: 0px; 
+        @include translate3d(0,0,0); 
+        z-index: 10;
+      }
+      
+      .meeting-details {
+        bottom: 0;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        position: absolute;
+      }
+    } 
  
    .map-container { 
      left: 400px;
@@ -60,7 +99,7 @@
      right: 0;
      bottom: 0;
      position: absolute;  
-     box-sizing: border-box; 
+     @include box-sizing(border-box);
      z-index: 10;
    
      .map {

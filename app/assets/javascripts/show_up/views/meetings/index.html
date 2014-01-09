@@ -13,22 +13,23 @@
         </gm-map>  
       </figure>  
     </div> 
-    <header class="main-header">Header</header>
+    <header class="main-header"><h1>Suit Up and Show Up</h1></header>
     <section class="listings-panel">
       <div class="meeting-list">
         <ul>
           <li ng-repeat="meeting in meetings">
-              {{meeting.title}} 
-              {{meeting.latitude}}
+              <p ng-click="selectMeeting(meeting)">{{meeting.title}} {{meeting.latitude}}</p>
           </li>
         </ul> 
-      </div>  
+      </div>
     </section>
-    <section class="detail-panel" ng-show="meeting">
-      <div>
+    <section class="meeting-panel" ng-class="{show:meeting.selected}">
+      <div class="meeting-details">
         <h5>{{ meeting.title }}</h5>
         <p>{{ meeting.address }}</p>
-      </div> 
+        <p>{{ meeting.week_days }}</p>
+      </div>
+      <button type="button" class="close close-panel" ng-click="togglePane()">&times;</button> 
     </section>
   </div> 
   
