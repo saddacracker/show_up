@@ -16,8 +16,6 @@
 </head>
 <body class="<%= body_classes %>">
 
-<%= render 'shared/header' %>
-
   <% flash.each do |name, msg| %>
     <div class="container"><div class="row"><div class="span12">
       <div class="alert">
@@ -29,22 +27,6 @@
 
 
   <%= yield %>
-
-
-  <footer class="front-of-bg">
-      <div class="footer">
-         <div class="container">
-            <div class="row">
-              <div class="span12">
-                <p class="credits">Built for you by <%= link_to "@saddacracker", "https://twitter.com/saddacracker", target: "_blank" %> because <%= link_to "He gave all", "http://www.dickb.com/archives/silkwort.shtml", target: "_blank" %><br />
-                  <span class="footnote">This site is not endorsed by <%= link_to "Alcoholics Anonymous World Services", "http://www.alcoholics-anonymous.org/", target: "_blank" %>, nor does it represent Alcoholics Anonymous as a whole.</span>
-                  
-                </p>
-              </div>
-            </div>
-         </div>
-      </div>
-  </footer>
 
 </body>
 </html>

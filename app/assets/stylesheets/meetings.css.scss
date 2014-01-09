@@ -1,0 +1,94 @@
+// ==========
+// = Common =
+// ==========
+.wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}  
+
+
+
+
+// ==============
+// = /meetings  =
+// ==============
+.meetings {
+  .app-wrapper { 
+    z-index: 10; 
+     &.no-scroll {
+       overflow: hidden;
+     }
+   }
+ 
+   header.main-header {
+    width: 100%;
+    height: 80px;
+    top: 0px;  
+    left: 0px;  
+    position: relative;
+   }
+ 
+   .listings-panel {  
+      position: absolute; 
+      top: 80px;
+      left: 0px;
+      bottom: 0px;
+      width: 400px; 
+      
+      .meeting-list {
+        bottom: 60px;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        position: absolute;
+      }
+   } 
+ 
+   .detail-panel {
+   
+   } 
+ 
+   .map-container { 
+     left: 400px;
+     top: 80px;   
+     right: 0;
+     bottom: 0;
+     position: absolute;  
+     box-sizing: border-box; 
+     z-index: 10;
+   
+     .map {
+       height: 100%;
+       width: 100%;
+       position: relative;
+       margin: 0;  
+       
+       // Fixes Bootstrap issues with Google Maps
+       // see http://stackoverflow.com/a/9170756 
+       img { 
+         max-width: none;
+       }
+     
+       // google map
+       #map-canvas {
+         position: absolute;
+         top: 0;
+         right: 0;
+         left: 0;
+         bottom: 0;
+         display: block;
+         z-index: 1;  
+       } 
+       #map-canvas[Attributes Style] {
+         -webkit-user-drag: element;
+         -webkit-user-select: none; 
+       }
+     }
+  }//..map-container      
+} //.meetings

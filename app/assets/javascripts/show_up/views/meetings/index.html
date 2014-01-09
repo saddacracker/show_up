@@ -1,9 +1,35 @@
-<gm-map gm-map-id="'myMap'" gm-center="center" gm-zoom="zoom" gm-bounds="bounds" gm-map-type-id="mapTypeId" style="width:500px;height:500px;"></gm-map>
-
-<div ng-controller="MeetingsCtrl">  
-  <ul>
-    <li ng-repeat="meeting in meetings">
-        {{meeting.title}}
-    </li>
-  </ul>
+<div ng-controller="MeetingsCtrl" class="meetings">  
+  
+  <div class="app-wrapper wrapper no-scroll">
+    <div class="map-container">  
+      <figure class="map">
+        <gm-map gm-map-id="'map-canvas'" gm-center="center" gm-zoom="zoom" gm-map-options="options.map">
+          <gm-markers gm-objects="meetings"
+                      gm-id="object.id"
+                      gm-position="{lat: object.latitude, lng: object.longitude}"
+                      gm-marker-options="getMeetingOpts(object)"
+                      gm-on-click="selectMeeting(object, marker)">
+          </gm-markers> 
+        </gm-map>  
+      </figure>  
+    </div> 
+    <header class="main-header">Header</header>
+    <section class="listings-panel">
+      <div class="meeting-list">
+        <ul>
+          <li ng-repeat="meeting in meetings">
+              {{meeting.title}} 
+              {{meeting.latitude}}
+          </li>
+        </ul> 
+      </div>  
+    </section>
+    <section class="detail-panel" ng-show="meeting">
+      <div>
+        <h5>{{ meeting.title }}</h5>
+        <p>{{ meeting.address }}</p>
+      </div> 
+    </section>
+  </div> 
+  
 </div>

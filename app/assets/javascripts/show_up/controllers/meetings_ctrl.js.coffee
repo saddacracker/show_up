@@ -1,4 +1,39 @@
 ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
+  
+  # MAP
+  $scope.options = {
+    map: {
+      center: new google.maps.LatLng(48, -121),
+      zoom: 10,
+      mapTypeId: google.maps.MapTypeId.ROADMAP 
+    },
+    notselected: {
+      icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
+    },
+    selected: {
+      icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow-dot.png',
+    }
+  }
+  
+  $scope.getMeetingOpts = (meeting) ->
+    angular.extend(
+      { title: meeting.title }, 
+      if $scope.options.selected
+        meeting.selected = true  
+      else
+        meeting.selected = false
+    )
+  
+  $scope.selectMeeting = (meeting) ->
+    if ($scope.meeting)
+      $scope.meeting.selected = false
+      
+    $scope.meeting = meeting
+    $scope.meeting.selected = true;
+
+    $scope.$broadcast 'gmMarkersUpdate', 'meetings'
+  
+  # Meetings
   $scope.meetings = Meeting.query()
   
   $scope.addMeeting = ->
@@ -23,4 +58,8 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
     # and we can do this by either calling Entry.update and passing in the entry
     Meeting.update(meeting)
     # or use 
-    # meeting.$update()
+    # meeting.$update() 
+    
+    
+  
+
