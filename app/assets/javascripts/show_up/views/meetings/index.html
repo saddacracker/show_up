@@ -1,9 +1,10 @@
-<div ng-controller="MeetingsCtrl" class="meetings">  
+<div class="meetings">  
+  <header class="main-header"><h1>Suit Up and Show Up</h1></header>
   
   <div class="app-wrapper wrapper no-scroll">
     <div class="map-container">  
       <figure class="map">
-        <gm-map gm-map-id="'map-canvas'" gm-center="center" gm-zoom="zoom" gm-map-options="options.map">
+        <gm-map gm-map-id="'map-canvas'" gm-bounds="bounds" gm-center="center" gm-zoom="zoom" gm-map-options="options.map">
           <gm-markers gm-objects="meetings"
                       gm-id="object.id"
                       gm-position="{lat: object.latitude, lng: object.longitude}"
@@ -13,7 +14,7 @@
         </gm-map>  
       </figure>  
     </div> 
-    <header class="main-header"><h1>Suit Up and Show Up</h1></header>
+    
     <section class="listings-panel">
       <div class="meeting-list">
         <ul>
@@ -22,12 +23,14 @@
           </li>
         </ul> 
       </div>
-    </section>
+    </section> 
+    
     <section class="meeting-panel" ng-class="{show:meeting.selected}">
       <div class="meeting-details">
         <h5>{{ meeting.title }}</h5>
         <p>{{ meeting.address }}</p>
         <p>{{ meeting.week_days }}</p>
+        <strong>{{meeting.latitude}}</strong>
       </div>
       <button type="button" class="close close-panel" ng-click="togglePane()">&times;</button> 
     </section>

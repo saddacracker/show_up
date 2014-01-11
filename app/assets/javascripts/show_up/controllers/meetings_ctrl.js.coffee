@@ -1,38 +1,6 @@
 ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
   
-  # MAP
-  $scope.options = {
-    map: {
-      center: new google.maps.LatLng(48, -121),
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.ROADMAP 
-    },
-    notselected: {
-      icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
-    },
-    selected: {
-      icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow-dot.png',
-    }
-  }
-  
-  $scope.togglePane = () ->
-    $scope.meeting.selected = !$scope.meeting.selected
-  
-  $scope.getMeetingOpts = (meeting) ->
-    angular.extend
-        title: meeting.title
-      , (if meeting.selected then $scope.options.selected else $scope.options.notselected) 
-  
-  $scope.selectMeeting = (meeting) ->
-    if ($scope.meeting)
-      $scope.meeting.selected = false
-      
-    $scope.meeting = meeting
-    $scope.meeting.selected = true;
-    $scope.$broadcast 'gmMarkersUpdate', 'meetings'
-  
-  
-  # Meetings
+  # MEETINGS
   $scope.meetings = Meeting.query()
   
   $scope.addMeeting = ->
@@ -57,7 +25,62 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
     # and we can do this by either calling Entry.update and passing in the entry
     Meeting.update(meeting)
     # or use 
-    # meeting.$update() 
+    # meeting.$update()  
+    
+
+  
+  # MAP
+  $scope.options = {
+    map: {
+      center: new google.maps.LatLng(48, -121),
+      zoom: 10,
+      mapTypeId: google.maps.MapTypeId.ROADMAP 
+    },
+    notselected: {
+      icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
+    },
+    selected: {
+      icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow-dot.png',
+    }
+  }
+
+  
+  $scope.$on "gmMapIdle", (event, mapId) ->
+    # $scope.bounds = new google.maps.LatLngBounds() 
+    if mapId == 'map-canvas' 
+      console.log $scope.meetings
+
+      
+      # angular.forEach $scope.meetings, (meeting) ->
+      #   console.log("wat2")     
+        # if meeting.latitude?
+        #   myLatLng = new google.maps.LatLng(meeting.latitude, meeting.longitude)
+        #   $scope.bounds.extend myLatLng     
+         
+  
+    #and i need to set the center from this
+    # console.log($scope.bounds.getCenter())
+    # $scope.bounds.getCenter()
+    # $scope.center = $scope.bounds.getCenter()   
+  
+  $scope.getMeetingOpts = (meeting) ->
+    angular.extend
+        title: meeting.title
+      , (if meeting.selected then $scope.options.selected else $scope.options.notselected) 
+  
+  $scope.selectMeeting = (meeting) ->
+    if ($scope.meeting)
+      $scope.meeting.selected = false
+      
+    $scope.meeting = meeting
+    $scope.meeting.selected = true;
+    $scope.$broadcast 'gmMarkersUpdate', 'meetings'  
+    
+  
+  
+  # UTILS (move to directive?)
+  $scope.togglePane = () ->
+    $scope.meeting.selected = !$scope.meeting.selected
     
     
   
