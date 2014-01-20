@@ -29,10 +29,10 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
     
 
   
-  # MAP
+  # Map options
   $scope.options = {
     map: {
-      center: new google.maps.LatLng(48, -121),
+      center: new google.maps.LatLng(43.72651658643689, -85.25745444941401),
       zoom: 10,
       mapTypeId: google.maps.MapTypeId.ROADMAP 
     },
@@ -43,25 +43,29 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
       icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow-dot.png',
     }
   }
-
+  
+  
   
   $scope.$on "gmMapIdle", (event, mapId) ->
-    # $scope.bounds = new google.maps.LatLngBounds() 
+     
+    
     if mapId == 'map-canvas' 
-      console.log $scope.meetings
-
+      console.log(event.name) 
       
-      # angular.forEach $scope.meetings, (meeting) ->
-      #   console.log("wat2")     
-        # if meeting.latitude?
-        #   myLatLng = new google.maps.LatLng(meeting.latitude, meeting.longitude)
-        #   $scope.bounds.extend myLatLng     
-         
-  
-    #and i need to set the center from this
-    # console.log($scope.bounds.getCenter())
-    # $scope.bounds.getCenter()
-    # $scope.center = $scope.bounds.getCenter()   
+      $scope.bounds = new google.maps.LatLngBounds()
+      
+      angular.forEach $scope.meetings, (meeting) ->
+        if meeting.latitude?
+          myLatLng = new google.maps.LatLng(meeting.latitude, meeting.longitude)
+          # console.log('myLatLng: ' + myLatLng)
+          $scope.bounds.extend(myLatLng)
+   
+      
+      $scope.center = $scope.bounds.getCenter()  
+      # force it to refresh
+      $scope.$broadcast 'gmMapResize', 'map-canvas'
+          
+           
   
   $scope.getMeetingOpts = (meeting) ->
     angular.extend

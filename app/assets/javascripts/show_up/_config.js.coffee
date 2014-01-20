@@ -12,7 +12,7 @@ ShowUp.config ($routeProvider) ->
       # this promise from ViewCtrl has to be resolved before loading
       # loadData: Raffler.potpourriCtrl.loadData 
   ).when( '/meetings',
-    templateUrl: "/assets/show_up/views/meetings/index.html"
+    templateUrl: "/assets/show_up/views/meetings.html"
     controller: "MeetingsCtrl"
   ).otherwise(
     redirectTo: "/"
