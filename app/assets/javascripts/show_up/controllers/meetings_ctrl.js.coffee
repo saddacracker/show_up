@@ -1,13 +1,17 @@
-ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
+ShowUp.controller "MeetingsCtrl", ($scope, $location, Meeting, AddressService) ->
   
+  $scope.addressService = AddressService
+  $scope.addressService.address = $location.search().search
+    
   # MEETINGS
-  $scope.meetings = Meeting.query()
+  $scope.meetings = Meeting.query({search: $scope.addressService.address})
   
   $scope.addMeeting = ->
     # submit a POST request and trigger the create action
     meeting = Meeting.save($scope.newMeeting, () ->
       # add the entry to our list
       $scope.meetings.push(meeting)
+      # store the latest new meeting
       $scope.newMeeting = {}
     )
   
@@ -29,10 +33,10 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
     
 
   
-  # Map options
+  # MAP
   $scope.options = {
     map: {
-      center: new google.maps.LatLng(43.72651658643689, -85.25745444941401),
+      center: new google.maps.LatLng(0, 0),
       zoom: 10,
       mapTypeId: google.maps.MapTypeId.ROADMAP 
     },
@@ -47,23 +51,19 @@ ShowUp.controller "MeetingsCtrl", ($scope, Meeting) ->
   
   
   $scope.$on "gmMapIdle", (event, mapId) ->
-     
-    
     if mapId == 'map-canvas' 
       console.log(event.name) 
       
       $scope.bounds = new google.maps.LatLngBounds()
       
       angular.forEach $scope.meetings, (meeting) ->
-        if meeting.latitude?
+        if meeting.latitude? && meeting.latitude?
           myLatLng = new google.maps.LatLng(meeting.latitude, meeting.longitude)
-          # console.log('myLatLng: ' + myLatLng)
           $scope.bounds.extend(myLatLng)
    
-      
-      $scope.center = $scope.bounds.getCenter()  
       # force it to refresh
       $scope.$broadcast 'gmMapResize', 'map-canvas'
+      $scope.center = $scope.bounds.getCenter()
           
            
   

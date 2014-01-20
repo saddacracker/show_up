@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   respond_to :json
   
-  DEFAULT_DISTANCE = 10.freeze
+  DEFAULT_DISTANCE = 100.freeze
   
   # /meetings.json?search=Everett
   def index
