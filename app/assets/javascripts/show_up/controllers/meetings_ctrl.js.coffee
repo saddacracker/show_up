@@ -1,4 +1,4 @@
-ShowUp.controller "MeetingsCtrl", ($scope, $location, Meeting, AddressService) ->
+ShowUp.meetingsCtrl = ShowUp.controller "MeetingsCtrl", ($scope, $location, Meeting, AddressService) ->
   
   $scope.addressService = AddressService
   $scope.addressService.address = $location.search().search
@@ -79,13 +79,20 @@ ShowUp.controller "MeetingsCtrl", ($scope, $location, Meeting, AddressService) -
     $scope.meeting = meeting
     $scope.meeting.selected = true;
     $scope.$broadcast 'gmMarkersUpdate', 'meetings'  
-    
-  
-  
+      
   # UTILS (move to directive?)
   $scope.togglePane = () ->
     $scope.meeting.selected = !$scope.meeting.selected
     
+# This has to resolve before 'meetingsCtrl' can load. 
+# Right now it's just resolving itself
+ShowUp.meetingsCtrl.loadData = ($q, $timeout) ->
+  defer = $q.defer()
+  $timeout (->
+    # defer.reject "Your network is down"
+    defer.resolve "loadData"
+  ), 500
+  defer.promise    
     
   
 

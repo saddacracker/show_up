@@ -12,10 +12,8 @@ ShowUp.config ($routeProvider) ->
   ).when( '/meetings',
     templateUrl: "/assets/show_up/views/meetings.html"
     controller: "MeetingsCtrl"
-    # resolve: 
-  		# redirect: ($route, $location) ->
-#         unless $route.current.params.search? 
-#           $location.path('/')   # change to http://localhost:9000/#/edit
+    resolve:
+      loadData: ShowUp.meetingsCtrl.loadData
   ).otherwise(
     redirectTo: "/"
   )
