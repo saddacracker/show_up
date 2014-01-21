@@ -1,7 +1,5 @@
 ShowUp.controller "WelcomeCtrl", ($rootScope, $scope, $location, $http, AddressService) ->
-  
-  $scope.selected = undefined
-  
+    
   $scope.addressService = AddressService
   
   $scope.setAddress = () ->
