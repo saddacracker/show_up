@@ -17,12 +17,11 @@
 // For a breakdown of what belongs where, see
 // http://guides.rubyonrails.org/asset_pipeline.html#asset-organization
  
-@import "bootstrap-overrides/bootstrap";
-@import "bootstrap-responsive";
+@import "bootstrap";
 @import "extensions/named_breakpoints";
 
-// Bootstrap
-@import "bootstrap-overrides/_variables";
+// Bootstrap Overrides
+
 
 // Views
 @import "shared/common_attributes";

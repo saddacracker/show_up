@@ -29,6 +29,7 @@
     top: 0px;  
     left: 0px;  
     position: relative;
+    
    } 
    
    .close-panel {
@@ -67,7 +68,7 @@
       @include transition(all .5s ease);
       @include backface-visibility(hidden); 
       @include translate3d(-440px,0,0); 
-      @include translucent-background($white, .95);
+//      @include translucent-background($white, .95);
       position: absolute; 
       top: 80px;
       left: -440px;
