@@ -10,12 +10,14 @@ ShowUp.controller "WelcomeCtrl", ($rootScope, $scope, $location, $http, AddressS
       params:
         address: val
         sensor: false
+        region: 'us'
     ).then (res) ->
       addresses = []
       angular.forEach res.data.results, (item) ->
         addresses.push item.formatted_address
 
       addresses
+  
   
   # handle if the promise to teh router wasn't fulfilled
   $rootScope.$on "$routeChangeError", (event, current, previous, rejection) ->
