@@ -23,10 +23,11 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'angularjs-rails'
+  gem "angular-ui-bootstrap-rails", "~> 0.9.0"
 end
 
 gem 'jquery-rails'
-gem "bootstrap-sass", "~> 2.3.1.0"
+gem "bootstrap-sass", "~> 3.0.3.0"
 gem 'newrelic_rpm'
 
 
