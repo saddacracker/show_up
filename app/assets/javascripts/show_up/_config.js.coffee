@@ -1,5 +1,5 @@
 # Instantiate
-ShowUp = angular.module('ShowUp', ["ngResource", "ngRoute", "AngularGM"])
+ShowUp = angular.module('ShowUp', ["ngResource", "ngRoute", "AngularGM", "ui.bootstrap"])
 (exports ? this).ShowUp = ShowUp
 
 

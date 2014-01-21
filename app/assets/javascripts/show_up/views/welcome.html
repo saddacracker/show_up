@@ -3,6 +3,11 @@ Welcome to the Show Up App
 <error></error>
 
 <div>
+  <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" class="form-control">
+  <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+</div>
+
+<div>
   <input ng-model="addressService.address" />
   <button ng-click="setAddress()">Go</button>
 </div>

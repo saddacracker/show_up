@@ -13,11 +13,11 @@
 # LIBRARIES
 # ---------
 #
-#= require jquery
-#= require jquery_ujs
 #= require angular
 #= require angular-resource
 #= require angular-route
+#= require angular-ui-bootstrap
+#= require angular-ui-bootstrap-tpls
 #
 # CONTROLLER SPECIFIC
 # -------------------

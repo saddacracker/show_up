@@ -57,7 +57,7 @@ ShowUp.meetingsCtrl = ShowUp.controller "MeetingsCtrl", ($scope, $location, Meet
       $scope.bounds = new google.maps.LatLngBounds()
       
       angular.forEach $scope.meetings, (meeting) ->
-        if meeting.latitude? && meeting.latitude?
+        if meeting.latitude? && meeting.longitude?
           myLatLng = new google.maps.LatLng(meeting.latitude, meeting.longitude)
           $scope.bounds.extend(myLatLng)
    
@@ -72,13 +72,17 @@ ShowUp.meetingsCtrl = ShowUp.controller "MeetingsCtrl", ($scope, $location, Meet
         title: meeting.title
       , (if meeting.selected then $scope.options.selected else $scope.options.notselected) 
   
-  $scope.selectMeeting = (meeting) ->
+  $scope.selectMeeting = (meeting, marker) ->
     if ($scope.meeting)
       $scope.meeting.selected = false
-      
     $scope.meeting = meeting
     $scope.meeting.selected = true;
-    $scope.$broadcast 'gmMarkersUpdate', 'meetings'  
+    $scope.$broadcast 'gmMarkersUpdate', 'meetings' 
+    
+  $scope.selectMeetingListing = (meeting) -> 
+    $scope.selectMeeting(meeting)
+    $scope.center = new google.maps.LatLng(meeting.latitude, meeting.longitude)
+    $scope.zoom = 16
       
   # UTILS (move to directive?)
   $scope.togglePane = () ->
