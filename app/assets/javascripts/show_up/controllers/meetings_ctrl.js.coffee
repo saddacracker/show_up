@@ -1,7 +1,7 @@
 ShowUp.meetingsCtrl = ShowUp.controller "MeetingsCtrl", ($scope, $location, Meeting, AddressService) ->
   
   $scope.addressService = AddressService
-  $scope.addressService.address = $location.search().search
+  # $scope.addressService.address = $location.search().search
     
   # MEETINGS
   $scope.meetings = Meeting.query({search: $scope.addressService.address})
@@ -82,7 +82,7 @@ ShowUp.meetingsCtrl = ShowUp.controller "MeetingsCtrl", ($scope, $location, Meet
   $scope.selectMeetingListing = (meeting) -> 
     $scope.selectMeeting(meeting)
     $scope.center = new google.maps.LatLng(meeting.latitude, meeting.longitude)
-    $scope.zoom = 16
+    $scope.zoom = 17
       
   # UTILS (move to directive?)
   $scope.togglePane = () ->
