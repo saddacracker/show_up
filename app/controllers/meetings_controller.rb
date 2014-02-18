@@ -10,8 +10,8 @@ class MeetingsController < ApplicationController
     
     if params[:search].present?
       respond_with Meeting.near(params[:search], DEFAULT_DISTANCE, :order => :time)
-    else
-      respond_with Meeting.all
+    # else
+    #   respond_with Meeting.all     
     end
   end
 
