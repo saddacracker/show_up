@@ -87,6 +87,8 @@ ShowUp.meetingsCtrl = ShowUp.controller "MeetingsCtrl", ($scope, $location, Meet
   # UTILS (move to directive?)
   $scope.togglePane = () ->
     $scope.meeting.selected = !$scope.meeting.selected
+
+
     
 # This has to resolve before 'meetingsCtrl' can load. 
 # Right now it's just resolving itself
